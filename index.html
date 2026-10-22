@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ECHO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#F6F3EC;color:#1F2A37;font-family:'Atkinson Hyperlegible',system-ui,sans-serif;font-size:18px;line-height:1.5}
+h1,h2,h3{font-family:'Lexend',system-ui,sans-serif;color:#1F2A37}
+header.top{position:sticky;top:0;z-index:5;background:rgba(246,243,236,0.94);backdrop-filter:blur(8px);border-bottom:1px solid #E6E0D3}
+.topin{max-width:760px;margin:0 auto;padding:12px 16px}
+.brand{display:flex;justify-content:space-between;align-items:center;font-family:'Lexend',sans-serif;font-weight:600;font-size:15px;color:#2F6F6B}
+.brandmark{display:inline-flex;align-items:center;gap:7px;letter-spacing:.03em;font-weight:800;color:#0F4D48;font-size:17px}
+.brandmark svg{display:block}
+.lockup{display:flex;align-items:center;gap:4px;margin-bottom:22px}
+.lockup .wm{font-family:'Lexend',sans-serif;font-weight:800;font-size:46px;letter-spacing:.01em;color:#0F4D48;line-height:.95}
+.lockup .tl{font-family:'Lexend',sans-serif;font-size:12.5px;letter-spacing:.2em;color:#CF6B3B;font-weight:700;margin-top:7px;text-transform:uppercase}
+@keyframes rp{0%{opacity:.5}35%{opacity:1}100%{opacity:.5}}
+.lockup .r1{animation:rp 2.6s ease-in-out infinite}
+.lockup .r2{animation:rp 2.6s ease-in-out .35s infinite}
+@media (prefers-reduced-motion:reduce){.lockup .r1,.lockup .r2{animation:none}}
+body.setup .steps,body.setup .steplabel,body.setup nav.bottom,body.setup main{display:none}
+#setupWrap{max-width:760px;margin:0 auto;padding:24px 16px 60px}
+body:not(.setup) #setupWrap{display:none}
+#setupWrap h2{font-size:26px;margin:0 0 6px}
+#setupWrap .lead{color:#4A5563;margin:0 0 4px}
+.field{display:block;font-weight:700;margin:18px 0 8px}
+.inp{width:100%;font:inherit;padding:12px 14px;border:2px solid #DDD6C8;border-radius:12px;background:#FDFCF9;color:#1F2A37}
+.inp:focus{outline:none;border-color:#2F6F6B;box-shadow:0 0 0 4px rgba(47,111,107,.15)}
+#packet{min-height:130px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
+.fine{font-size:14px;color:#6B7280;margin:6px 0 0}
+.msg{min-height:22px;font-size:15px;font-weight:700;margin-top:10px}
+.msg.ok{color:#2F6F6B}.msg.bad{color:#B4583A}
+.ready{display:flex;gap:10px;align-items:center;background:#E8F2F0;border-radius:12px;padding:10px 14px;font-weight:700;color:#1F5A4E;margin:12px 0 0}
+.setupgo{margin-top:20px}
+.textlink{background:none;border:0;color:#2F6F6B;font:inherit;font-weight:700;text-decoration:underline;cursor:pointer;padding:4px}
+.center{text-align:center;margin-top:6px}
+#linkOut{display:none;margin-top:10px;min-height:80px;font-size:13px}
+#linkOut.show{display:block}
+.printhead svg{vertical-align:middle;margin-right:6px}
+.steps{display:flex;gap:6px;margin-top:10px}
+.step{flex:1;height:8px;border-radius:99px;background:#E3DDCF;border:0;padding:0;cursor:pointer;transition:background .2s}
+.step.done{background:#9CC3BD}
+.step.now{background:#2F6F6B}
+.steplabel{font-size:14px;color:#5B6675;margin-top:6px}
+main{max-width:760px;margin:0 auto;padding:24px 16px 130px}
+.screen{display:none}
+.screen.show{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card{background:#fff;border-radius:20px;padding:22px;box-shadow:0 1px 2px rgba(31,42,55,.06),0 6px 20px rgba(31,42,55,.05);margin-bottom:18px}
+.card.featured{border:2px solid #E9B59F;background:#FFFCFA}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#C2694A}
+.sec-title{font-size:30px;margin:4px 0 6px;font-weight:600}
+.sec-intro{color:#4A5563;margin:0 0 20px;display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.qhead{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.qhead h3{font-size:19px;font-weight:500;margin:0;line-height:1.35}
+.hint{font-size:15px;color:#6B7280;margin:-4px 0 14px}
+.speak{flex:none;width:40px;height:40px;border-radius:50%;border:2px solid #D9E7E4;background:#F1F7F6;color:#2F6F6B;display:grid;place-items:center;cursor:pointer;padding:0}
+.speak:hover{background:#E1EFEC}
+.speak.wide{width:auto;height:auto;padding:9px 16px;border-radius:999px;display:inline-flex;gap:8px;align-items:center;font-family:'Lexend',sans-serif;font-weight:500;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.opt{position:relative;cursor:pointer;user-select:none;transition:background .15s,border-color .15s,color .15s}
+.opt input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.opt:focus-within{outline:3px solid #E9A88D;outline-offset:2px}
+.chip{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border:2px solid #DDD6C8;border-radius:999px;background:#fff;font-size:17px}
+.chip:hover{border-color:#9CC3BD}
+.chip.on{background:#2F6F6B;border-color:#2F6F6B;color:#fff}
+.chip.small{font-size:15px;padding:8px 14px}
+.chip.unsure{border-style:dashed}
+.chip.add{border-style:dashed;border-color:#E3A88F;color:#B4583A;background:#FFF8F4;font-weight:700}
+.chip.add::before{content:"+";font-size:21px;line-height:1;font-weight:700}
+.chip.add .mk{display:none}
+.chip.add.on{background:#C2694A;border-color:#C2694A;color:#fff}
+.mk{width:16px;height:16px;border:2px solid #A6AEB8;border-radius:50%;flex:none}
+.mk.checkbox{border-radius:5px}
+.on .mk{border-color:#fff;background:#fff;box-shadow:inset 0 0 0 3px #2F6F6B}
+.otherwrap{display:none;margin-top:14px;padding:14px 16px;background:#FFF8F4;border-radius:14px}
+.otherwrap.show{display:block;animation:fade .2s ease}
+.otherwrap label{font-weight:700;font-size:15px;display:block;margin-bottom:8px}
+.othertxt{width:100%;font:inherit;padding:10px 14px;border:2px solid #E6D3C8;border-radius:12px;background:#fff;color:#1F2A37}
+.faces{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.faces.three{grid-template-columns:repeat(3,1fr);max-width:420px}
+.face{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 4px;border:2px solid transparent;border-radius:16px;font-size:14px;text-align:center;background:#FAF8F3}
+.face:hover{border-color:#CFE3DF}
+.face.on{border-color:#2F6F6B;background:#E8F2F0;font-weight:700}
+.face .mk{display:none}
+.goal{border-left:6px solid #2F6F6B;background:#F3F8F7;border-radius:14px;padding:14px 18px;margin-bottom:20px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.goal .gl{font-size:13px;font-weight:700;text-transform:uppercase;color:#2F6F6B;letter-spacing:.06em}
+.goal .gt{font-family:'Lexend',sans-serif;font-size:20px;font-weight:500;margin-top:2px}
+.sub + .sub{margin-top:22px;padding-top:20px;border-top:1px solid #EEE9DE}
+.sup,.stmt{padding:16px 0;border-top:1px solid #EEE9DE}
+.sup.first,.stmt.first{border-top:0;padding-top:4px}
+.sup .sn,.stmt .sn{font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.sup .speak,.stmt .speak{width:34px;height:34px}
+.pair{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch}
+.side{display:flex;align-items:center;justify-content:center;text-align:center;padding:18px 14px;border:2px solid #DDD6C8;border-radius:16px;background:#fff;font-weight:700;min-height:84px}
+.side:hover{border-color:#9CC3BD}
+.side.on{background:#2F6F6B;border-color:#2F6F6B;color:#fff}
+.side .mk{display:none}
+.or{align-self:center;font-family:'Lexend',sans-serif;font-weight:700;color:#C2694A;font-size:14px;width:38px;height:38px;border-radius:50%;background:#FBEDE6;display:grid;place-items:center}
+.both{display:flex;justify-content:center;margin:10px 0 0}
+.pairwrap + .pairwrap{margin-top:22px;padding-top:20px;border-top:1px solid #EEE9DE}
+textarea{width:100%;min-height:96px;border:2px solid #DDD6C8;border-radius:14px;padding:12px 14px;font:inherit;background:#FDFCF9;resize:vertical;color:#1F2A37;display:block}
+textarea:focus,.othertxt:focus{outline:none;border-color:#2F6F6B;box-shadow:0 0 0 4px rgba(47,111,107,.15)}
+.mic{margin-top:8px;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:2px solid #D9E7E4;background:#F1F7F6;color:#2F6F6B;font-family:'Lexend',sans-serif;font-weight:600;font-size:15px;cursor:pointer}
+.mic:hover{background:#E1EFEC}
+.mic.live{background:#C2694A;border-color:#C2694A;color:#fff;animation:pulse 1.3s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(194,105,74,.45)}70%{box-shadow:0 0 0 12px rgba(194,105,74,0)}100%{box-shadow:0 0 0 0 rgba(194,105,74,0)}}
+.printbox,.printhead{display:none}
+.follow{display:none;margin-top:14px;padding:14px 16px;border-radius:14px;background:#FBEDE6}
+.follow.show{display:block;animation:fade .2s ease}
+.follow .fl{font-weight:700;display:block;margin-bottom:10px;font-size:16px}
+.follow .sub-l{font-weight:700;display:block;margin:14px 0 8px;font-size:15px;color:#4A5563}
+.follow textarea{min-height:72px;background:#fff}
+nav.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(246,243,236,.96);backdrop-filter:blur(8px);border-top:1px solid #E6E0D3;z-index:5}
+.navin{max-width:760px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;gap:12px}
+.btn{font-family:'Lexend',sans-serif;font-size:17px;font-weight:600;border-radius:999px;padding:13px 26px;border:2px solid #2F6F6B;cursor:pointer}
+.btn.primary{background:#2F6F6B;color:#fff}
+.btn.primary:hover{background:#265B58}
+.btn.ghost{background:transparent;color:#2F6F6B}
+.btn[hidden]{display:none}
+.hero{padding:10px 0 4px}
+.hero h1{font-size:42px;margin:6px 0 10px;font-weight:700}
+.hero p{font-size:19px;color:#3D4855;margin:0 0 18px}
+.minis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
+.mini{background:#fff;border-radius:16px;padding:16px 12px;text-align:center;font-size:15px;color:#4A5563;box-shadow:0 1px 2px rgba(31,42,55,.06)}
+.mini b{display:block;font-family:'Lexend',sans-serif;font-size:17px;color:#2F6F6B;margin-bottom:2px}
+details.adult{background:#fff;border-radius:16px;padding:14px 18px;border:2px dashed #DDD6C8;font-size:16px}
+details.adult summary{cursor:pointer;font-weight:700;color:#2F6F6B}
+details.adult ul{margin:10px 0 2px;padding-left:20px}
+details.adult li{margin-bottom:6px}
+.donehero{text-align:center;padding:10px 0 14px}
+.check{width:76px;height:76px;border-radius:50%;background:#2F6F6B;color:#fff;display:grid;place-items:center;margin:0 auto 10px}
+.donehero h2{font-size:34px;margin:8px 0}
+.donehero p{color:#4A5563;margin:0 auto 6px;max-width:520px}
+.handoff{font-weight:700;color:#C2694A!important;margin-top:12px!important}
+.stat{font-weight:700;color:#2F6F6B}
+.adultzone{border:2px dashed #CFC8B8;background:#FBFAF6;box-shadow:none}
+.tag{display:inline-flex;gap:6px;align-items:center;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#5B6675;margin-bottom:10px}
+#sumCard{display:none}
+#sumCard.show{display:block;animation:fade .25s ease}
+#sumCard h3{margin:6px 0 4px;font-size:22px}
+.summary[contenteditable]{border-radius:0 10px 10px 0;transition:background .15s;cursor:text}
+.summary[contenteditable]:hover{background:#FAF8F3}
+.summary[contenteditable]:focus{outline:none;background:#F3F8F7;border-left-color:#2F6F6B}
+.edited-tag{display:none;font-size:13px;font-weight:700;color:#C2694A;margin-left:8px}
+.edited .edited-tag{display:inline}
+.btn.small{font-size:15px;padding:10px 18px}
+#rebuildBtn{display:none}
+.edited #rebuildBtn{display:inline-block}
+#printRecord{display:none}
+.sumnote{font-size:14px;color:#6B7280;margin:0 0 16px}
+.summary{border-left:4px solid #9CC3BD;padding:4px 0 4px 18px;margin-bottom:18px}
+.summary p{margin:0 0 14px;line-height:1.65;font-size:17px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.status{color:#2F6F6B;font-weight:700;min-height:24px;margin-top:12px}
+.fallback{display:none;margin-top:12px;min-height:200px;font-size:14px}
+.fallback.show{display:block}
+@media (max-width:560px){
+ .pair{grid-template-columns:1fr}
+ .or{justify-self:center}
+ .faces{gap:4px}
+ .face{font-size:12px;padding:8px 2px}
+ .face svg{width:38px;height:38px}
+ .sec-title{font-size:26px}
+ .hero h1{font-size:34px}
+ .minis{grid-template-columns:1fr}
+ .btn{padding:12px 20px;font-size:16px}
+}
+@media print{
+ @page{margin:.55in}
+ *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body{background:#fff;font-size:12.5pt}
+ header.top,nav.bottom,.speak,.mic,.noprint,.fallback,#setupWrap{display:none!important}
+ main{padding:0;max-width:none}
+ .screen{display:block!important;animation:none}
+ .printhead{display:flex!important;justify-content:space-between;font-family:'Lexend',sans-serif;border-bottom:2px solid #2F6F6B;padding-bottom:6px;margin-bottom:14px;font-size:11pt}
+ .card{box-shadow:none;border:1px solid #CFC8B8;break-inside:avoid;padding:14px 16px;margin-bottom:12px}
+ .sec-title{font-size:20pt;margin-top:16px}
+ .hero h1{font-size:24pt}
+ .minis{display:none}
+ .follow,.otherwrap{display:block!important;background:#fff;border:1px dashed #999}
+ textarea{display:none!important}
+ .printbox{display:block;min-height:60px;border:1.5px solid #9AA;border-radius:10px;padding:8px 10px;white-space:pre-wrap}
+ .follow .printbox{min-height:44px}
+ .othertxt{border:0;border-bottom:1.5px solid #999;border-radius:0}
+ .face{border:1.5px solid #DDD}
+ .face.on{border:3px solid #2F6F6B}
+ .opt:focus-within{outline:none}
+ details.adult{border:1px dashed #999}
+ #sumCard.show{break-before:page}
+ body.print-summary .screen{display:none!important}
+ body.print-summary .screen[data-kind="finish"]{display:block!important}
+ body.print-summary .donehero,body.print-summary .adultzone{display:none!important}
+ body.print-summary #sumCard.show{break-before:auto;border:0;padding:0;margin:0 0 10px}
+ body.print-summary .summary{border-left:0;padding:0}
+ body.print-summary .summary p{font-size:11.5pt;margin:0 0 9px}
+ body.print-summary #printRecord{display:block!important}
+ .rec{border-top:2px solid #2F6F6B;padding-top:8px;margin-top:14px}
+ .rec-h{font-family:'Lexend',sans-serif;font-weight:600;font-size:12pt;margin-bottom:4px}
+ .rec h4{font-size:10pt;text-transform:uppercase;letter-spacing:.06em;color:#C2694A;margin:10px 0 2px}
+ .rec table{width:100%;border-collapse:collapse;font-size:9.5pt}
+ .rec td{padding:3px 6px;border-bottom:1px solid #E6E0D3;vertical-align:top}
+ .rec td:first-child{width:58%;color:#3D4855}
+ .rec tr.more td:first-child{padding-left:18px;font-style:italic}
+ .rec tr{break-inside:avoid}
+}
+</style>
+</head>
+<body class="setup">
+<header class="top">
+ <div class="topin">
+  <div class="brand"><span class="brandmark"><span id="brandLogo"></span><span id="brandTitle"></span></span><span id="brandName"></span></div>
+  <div class="steps" id="steps"></div>
+  <div class="steplabel" id="stepLabel"></div>
+ </div>
+</header>
+<div id="setupWrap"></div>
+<main id="app"></main>
+<nav class="bottom">
+ <div class="navin">
+  <button class="btn ghost" id="backBtn" type="button">Back</button>
+  <button class="btn primary" id="nextBtn" type="button">Next</button>
+ </div>
+</nav>
+<script>
+const SAMPLE = {
+ title: "ECHO",
+ sourceTitle: "ECHO Student Input Survey",
+ student: "Wally",
+ grade: "4th grade",
+ band: "3-5",
+ pronouns: { he: "he", him: "him", his: "his" },
+ minutes: 10,
+ allowVoice: true,
+ summaryIntro: "The survey was tailored to {his} current IEP and asked about {his} strengths, IEP goals, supports, learning preferences, and self-advocacy.",
+ sections: [
+  {
+   title: "About Me",
+   intro: "Let's start with you. Your team wants to know what you're good at.",
+   items: [
+    { type: "checklist", id: "strengths", q: "What are you good at? Pick as many as you want.",
+      options: ["Drawing or art","Building things","Sports or outside games","Video games","Helping other people","Math","Making up stories","Music","Taking care of animals","Science","Being a good friend","Reading"],
+      other: true, otherPrompt: "What else are you good at?",
+      narr: "{S} identified things {he} was good at, including {list}." },
+    { type: "text", id: "proud", q: "What is something you're proud of this year?", hint: "A few words is fine. You can skip this one.",
+      narr: "When asked what {he} was proud of this year, {he} said, {a}" }
+   ]
+  },
+  {
+   title: "My Goals",
+   intro: "Your IEP has goals. Goals are skills your team is helping you grow this year.",
+   items: [
+    { type: "goal", label: "Reading goal", title: "Reading smoothly without getting stuck on words", basis: "IEP goal: reading fluency", items: [
+     { type: "scale", id: "read_feel", q: "How does reading feel for you right now?",
+       narr: "{S} rated how reading felt for {him} as {a}",
+       followUp: { when: ["Really hard","Hard"], prompt: "What makes reading hard? Pick any that fit.",
+        options: [["Sounding out long words","sounding out long words"],["Reading out loud in front of others","reading aloud in front of others"],["Reading fast enough","reading quickly enough"],["Remembering what I read","remembering what {he} read"],["Pages with lots of words","pages with a lot of text"],["Getting tired when I read","getting tired while reading"]],
+        textPrompt: "Anything else about reading?",
+        narr: "{He} said the hard parts of reading included {list}.", textNarr: "{He} added, {a}" } },
+     { type: "choice", id: "read_grow", q: "Do you think you're getting better at reading?", options: ["Yes, a lot","A little","Not really"],
+       narr: "When asked if {he} was getting better at reading, {he} answered {a}",
+       followUp: { when: ["Not really"], prompt: "What would help you get better? Pick any that fit.",
+        options: [["More time to practice","more practice time"],["More help from a teacher","more help from a teacher"],["A quieter place to read","a quieter place to read"],["Books about things I like","books about topics {he} enjoyed"]],
+        textPrompt: "Anything else that would help?",
+        narr: "{He} said things that might help {him} improve included {list}.", textNarr: "{He} added, {a}" } }
+    ]},
+    { type: "goal", label: "Writing goal", title: "Writing a paragraph with a main idea and details", basis: "IEP goal: written expression", items: [
+     { type: "scale", id: "write_feel", q: "How does writing feel for you right now?",
+       narr: "{S} rated how writing felt for {him} as {a}",
+       followUp: { when: ["Really hard","Hard"], prompt: "What makes writing hard? Pick any that fit.",
+        options: [["Thinking of what to write","thinking of what to write"],["Spelling words","spelling"],["Handwriting","handwriting"],["Putting my ideas in order","putting {his} ideas in order"],["Writing enough","writing enough"],["It takes a long time","how long writing took"]],
+        textPrompt: "Anything else about writing?",
+        narr: "{He} said the hard parts of writing included {list}.", textNarr: "{He} added, {a}" } },
+     { type: "choice", id: "write_grow", q: "Do you think you're getting better at writing?", options: ["Yes, a lot","A little","Not really"],
+       narr: "When asked if {he} was getting better at writing, {he} answered {a}",
+       followUp: { when: ["Not really"], prompt: "What would help you get better? Pick any that fit.",
+        options: [["More time to practice","more practice time"],["More help from a teacher","more help from a teacher"],["Using talk-to-type more","using speech-to-text more often"],["Writing about things I like","writing about topics {he} enjoyed"]],
+        textPrompt: "Anything else that would help?",
+        narr: "{He} said things that might help {him} improve included {list}.", textNarr: "{He} added, {a}" } }
+    ]}
+   ]
+  },
+  {
+   title: "My Supports",
+   intro: "Your IEP lists things that are supposed to help you. Tell us if they really do.",
+   items: [
+    { type: "supports", id: "sup", q: "How does each one work for you?", hint: "Every answer is helpful, even \"I don't have this.\"",
+      rows: [
+       { k: "Extra time on tests", n: "extra time on tests" },
+       { k: "Having tests read out loud (not reading tests)", n: "having tests read aloud" },
+       { k: "Taking tests in a quiet room", n: "testing in a separate, quiet setting" },
+       { k: "A planning sheet before you write", n: "a graphic organizer before writing" },
+       { k: "Talk-to-type (speech-to-text) when you write", n: "speech-to-text for writing" },
+       { k: "Sitting close to where your teacher teaches", n: "preferential seating near instruction" }
+      ],
+      options: ["It helps","It doesn't help","I don't need it","I don't have this"],
+      optNarr: ["{S} reported that {list} helped {him}.","{He} reported that {list} did not help.","{He} reported that {he} did not need {list}.","{He} reported that {he} did not have {list}."],
+      skipNarr: "{He} did not rate {list}.",
+      followUp: { when: ["It doesn't help","I don't need it","I don't have this"], prompt: "Tell us more about the ones you marked.", textNarr: "When asked to explain, {he} said, {a}" } },
+    { type: "text", id: "sup_new", q: "Is there something else that would help you at school?", hint: "You can skip this one.",
+      narr: "When asked if anything else would help {him} at school, {he} said, {a}" }
+   ]
+  },
+  {
+   title: "How I Learn Best",
+   intro: "These are about how and where you get help. Tap the one that sounds more like you. If both are fine, tap \"Both are okay.\"",
+   items: [
+    { type: "pairs", id: "pref", q: "Which works better for you?",
+      narrLead: "When given choices about how and where {he} received help, {s} shared several preferences.",
+      pairs: [
+       { a: "Getting reading help in the resource room", b: "Getting reading help in my classroom", an: "receiving reading support in the resource room", bn: "receiving reading support in {his} general education classroom", basis: "Service: reading, resource room" },
+       { a: "A teacher helping me with writing in my classroom", b: "Going to another room for writing help", an: "receiving writing support in {his} classroom", bn: "receiving writing support in a separate room", basis: "Service: writing, in classroom" },
+       { a: "Taking tests in a quiet room", b: "Taking tests with my class", an: "testing in a quiet room", bn: "testing with {his} class", basis: "Accommodation: separate setting" },
+       { a: "Using talk-to-type to write", b: "Writing with a pencil", an: "using speech-to-text", bn: "writing by hand", basis: "Accommodation: speech-to-text" }
+      ] }
+   ]
+  },
+  {
+   title: "Speaking Up",
+   intro: "Last part! These are about speaking up for yourself.",
+   items: [
+    { type: "ync", id: "adv", q: "How true is each one for you?", statements: [
+     { s: "When work is too hard, I ask for help.", n: "whether {he} asked for help when work was too hard" },
+     { s: "I know what an IEP is and why I have one.", n: "whether {he} knew what an IEP was and why {he} had one" },
+     { s: "I feel okay telling a teacher what helps me.", n: "whether {he} felt okay telling a teacher what helped {him}" },
+     { s: "I would like to come to my IEP meeting.", options: ["Yes","Maybe","No"], n: "whether {he} would like to attend {his} IEP meeting" }
+    ]},
+    { type: "text", id: "anything", q: "Is there anything else you want your IEP team to know?", hint: "This is your chance to say anything. Your team will read every word.", featured: true,
+      narr: "When asked if there was anything else {he} wanted {his} IEP team to know, {he} said, {a}" }
+   ]
+  }
+ ]
+};
+
+const BRAND = { name: "ECHO", tagline: "Student voices matter" };
+let S = null, PR = null;
+const app = document.getElementById('app');
+const registry = [];
+const speakOK = 'speechSynthesis' in window;
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let voiceOK = false;
+let uid = 0, cur = 0, started = false, done = false, rec = null;
+const SPK = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>';
+const MIC = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg>';
+const LOCK = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+
+function logo(sz,anim){const a=anim?[' class="r1"',' class="r2"']:['',''];return '<svg viewBox="0 0 64 64" width="'+sz+'" height="'+sz+'" aria-hidden="true"><path d="M44.14 13.15 A22 22 0 1 0 44.14 46.85" fill="none" stroke="#0F4D48" stroke-width="8" stroke-linecap="round"/><path d="M10 40 L23 51 L5 60 Z" fill="#0F4D48"/><path'+a[0]+' d="M31.14 23.87 A8 8 0 0 1 31.14 36.13" fill="none" stroke="#CF6B3B" stroke-width="6" stroke-linecap="round"/><path'+a[1]+' d="M36.28 17.74 A16 16 0 0 1 36.28 42.26" fill="none" stroke="#CF6B3B" stroke-width="6" stroke-linecap="round"/></svg>';}
+function lockup(sz){return '<div class="lockup">'+logo(sz,true)+'<div><div class="wm">'+BRAND.name+'</div><div class="tl">'+BRAND.tagline+'</div></div></div>';}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+function lowerFirst(s){return /^I\b/.test(s)?s:s.charAt(0).toLowerCase()+s.slice(1);}
+function fill(t,x){const m=Object.assign({S:S.student,s:S.student,he:PR.he,him:PR.him,his:PR.his,He:cap(PR.he),His:cap(PR.his)},x||{});return String(t).replace(/\{(\w+)\}/g,(z,k)=>(k in m)?m[k]:z);}
+function listJoin(a){return a.length<2?(a[0]||''):a.length===2?a[0]+' and '+a[1]:a.slice(0,-1).join(', ')+', and '+a[a.length-1];}
+function qa(v,isOpt,period){let t=String(v).trim().replace(/\s+/g,' ');if(isOpt)t=lowerFirst(t);else t=t.charAt(0).toUpperCase()+t.slice(1);if(period!==false&&!/[.!?]$/.test(t))t+='.';return '"'+t+'"';}
+function optKid(o){return Array.isArray(o)?o[0]:o;}
+function optNarr(o){return Array.isArray(o)?fill(o[1]):lowerFirst(o);}
+function checked(n){return [...document.querySelectorAll('input[name="'+n+'"]:checked')].map(i=>i.value);}
+function textv(k){const t=document.querySelector('textarea[data-key="'+k+'"]');return t?t.value.trim():'';}
+function otherv(k){const o=document.querySelector('input[data-other="'+k+'"]');return o?o.value.trim():'';}
+
+function speakBtn(t){return speakOK?'<button type="button" class="speak" aria-label="Read this aloud" data-say="'+esc(t)+'">'+SPK+'</button>':'';}
+function micBtn(attr,key){return voiceOK?'<button type="button" class="mic" data-'+attr+'="'+key+'">'+MIC+'<span>Say it instead</span></button>':'';}
+function qhead(t,h){return '<div class="qhead"><h3>'+esc(t)+'</h3>'+speakBtn(t)+'</div>'+(h?'<p class="hint">'+esc(h)+'</p>':'');}
+function opt(name,value,label,type,cls){uid+=1;const id='o'+uid;return '<label class="opt '+(cls||'chip')+'" for="'+id+'"><input type="'+type+'" id="'+id+'" name="'+name+'" value="'+esc(value)+'"><span class="mk '+type+'"></span><span>'+esc(label)+'</span></label>';}
+function ta(key,ph){return '<textarea data-key="'+key+'" placeholder="'+esc(ph||'Type here, or tap Say it instead.')+'"></textarea>'+micBtn('tk',key)+'<div class="printbox" data-mirror="'+key+'"></div>';}
+function face(n){const my=[0,23,27,31,35,39][n];const f=['','#F4D6CC','#F7E3CF','#EFEBDD','#DCEBE3','#CFE6DF'];return '<svg viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="'+f[n]+'" stroke="#1F2A37" stroke-width="2"/><circle cx="17" cy="20" r="2.4" fill="#1F2A37"/><circle cx="31" cy="20" r="2.4" fill="#1F2A37"/><path d="M15 31 Q24 '+my+' 33 31" fill="none" stroke="#1F2A37" stroke-width="2.4" stroke-linecap="round"/></svg>';}
+function follow(names,fu,sec){
+ const base=names[0];
+ registry.push({sec,label:'Tell me more',key:base,kind:'follow',main:false});
+ let h='<div class="follow" data-names="'+names.join('|')+'" data-when="'+esc(JSON.stringify(fu.when))+'"><span class="fl">'+esc(fu.prompt)+'</span>';
+ if(fu.options){h+='<div class="chips">'+fu.options.map(o=>opt(base+'_more',optKid(o),optKid(o),'checkbox','chip small')).join('')+'</div><span class="sub-l">'+esc(fu.textPrompt||'Anything else?')+'</span>';}
+ return h+ta(base+'_mtxt','A few words is fine.')+'</div>';
+}
+
+function renderItem(it,sec){
+ let h='';
+ if(it.type==='checklist'){
+  registry.push({sec,label:it.q,key:it.id,kind:'check',main:true});
+  h+=qhead(it.q,it.hint)+'<div class="chips">'+it.options.map(o=>opt(it.id,optKid(o),optKid(o),'checkbox')).join('')+(it.other?opt(it.id,'__other','Something else','checkbox','chip add'):'')+'</div>';
+  if(it.other) h+='<div class="otherwrap" data-ow="'+it.id+'"><label>'+esc(it.otherPrompt||'Tell us what it is:')+'</label><input class="othertxt" data-other="'+it.id+'" placeholder="Type it here">'+micBtn('ok',it.id)+'</div>';
+ } else if(it.type==='text'){
+  registry.push({sec,label:it.q,key:it.id,kind:'text',main:true});
+  h+=qhead(it.q,it.hint)+ta(it.id);
+ } else if(it.type==='scale'){
+  registry.push({sec,label:it.q,key:it.id,kind:'radio',main:true});
+  const k2=S.band==='K-2';
+  const lv=k2?[[1,'Hard'],[3,'Okay'],[5,'Good']]:[[1,'Really hard'],[2,'Hard'],[3,'Okay'],[4,'Good'],[5,'Really good']];
+  h+=qhead(it.q,it.hint)+'<div class="faces'+(k2?' three':'')+'">'+lv.map(([n,l])=>{uid+=1;const id='o'+uid;return '<label class="opt face" for="'+id+'"><input type="radio" id="'+id+'" name="'+it.id+'" value="'+esc(l)+'"><span class="mk radio"></span>'+face(n)+'<span>'+esc(l)+'</span></label>';}).join('')+'</div>';
+  if(it.followUp) h+=follow([it.id],it.followUp,sec);
+ } else if(it.type==='choice'){
+  registry.push({sec,label:it.q,key:it.id,kind:'radio',main:true});
+  h+=qhead(it.q,it.hint)+'<div class="chips">'+it.options.map(o=>opt(it.id,o,o,'radio')).join('')+'</div>';
+  if(it.followUp) h+=follow([it.id],it.followUp,sec);
+ } else if(it.type==='supports'){
+  h+=qhead(it.q,it.hint);
+  const names=[];
+  it.rows.forEach((r,i)=>{const n=it.id+'_'+i;names.push(n);registry.push({sec,label:r.k,key:n,kind:'radio',main:true});
+   h+='<div class="sup'+(i===0?' first':'')+'"><div class="sn"><span>'+esc(r.k)+'</span>'+speakBtn(r.k)+'</div><div class="chips">'+it.options.map((o,j)=>opt(n,o,o,'radio','chip small'+(j===it.options.length-1?' unsure':''))).join('')+'</div></div>';});
+  if(it.followUp) h+=follow(names,it.followUp,sec);
+ } else if(it.type==='pairs'){
+  h+=qhead(it.q,it.hint);
+  it.pairs.forEach((p,i)=>{const n=it.id+'_'+i;registry.push({sec,label:p.a+' or '+p.b,key:n,kind:'radio',main:true});
+   h+='<div class="pairwrap"><div class="pair">'+opt(n,p.a,p.a,'radio','side')+'<div class="or">or</div>'+opt(n,p.b,p.b,'radio','side')+'</div><div class="both">'+opt(n,'Both are okay','Both are okay','radio','chip small')+'</div></div>';});
+ } else if(it.type==='ync'){
+  h+=qhead(it.q,it.hint);
+  it.statements.forEach((st,i)=>{const n=it.id+'_'+i;registry.push({sec,label:st.s,key:n,kind:'radio',main:true});
+   h+='<div class="stmt'+(i===0?' first':'')+'"><div class="sn"><span>'+esc(st.s)+'</span>'+speakBtn(st.s)+'</div><div class="chips">'+(st.options||['Yes','Sometimes','No']).map(o=>opt(n,o,o,'radio')).join('')+'</div></div>';});
+ } else if(it.type==='goal'){
+  h+='<div class="goal"><div><div class="gl">'+esc(it.label)+'</div><div class="gt">'+esc(it.title)+'</div></div>'+speakBtn(it.label+'. '+it.title)+'</div>';
+  h+=it.items.map(s=>'<div class="sub">'+renderItem(s,sec)+'</div>').join('');
+ }
+ return h;
+}
+
+function build(){
+ document.title=S.title;
+ document.getElementById('brandTitle').textContent=S.title;
+ document.getElementById('brandName').textContent=S.student;
+ const ph='<div class="printhead"><span>'+logo(22,false)+esc(S.title)+'</span><span>'+esc(S.student)+', '+esc(S.grade)+'</span><span>Date: ______________</span></div>';
+ const welcomeSay='Hi, '+S.student+'! Your IEP team is getting together to talk about how school is going. They want to hear from the most important person on the team: you. There are no right or wrong answers. Most questions just need a tap.';
+ let h='<section class="screen" data-kind="welcome">'+ph+'<div class="hero">'+lockup(78)+'<h1>Hi, '+esc(S.student)+'!</h1><p>Your IEP team is getting together to talk about how school is going. They want to hear from the most important person on the team: <b>you</b>.</p>'+(speakOK?'<button type="button" class="speak wide" data-say="'+esc(welcomeSay)+'">'+SPK+'Read this to me</button>':'')+'</div>'
+  +'<div class="minis"><div class="mini"><b>Not a test</b>No right or wrong answers</div><div class="mini"><b>Mostly tapping</b>Type or talk when you want</div><div class="mini"><b>About '+S.minutes+' minutes</b>Skip anything you want</div></div>'
+  +'<details class="adult"><summary>For the adult helping</summary><ul><li>Read any question aloud, or use the speaker buttons.</li><li>Pointing to a choice or a face is a fine way to answer.</li><li>Please don\'t suggest answers. If '+esc(S.student)+' is unsure, skipping is okay.</li><li>If you write answers, use '+esc(PR.his)+' exact words.</li><li>At the end, use the adult section to create a summary of the answers.</li></ul></details></section>';
+ S.sections.forEach((sec,i)=>{
+  h+='<section class="screen" data-kind="section"><div class="kicker">Part '+(i+1)+' of '+S.sections.length+'</div><h2 class="sec-title">'+esc(sec.title)+'</h2><div class="sec-intro"><span>'+esc(sec.intro)+'</span>'+speakBtn(sec.intro)+'</div>';
+  sec.items.forEach(it=>{h+='<div class="card'+(it.featured?' featured':'')+'">'+renderItem(it,sec.title)+'</div>';});
+  h+='</section>';
+ });
+ const P=PR.his;
+ h+='<section class="screen" data-kind="finish"><div class="noprint"><div class="donehero"><div class="check"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h2>You did it, '+esc(S.student)+'!</h2><p>Thank you for sharing. Your team will read every answer before your IEP meeting.</p><p id="recap"></p><p class="handoff">Please let your teacher know you are finished.</p></div></div>'
+  +'<div class="card adultzone"><div class="tag">'+LOCK+'For the adult</div><div class="qhead"><h3>Create a summary of '+esc(S.student)+'\'s answers</h3></div><p class="sumnote">The summary turns '+P+' answers into short paragraphs you can paste into a REED, IEP, or evaluation report.</p><button type="button" class="btn primary" id="sumBtn">Create summary</button></div>'
+  +'<div class="card" id="sumCard"><div class="printhead"><span>'+logo(22,false)+esc(S.title)+'</span><span>Student Input Summary</span><span>'+esc(S.student)+', '+esc(S.grade)+'</span></div><div class="kicker">Student Input Summary<span class="edited-tag">Edited</span></div><h3>What '+esc(S.student)+' Shared</h3><p class="sumnote noprint">Answers are reported as '+esc(S.student)+' gave them. Click anywhere in the text to edit it before you copy, print, or save.</p><div class="summary" id="summary" contenteditable="true" spellcheck="true"></div><div class="noprint"><div class="actions"><button type="button" class="btn primary" id="copyBtn">Copy summary</button><button type="button" class="btn ghost" id="printBtn">Print or save as PDF</button><button type="button" class="btn ghost small" id="rebuildBtn">Undo my edits</button></div><div class="status" id="status" aria-live="polite"></div><textarea class="fallback" id="fallback" readonly></textarea></div><div id="printRecord"></div></div></section>';
+ app.innerHTML=h;
+ document.getElementById('steps').innerHTML=S.sections.map((s,i)=>'<button type="button" class="step" aria-label="Go to '+esc(s.title)+'" data-go="'+(i+1)+'"></button>').join('');
+}
+
+function screens(){return [...document.querySelectorAll('.screen')];}
+function show(i){
+ const sc=screens();cur=Math.max(0,Math.min(i,sc.length-1));
+ sc.forEach((s,j)=>s.classList.toggle('show',j===cur));
+ const n=S.sections.length,last=sc.length-1;
+ document.querySelectorAll('.step').forEach((b,j)=>{b.classList.toggle('now',j+1===cur);b.classList.toggle('done',j+1<cur||cur===last);});
+ document.getElementById('stepLabel').textContent=cur===0?'Welcome':cur===last?'All done':'Part '+cur+' of '+n+': '+S.sections[cur-1].title;
+ const back=document.getElementById('backBtn'),next=document.getElementById('nextBtn');
+ back.hidden=cur===0;next.hidden=cur===last;
+ next.textContent=cur===0?"Let's start":cur===n?'Finish':'Next';
+ if(cur>0) started=true;
+ if(cur===last){done=true;recap();if(document.getElementById('sumCard').classList.contains('show')&&!edited)renderSummary();}
+ if(speakOK) speechSynthesis.cancel();
+ if(rec) rec.stop();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function val(r){
+ if(r.kind==='text') return textv(r.key);
+ if(r.kind==='follow'){const a=checked(r.key+'_more'),t=textv(r.key+'_mtxt');return [a.join('; '),t?'"'+t+'"':''].filter(Boolean).join('; ');}
+ let a=checked(r.key);
+ if(a.includes('__other')){a=a.filter(x=>x!=='__other');a.push('other: '+(otherv(r.key)||'(not written)'));}
+ return a.join('; ');
+}
+function recap(){
+ const m=registry.filter(r=>r.main),a=m.filter(r=>val(r)).length;
+ document.getElementById('recap').innerHTML='<span class="stat">You answered '+a+' of '+m.length+' questions.</span>'+(a<m.length?' Skipping is okay. You can tap Back to add more.':'');
+}
+
+function narrFollow(it,v,out){
+ const fu=it.followUp;if(!fu||!fu.when.includes(v))return;
+ const map={};(fu.options||[]).forEach(o=>{map[optKid(o)]=optNarr(o);});
+ const fv=checked(it.id+'_more');
+ if(fv.length&&fu.narr) out.push(fill(fu.narr,{list:listJoin(fv.map(x=>map[x]||lowerFirst(x)))}));
+ const ft=textv(it.id+'_mtxt');
+ if(ft) out.push(fill(fu.textNarr||'{He} added, {a}',{a:qa(ft,false)}));
+}
+function narrItem(it,out){
+ const t=it.type;
+ if(t==='goal'){it.items.forEach(s=>narrItem(s,out));return;}
+ if(t==='checklist'){
+  const v=checked(it.id);if(!v.length)return;
+  const map={};it.options.forEach(o=>{map[optKid(o)]=optNarr(o);});
+  const items=v.map(x=>{if(x==='__other'){const o=otherv(it.id);return o?fill('something {he} described as ')+'"'+o+'"':'something else';}return map[x]||lowerFirst(x);});
+  out.push(fill(it.narr,{list:listJoin(items)}));return;
+ }
+ if(t==='text'){const v=textv(it.id);if(v)out.push(fill(it.narr,{a:qa(v,false)}));return;}
+ if(t==='scale'||t==='choice'){const v=checked(it.id)[0];if(!v)return;out.push(fill(it.narr,{a:qa(v,true)}));narrFollow(it,v,out);return;}
+ if(t==='supports'){
+  const g=it.options.map(()=>[]),skip=[];
+  it.rows.forEach((r,i)=>{const v=checked(it.id+'_'+i)[0];const n=fill(r.n);if(!v){skip.push(n);return;}g[it.options.indexOf(v)].push(n);});
+  g.forEach((arr,j)=>{if(arr.length)out.push(fill(it.optNarr[j],{list:listJoin(arr)}));});
+  const ft=textv(it.id+'_0_mtxt');
+  if(ft&&it.followUp) out.push(fill(it.followUp.textNarr||'{He} added, {a}',{a:qa(ft,false)}));
+  if(skip.length&&it.skipNarr) out.push(fill(it.skipNarr,{list:listJoin(skip)}));
+  return;
+ }
+ if(t==='pairs'){
+  const s=[];
+  it.pairs.forEach((p,i)=>{const v=checked(it.id+'_'+i)[0];if(!v)return;const x=fill(p.an),y=fill(p.bn);
+   if(v===p.a)s.push(fill('{He} preferred {x} over {y}.',{x,y}));
+   else if(v===p.b)s.push(fill('{He} preferred {y} over {x}.',{x,y}));
+   else s.push(fill('{He} said both {x} and {y} were okay with {him}.',{x,y}));});
+  if(s.length){out.push(fill(it.narrLead));s.forEach(z=>out.push(z));}
+  return;
+ }
+ if(t==='ync'){
+  const groups={},order=[];
+  it.statements.forEach((st,i)=>{const v=checked(it.id+'_'+i)[0];if(!v)return;if(!groups[v]){groups[v]=[];order.push(v);}groups[v].push(fill(st.n));});
+  order.forEach((v,j)=>out.push(fill((j?'{He}':'{S}')+' answered {a} when asked {list}.',{a:qa(v,true,false),list:listJoin(groups[v])})));
+ }
+}
+function narrative(){
+ const d=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+ const paras=[fill('{S} completed the '+S.sourceTitle+' on '+d+'.')+' '+fill(S.summaryIntro)];
+ S.sections.forEach(sec=>{const out=[];sec.items.forEach(it=>narrItem(it,out));if(out.length)paras.push(out.join(' '));});
+ return paras;
+}
+let edited=false;
+function renderSummary(){
+ const p=narrative();
+ document.getElementById('summary').innerHTML=p.map(x=>'<p>'+esc(x)+'</p>').join('');
+ edited=false;document.getElementById('sumCard').classList.remove('edited');
+}
+function summaryText(){
+ const el=document.getElementById('summary');
+ const ps=[...el.children].map(c=>(c.innerText||c.textContent||'').trim()).filter(Boolean);
+ return (ps.length?ps.join('\n\n'):(el.innerText||el.textContent||'').trim());
+}
+function buildRecord(){
+ let h='<div class="rec"><div class="rec-h">Responses at a glance</div>',sec='';
+ registry.forEach(r=>{const v=val(r);if(!r.main&&!v)return;
+  if(r.sec!==sec){if(sec)h+='</table>';sec=r.sec;h+='<h4>'+esc(sec)+'</h4><table>';}
+  h+='<tr'+(r.main?'':' class="more"')+'><td>'+esc(r.label)+'</td><td>'+esc(v||'(skipped)')+'</td></tr>';});
+ document.getElementById('printRecord').innerHTML=h+(sec?'</table>':'')+'</div>';
+}
+
+function speak(t){if(!speakOK)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=0.9;speechSynthesis.speak(u);}
+function updateFollows(name){
+ document.querySelectorAll('.follow').forEach(f=>{const ns=f.dataset.names.split('|');if(!ns.includes(name))return;const w=JSON.parse(f.dataset.when);
+  const hit=ns.some(n=>checked(n).some(v=>w.includes(v)));f.classList.toggle('show',hit);});
+}
+function toggleMic(btn){
+ if(rec){rec.stop();return;}
+ const field=btn.dataset.tk?document.querySelector('textarea[data-key="'+btn.dataset.tk+'"]'):document.querySelector('input[data-other="'+btn.dataset.ok+'"]');
+ if(!field)return;
+ const label=btn.querySelector('span');
+ const base=field.value.trim()?field.value.trim()+' ':'';
+ let err=false;
+ rec=new SR();rec.lang='en-US';rec.interimResults=true;rec.continuous=false;
+ rec.onresult=ev=>{let t='';for(let i=0;i<ev.results.length;i+=1){t+=ev.results[i][0].transcript;}const v=base+t;field.value=v.charAt(0).toUpperCase()+v.slice(1);field.dispatchEvent(new Event('input',{bubbles:true}));};
+ rec.onerror=()=>{err=true;};
+ rec.onend=()=>{btn.classList.remove('live');label.textContent=err?'Mic not working here. Try typing.':'Say it instead';rec=null;};
+ btn.classList.add('live');label.textContent='Listening... tap to stop';
+ try{rec.start();}catch(e){err=true;rec.onend();}
+}
+
+app.addEventListener('change',e=>{const t=e.target;
+ if(t.matches('input[type=radio],input[type=checkbox]')){
+  document.querySelectorAll('input[name="'+t.name+'"]').forEach(i=>i.closest('.opt').classList.toggle('on',i.checked));
+  if(t.value==='__other'){const w=document.querySelector('.otherwrap[data-ow="'+t.name+'"]');w.classList.toggle('show',t.checked);if(t.checked)w.querySelector('input').focus();}
+  updateFollows(t.name);started=true;
+ }
+});
+app.addEventListener('input',e=>{const t=e.target;if(t.closest&&t.closest('#summary')){edited=true;started=true;document.getElementById('sumCard').classList.add('edited');return;}if(t.matches('textarea[data-key]')){const m=document.querySelector('.printbox[data-mirror="'+t.dataset.key+'"]');if(m)m.textContent=t.value;started=true;}});
+document.addEventListener('click',e=>{
+ const s=e.target.closest('.speak');if(s){speak(s.dataset.say);return;}
+ const mb=e.target.closest('.mic');if(mb){toggleMic(mb);return;}
+ const g=e.target.closest('[data-go]');if(g){show(+g.dataset.go);return;}
+ const id=(e.target.closest('button')||{}).id;
+ if(id==='sumBtn'){renderSummary();const c=document.getElementById('sumCard');c.classList.add('show');if(c.scrollIntoView)c.scrollIntoView({behavior:'smooth',block:'start'});}
+ if(id==='copyBtn'){const st=document.getElementById('status'),fb=document.getElementById('fallback');
+  const txt=summaryText();
+  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>{st.textContent='Copied! Ready to paste wherever you need it.';fb.classList.remove('show');})
+  .catch(()=>{fb.value=txt;fb.classList.add('show');fb.focus();fb.select();st.textContent='Copying was blocked here. Select the text below and copy it.';});}
+ if(id==='printBtn'){buildRecord();document.body.classList.add('print-summary');window.print();setTimeout(()=>document.body.classList.remove('print-summary'),500);}
+ if(id==='rebuildBtn'&&window.confirm('Undo your edits and rebuild the summary from the answers?'))renderSummary();
+});
+document.getElementById('nextBtn').addEventListener('click',()=>show(cur+1));
+document.getElementById('backBtn').addEventListener('click',()=>show(cur-1));
+window.addEventListener('beforeunload',e=>{if(started){e.preventDefault();e.returnValue='Your answers are not saved. Are you sure you want to leave?';return e.returnValue;}});
+/* Setup: load a packet, enter a name, start */
+const TYPES=['checklist','text','scale','choice','supports','pairs','ync','goal'];
+function b64u(u8){let t='';for(let i=0;i<u8.length;i+=1)t+=String.fromCharCode(u8[i]);return btoa(t).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+function unb64u(t){t=t.replace(/-/g,'+').replace(/_/g,'/');while(t.length%4)t+='=';const x=atob(t),u=new Uint8Array(x.length);for(let i=0;i<x.length;i+=1)u[i]=x.charCodeAt(i);return u;}
+async function encodePacket(o){const bytes=new TextEncoder().encode(JSON.stringify(o));
+ if('CompressionStream' in window){const st=new Blob([bytes]).stream().pipeThrough(new CompressionStream('deflate-raw'));return 'z'+b64u(new Uint8Array(await new Response(st).arrayBuffer()));}
+ return 'j'+b64u(bytes);}
+async function decodePacket(str){const u=unb64u(str.slice(1));let bytes=u;
+ if(str[0]==='z'){const st=new Blob([u]).stream().pipeThrough(new DecompressionStream('deflate-raw'));bytes=new Uint8Array(await new Response(st).arrayBuffer());}
+ return checkPacket(JSON.parse(new TextDecoder().decode(bytes)));}
+function checkItems(items){if(!Array.isArray(items)||!items.length)throw new Error('empty');items.forEach(it=>{if(!it||TYPES.indexOf(it.type)<0)throw new Error('type');if(it.type==='goal')checkItems(it.items);});}
+function checkPacket(o){
+ if(!o||!Array.isArray(o.sections)||!o.sections.length||o.sections.length>7)throw new Error('sections');
+ o.sections.forEach(sec=>{if(!sec.title)throw new Error('title');checkItems(sec.items);});
+ const p=o.pronouns||{};if(!p.he||!p.him||!p.his)throw new Error('pronouns');
+ o.title=BRAND.name;o.sourceTitle=o.sourceTitle||'ECHO Student Input Survey';o.minutes=o.minutes||10;
+ if(o.allowVoice===undefined)o.allowVoice=true;o.grade=o.grade||'';o.band=o.band||'3-5';
+ return o;}
+function parsePasted(text){
+ const t=String(text).replace(/[\u201C\u201D\u201E\u201F\u2033]/g,'"').replace(/[\u2018\u2019\u201A\u201B\u2032]/g,"'");
+ const a=t.indexOf('{'),b=t.lastIndexOf('}');if(a<0||b<=a)throw new Error('braces');
+ return checkPacket(JSON.parse(t.slice(a,b+1)));}
+function cleanName(v){const n=String(v).replace(/[^A-Za-z\u00C0-\u024F' -]/g,'').replace(/\s+/g,' ').trim().slice(0,30);return n?n.charAt(0).toUpperCase()+n.slice(1):'';}
+
+let loaded=null;
+function startSurvey(o,name){
+ S=JSON.parse(JSON.stringify(o));S.student=name;PR=S.pronouns;voiceOK=S.allowVoice!==false&&!!SR;
+ document.body.classList.remove('setup');build();show(0);
+}
+function renderSetup(mode,info){
+ const w=document.getElementById('setupWrap');
+ const nameBlock='<label class="field" for="fname">Student\'s first name</label><input class="inp" id="fname" autocomplete="off" maxlength="30" placeholder="First name only"><p class="fine">The name stays on this device and disappears when this page closes. It is never sent anywhere.</p>';
+ let h=lockup(70);
+ if(mode==='link'){
+  h+='<div class="card"><div class="kicker">Survey ready</div><h2>Set up the survey</h2><p class="lead">This ECHO survey was made for a '+esc(loaded.grade||'student')+(loaded.grade?' student':'')+'. Type the student\'s first name, then hand over the device.</p><div class="ready">'+logo(22,false)+'Survey loaded from your link</div>'+nameBlock+'<div class="msg" id="setupMsg" aria-live="polite"></div><button type="button" class="btn primary setupgo" id="goBtn">Start survey</button></div>';
+ } else {
+  h+='<div class="card"><div class="kicker">Load a survey</div><h2>Set up the survey</h2><p class="lead">'+(info?esc(info):'Paste the ECHO packet from the ECHO Builder.')+'</p><label class="field" for="packet">ECHO packet</label><textarea class="inp" id="packet" placeholder="Paste the whole packet here, from the first { to the last }"></textarea><div class="msg" id="packetMsg" aria-live="polite"></div>'+nameBlock+'<div class="msg" id="setupMsg" aria-live="polite"></div><button type="button" class="btn primary setupgo" id="goBtn">Start survey</button></div>'
+   +'<div class="card adultzone"><div class="tag">'+LOCK+'For the person who built it</div><h3 style="margin:0 0 6px;font-size:19px">Send it as a link</h3><p class="fine" style="margin:0 0 14px">Turns the packet into a link you can email to the teacher. The link holds the survey questions, never the student\'s name. Send it through district email.</p><button type="button" class="btn ghost" id="linkBtn">Copy teacher link</button><div class="msg" id="linkMsg" aria-live="polite"></div><textarea class="inp" id="linkOut" readonly></textarea></div>'
+   +'<div class="center"><button type="button" class="textlink" id="sampleBtn">Try a sample survey</button></div>';
+ }
+ w.innerHTML=h;
+}
+function msg(id,cls,t){const e=document.getElementById(id);if(e){e.className='msg '+cls;e.textContent=t;}}
+function readPacketBox(){
+ const box=document.getElementById('packet');if(!box)return loaded;
+ if(!box.value.trim()){msg('packetMsg','bad','Paste the ECHO packet first.');return null;}
+ try{loaded=parsePasted(box.value);msg('packetMsg','ok','Packet loaded: '+loaded.sections.length+' parts'+(loaded.grade?', '+loaded.grade:'')+'.');return loaded;}
+ catch(e){loaded=null;msg('packetMsg','bad','That packet did not load. Copy the whole thing again, from the first { to the last }.');return null;}
+}
+document.getElementById('setupWrap').addEventListener('input',e=>{if(e.target.id==='packet'){const v=e.target.value.trim();if(v.length>20&&v.lastIndexOf('}')>0)readPacketBox();else msg('packetMsg','','');}});
+document.getElementById('setupWrap').addEventListener('keydown',e=>{if(e.target.id==='fname'&&e.key==='Enter'){e.preventDefault();document.getElementById('goBtn').click();}});
+document.getElementById('setupWrap').addEventListener('click',async e=>{
+ const id=(e.target.closest('button')||{}).id;
+ if(id==='goBtn'){const o=readPacketBox();if(!o)return;const n=cleanName(document.getElementById('fname').value);
+  if(!n){msg('setupMsg','bad','Type the student\'s first name to begin.');document.getElementById('fname').focus();return;}
+  startSurvey(o,n);}
+ if(id==='sampleBtn'){const n=cleanName((document.getElementById('fname')||{}).value||'')||'Wally';startSurvey(checkPacket(JSON.parse(JSON.stringify(SAMPLE))),n);}
+ if(id==='linkBtn'){const o=readPacketBox();if(!o)return;
+  const link=location.origin+location.pathname+'#s='+(await encodePacket(o));
+  const out=document.getElementById('linkOut');
+  (navigator.clipboard?navigator.clipboard.writeText(link):Promise.reject()).then(()=>{msg('linkMsg','ok','Link copied. Paste it into an email to the teacher.');out.classList.remove('show');})
+   .catch(()=>{out.value=link;out.classList.add('show');out.focus();out.select();msg('linkMsg','bad','Copying was blocked. Select the link below and copy it.');});}
+});
+(async function init(){
+ document.getElementById('brandLogo').innerHTML=logo(28,false);
+ document.getElementById('brandTitle').textContent=BRAND.name;
+ const m=location.hash.match(/[#&]s=([A-Za-z0-9_-]+)/);
+ if(m){try{loaded=await decodePacket(m[1]);renderSetup('link');return;}
+  catch(e){renderSetup('paste','This link did not open correctly. Ask for a new link, or paste the packet here.');return;}}
+ renderSetup('paste');
+})();
+</script>
+</body>
+</html>
