@@ -31,7 +31,7 @@ body:not(.setup) #setupWrap{display:none}
 .field{display:block;font-weight:700;margin:18px 0 8px}
 .inp{width:100%;font:inherit;padding:12px 14px;border:2px solid #DDD6C8;border-radius:12px;background:#FDFCF9;color:#1F2A37}
 .inp:focus{outline:none;border-color:#2F6F6B;box-shadow:0 0 0 4px rgba(47,111,107,.15)}
-#packet{min-height:130px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
+#packet{min-height:130px;font-size:15px}
 .fine{font-size:14px;color:#6B7280;margin:6px 0 0}
 .msg{min-height:22px;font-size:15px;font-weight:700;margin-top:10px}
 .msg.ok{color:#2F6F6B}.msg.bad{color:#B4583A}
@@ -39,8 +39,19 @@ body:not(.setup) #setupWrap{display:none}
 .setupgo{margin-top:20px}
 .textlink{background:none;border:0;color:#2F6F6B;font:inherit;font-weight:700;text-decoration:underline;cursor:pointer;padding:4px}
 .center{text-align:center;margin-top:6px}
-#linkOut{display:none;margin-top:10px;min-height:80px;font-size:13px}
-#linkOut.show{display:block}
+#linkOut,#promptOut{display:none;margin-top:10px;min-height:80px;font-size:13px}
+#linkOut.show,#promptOut.show{display:block}
+.intro{color:#3D4855;font-size:18px;margin:-6px 0 18px}
+.stp{display:flex;gap:14px;background:#fff;border-radius:18px;padding:18px 18px 20px;margin-bottom:12px;box-shadow:0 1px 2px rgba(31,42,55,.06),0 6px 20px rgba(31,42,55,.05)}
+.stp .num{flex:none;width:36px;height:36px;border-radius:50%;background:#E8F2F0;color:#2F6F6B;font-family:'Lexend',sans-serif;font-weight:700;font-size:16px;display:grid;place-items:center;transition:background .2s}
+.stp.done .num{background:#2F6F6B;color:#fff}
+.stp .bd{flex:1;min-width:0}
+.stp h3{margin:5px 0 4px;font-size:19px}
+.stp p{margin:0 0 12px;color:#4A5563;font-size:16px}
+.stp .inp{margin-top:2px}
+.alt{margin-top:12px;font-size:15px;color:#4A5563}
+.alt[hidden]{display:none}
+#printDoc{display:none}
 .printhead svg{vertical-align:middle;margin-right:6px}
 .steps{display:flex;gap:6px;margin-top:10px}
 .step{flex:1;height:8px;border-radius:99px;background:#E3DDCF;border:0;padding:0;cursor:pointer;transition:background .2s}
@@ -116,6 +127,8 @@ textarea:focus,.othertxt:focus{outline:none;border-color:#2F6F6B;box-shadow:0 0 
 .follow .fl{font-weight:700;display:block;margin-bottom:10px;font-size:16px}
 .follow .sub-l{font-weight:700;display:block;margin:14px 0 8px;font-size:15px;color:#4A5563}
 .follow textarea{min-height:72px;background:#fff}
+.sup .follow{margin-top:10px;padding:12px 14px}
+.sup .follow .fl{font-size:15px;margin-bottom:8px}
 nav.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(246,243,236,.96);backdrop-filter:blur(8px);border-top:1px solid #E6E0D3;z-index:5}
 .navin{max-width:760px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;gap:12px}
 .btn{font-family:'Lexend',sans-serif;font-size:17px;font-weight:600;border-radius:999px;padding:13px 26px;border:2px solid #2F6F6B;cursor:pointer}
@@ -193,14 +206,21 @@ details.adult li{margin-bottom:6px}
  .opt:focus-within{outline:none}
  details.adult{border:1px dashed #999}
  #sumCard.show{break-before:page}
- body.print-summary .screen{display:none!important}
- body.print-summary .screen[data-kind="finish"]{display:block!important}
- body.print-summary .donehero,body.print-summary .adultzone{display:none!important}
- body.print-summary #sumCard.show{break-before:auto;border:0;padding:0;margin:0 0 10px}
- body.print-summary .summary{border-left:0;padding:0}
- body.print-summary .summary p{font-size:11.5pt;margin:0 0 9px}
- body.print-summary #printRecord{display:block!important}
- .rec{border-top:2px solid #2F6F6B;padding-top:8px;margin-top:14px}
+ body.print-summary>*:not(#printDoc){display:none!important}
+ body.print-summary #printDoc{display:block!important}
+ .pd-t{width:100%;border-collapse:collapse}
+ .pd-t>thead>tr>td,.pd-t>tfoot>tr>td{height:.5in;padding:0}
+ .pd-t>tbody>tr>td{padding:0 .65in}
+ .pd-head{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:2px solid #2F6F6B;padding-bottom:7px;margin-bottom:14px}
+ .pd-head .l{display:flex;align-items:center;gap:8px;font-family:'Lexend',sans-serif;font-weight:600;font-size:13pt}
+ .pd-head .l svg{display:block}
+ .pd-head .r{font-size:10pt;color:#3D4855;text-align:right}
+ .pd-head .r b{color:#1F2A37;font-size:11pt;margin-right:10px}
+ .pd-title{font-family:'Lexend',sans-serif;font-size:19pt;font-weight:700;margin:0 0 10px}
+ .pd-sum p{font-size:11.5pt;line-height:1.55;margin:0 0 9px}
+ .rec-sec{break-inside:avoid}
+ .rec{margin-top:16px}
+ .rec-first{border-top:2px solid #2F6F6B;padding-top:8px}
  .rec-h{font-family:'Lexend',sans-serif;font-weight:600;font-size:12pt;margin-bottom:4px}
  .rec h4{font-size:10pt;text-transform:uppercase;letter-spacing:.06em;color:#C2694A;margin:10px 0 2px}
  .rec table{width:100%;border-collapse:collapse;font-size:9.5pt}
@@ -304,9 +324,9 @@ function qhead(t,h){return '<div class="qhead"><h3>'+esc(t)+'</h3>'+speakBtn(t)+
 function opt(name,value,label,type,cls){uid+=1;const id='o'+uid;return '<label class="opt '+(cls||'chip')+'" for="'+id+'"><input type="'+type+'" id="'+id+'" name="'+name+'" value="'+esc(value)+'"><span class="mk '+type+'"></span><span>'+esc(label)+'</span></label>';}
 function ta(key,ph){return '<textarea data-key="'+key+'" placeholder="'+esc(ph||'Type here, or tap Say it instead.')+'"></textarea>'+micBtn('tk',key)+'<div class="printbox" data-mirror="'+key+'"></div>';}
 function face(n){const my=[0,23,27,31,35,39][n];const f=['','#F4D6CC','#F7E3CF','#EFEBDD','#DCEBE3','#CFE6DF'];return '<svg viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="'+f[n]+'" stroke="#1F2A37" stroke-width="2"/><circle cx="17" cy="20" r="2.4" fill="#1F2A37"/><circle cx="31" cy="20" r="2.4" fill="#1F2A37"/><path d="M15 31 Q24 '+my+' 33 31" fill="none" stroke="#1F2A37" stroke-width="2.4" stroke-linecap="round"/></svg>';}
-function follow(names,fu,sec){
+function follow(names,fu,sec,label){
  const base=names[0];
- registry.push({sec,label:'Tell me more',key:base,kind:'follow',main:false});
+ registry.push({sec,label:label||'Tell me more',key:base,kind:'follow',main:false});
  let h='<div class="follow" data-names="'+names.join('|')+'" data-when="'+esc(JSON.stringify(fu.when))+'"><span class="fl">'+esc(fu.prompt)+'</span>';
  if(fu.options){h+='<div class="chips">'+fu.options.map(o=>opt(base+'_more',optKid(o),optKid(o),'checkbox','chip small')).join('')+'</div><span class="sub-l">'+esc(fu.textPrompt||'Anything else?')+'</span>';}
  return h+ta(base+'_mtxt','A few words is fine.')+'</div>';
@@ -335,8 +355,8 @@ function renderItem(it,sec){
   h+=qhead(it.q,it.hint);
   const names=[];
   it.rows.forEach((r,i)=>{const n=it.id+'_'+i;names.push(n);registry.push({sec,label:r.k,key:n,kind:'radio',main:true});
-   h+='<div class="sup'+(i===0?' first':'')+'"><div class="sn"><span>'+esc(r.k)+'</span>'+speakBtn(r.k)+'</div><div class="chips">'+it.options.map((o,j)=>opt(n,o,o,'radio','chip small'+(j===it.options.length-1?' unsure':''))).join('')+'</div></div>';});
-  if(it.followUp) h+=follow(names,it.followUp,sec);
+   h+='<div class="sup'+(i===0?' first':'')+'"><div class="sn"><span>'+esc(r.k)+'</span>'+speakBtn(r.k)+'</div><div class="chips">'+it.options.map((o,j)=>opt(n,o,o,'radio','chip small'+(j===it.options.length-1?' unsure':''))).join('')+'</div>'
+    +(it.followUp?follow([n],{when:it.followUp.when,prompt:it.followUp.prompt},sec,'More about this one'):'')+'</div>';});
  } else if(it.type==='pairs'){
   h+=qhead(it.q,it.hint);
   it.pairs.forEach((p,i)=>{const n=it.id+'_'+i;registry.push({sec,label:p.a+' or '+p.b,key:n,kind:'radio',main:true});
@@ -369,7 +389,7 @@ function build(){
  const P=PR.his;
  h+='<section class="screen" data-kind="finish"><div class="noprint"><div class="donehero"><div class="check"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h2>You did it, '+esc(S.student)+'!</h2><p>Thank you for sharing. Your team will read every answer before your IEP meeting.</p><p id="recap"></p><p class="handoff">Please let your teacher know you are finished.</p></div></div>'
   +'<div class="card adultzone"><div class="tag">'+LOCK+'For the adult</div><div class="qhead"><h3>Create a summary of '+esc(S.student)+'\'s answers</h3></div><p class="sumnote">The summary turns '+P+' answers into short paragraphs you can paste into a REED, IEP, or evaluation report.</p><button type="button" class="btn primary" id="sumBtn">Create summary</button></div>'
-  +'<div class="card" id="sumCard"><div class="printhead"><span>'+logo(22,false)+esc(S.title)+'</span><span>Student Input Summary</span><span>'+esc(S.student)+', '+esc(S.grade)+'</span></div><div class="kicker">Student Input Summary<span class="edited-tag">Edited</span></div><h3>What '+esc(S.student)+' Shared</h3><p class="sumnote noprint">Answers are reported as '+esc(S.student)+' gave them. Click anywhere in the text to edit it before you copy, print, or save.</p><div class="summary" id="summary" contenteditable="true" spellcheck="true"></div><div class="noprint"><div class="actions"><button type="button" class="btn primary" id="copyBtn">Copy summary</button><button type="button" class="btn ghost" id="printBtn">Print or save as PDF</button><button type="button" class="btn ghost small" id="rebuildBtn">Undo my edits</button></div><div class="status" id="status" aria-live="polite"></div><textarea class="fallback" id="fallback" readonly></textarea></div><div id="printRecord"></div></div></section>';
+  +'<div class="card" id="sumCard"><div class="kicker">Student Input Summary<span class="edited-tag">Edited</span></div><h3>What '+esc(S.student)+' Shared</h3><p class="sumnote noprint">Answers are reported as '+esc(S.student)+' gave them. Click anywhere in the text to edit it before you copy, print, or save.</p><div class="summary" id="summary" contenteditable="true" spellcheck="true"></div><div class="noprint"><div class="actions"><button type="button" class="btn primary" id="copyBtn">Copy summary</button><button type="button" class="btn ghost" id="printBtn">Print or save as PDF</button><button type="button" class="btn ghost small" id="rebuildBtn">Undo my edits</button></div><div class="status" id="status" aria-live="polite"></div><textarea class="fallback" id="fallback" readonly></textarea></div></div></section>';
  app.innerHTML=h;
  document.getElementById('steps').innerHTML=S.sections.map((s,i)=>'<button type="button" class="step" aria-label="Go to '+esc(s.title)+'" data-go="'+(i+1)+'"></button>').join('');
 }
@@ -393,7 +413,7 @@ function show(i){
 
 function val(r){
  if(r.kind==='text') return textv(r.key);
- if(r.kind==='follow'){const a=checked(r.key+'_more'),t=textv(r.key+'_mtxt');return [a.join('; '),t?'"'+t+'"':''].filter(Boolean).join('; ');}
+ if(r.kind==='follow'){const f=document.querySelector('.follow[data-names="'+r.key+'"]');if(f&&!f.classList.contains('show'))return '';const a=checked(r.key+'_more'),t=textv(r.key+'_mtxt');return [a.join('; '),t?'"'+t+'"':''].filter(Boolean).join('; ');}
  let a=checked(r.key);
  if(a.includes('__other')){a=a.filter(x=>x!=='__other');a.push('other: '+(otherv(r.key)||'(not written)'));}
  return a.join('; ');
@@ -426,8 +446,8 @@ function narrItem(it,out){
   const g=it.options.map(()=>[]),skip=[];
   it.rows.forEach((r,i)=>{const v=checked(it.id+'_'+i)[0];const n=fill(r.n);if(!v){skip.push(n);return;}g[it.options.indexOf(v)].push(n);});
   g.forEach((arr,j)=>{if(arr.length)out.push(fill(it.optNarr[j],{list:listJoin(arr)}));});
-  const ft=textv(it.id+'_0_mtxt');
-  if(ft&&it.followUp) out.push(fill(it.followUp.textNarr||'{He} added, {a}',{a:qa(ft,false)}));
+  if(it.followUp) it.rows.forEach((r,i)=>{const v=checked(it.id+'_'+i)[0],ft=textv(it.id+'_'+i+'_mtxt');
+   if(ft&&it.followUp.when.includes(v)) out.push(fill('When asked about {x}, {he} said, {a}',{x:fill(r.n),a:qa(ft,false)}));});
   if(skip.length&&it.skipNarr) out.push(fill(it.skipNarr,{list:listJoin(skip)}));
   return;
  }
@@ -464,11 +484,27 @@ function summaryText(){
  return (ps.length?ps.join('\n\n'):(el.innerText||el.textContent||'').trim());
 }
 function buildRecord(){
- let h='<div class="rec"><div class="rec-h">Responses at a glance</div>',sec='';
+ const groups=[];let g=null;
  registry.forEach(r=>{const v=val(r);if(!r.main&&!v)return;
-  if(r.sec!==sec){if(sec)h+='</table>';sec=r.sec;h+='<h4>'+esc(sec)+'</h4><table>';}
-  h+='<tr'+(r.main?'':' class="more"')+'><td>'+esc(r.label)+'</td><td>'+esc(v||'(skipped)')+'</td></tr>';});
- document.getElementById('printRecord').innerHTML=h+(sec?'</table>':'')+'</div>';
+  if(!g||g.sec!==r.sec){g={sec:r.sec,rows:''};groups.push(g);}
+  g.rows+='<tr'+(r.main?'':' class="more"')+'><td>'+esc(r.label)+'</td><td>'+esc(v||'(skipped)')+'</td></tr>';});
+ return '<div class="rec">'+groups.map((x,i)=>'<div class="rec-sec'+(i===0?' rec-first':'')+'">'+(i===0?'<div class="rec-h">Responses at a glance</div>':'')+'<h4>'+esc(x.sec)+'</h4><table>'+x.rows+'</table></div>').join('')+'</div>';
+}
+function buildPrintDoc(){
+ const d=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+ const sum=document.getElementById('summary').innerHTML;
+ let pd=document.getElementById('printDoc');if(!pd){pd=document.createElement('div');pd.id='printDoc';document.body.appendChild(pd);}
+ pd.innerHTML='<table class="pd-t"><thead><tr><td></td></tr></thead><tfoot><tr><td></td></tr></tfoot><tbody><tr><td>'
+  +'<div class="pd-head"><div class="l">'+logo(24,false)+'Student Input Summary</div><div class="r"><b>'+esc(S.student)+'</b>Report generated: '+d+'</div></div>'
+  +'<div class="pd-title">What '+esc(S.student)+' Shared</div><div class="pd-sum">'+sum+'</div>'+buildRecord()
+  +'</td></tr></tbody></table>';
+}
+function printSummary(){
+ buildPrintDoc();
+ let st=document.getElementById('pdPage');if(!st){st=document.createElement('style');st.id='pdPage';document.head.appendChild(st);}
+ st.textContent='@page{margin:0}';document.body.classList.add('print-summary');
+ const done=()=>{document.body.classList.remove('print-summary');st.textContent='';window.removeEventListener('afterprint',done);};
+ window.addEventListener('afterprint',done);window.print();setTimeout(()=>{if(!window.matchMedia('print').matches)done();},1500);
 }
 
 function speak(t){if(!speakOK)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=0.9;speechSynthesis.speak(u);}
@@ -509,7 +545,7 @@ document.addEventListener('click',e=>{
   const txt=summaryText();
   (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>{st.textContent='Copied! Ready to paste wherever you need it.';fb.classList.remove('show');})
   .catch(()=>{fb.value=txt;fb.classList.add('show');fb.focus();fb.select();st.textContent='Copying was blocked here. Select the text below and copy it.';});}
- if(id==='printBtn'){buildRecord();document.body.classList.add('print-summary');window.print();setTimeout(()=>document.body.classList.remove('print-summary'),500);}
+ if(id==='printBtn'){printSummary();}
  if(id==='rebuildBtn'&&window.confirm('Undo your edits and rebuild the summary from the answers?'))renderSummary();
 });
 document.getElementById('nextBtn').addEventListener('click',()=>show(cur+1));
@@ -546,10 +582,10 @@ function packetError(t){const e=new Error(t);e.friendly=true;return e;}
 function expand(p){
  const band=BANDS.indexOf(p.band)>=0?p.band:'3-5';
  const pr=PRON[String(p.pronoun||'').toLowerCase()]||PRON.they;
- if(!Array.isArray(p.goals)||!p.goals.length)throw packetError('The packet has no goals. Ask the AI to include the IEP goals.');
- if(!Array.isArray(p.supports)||!p.supports.length)throw packetError('The packet has no supports. Ask the AI to include the IEP accommodations.');
+ if(!Array.isArray(p.goals)||!p.goals.length)throw packetError('The reply is missing the goals. Ask the AI to include the IEP goals, then paste the new reply.');
+ if(!Array.isArray(p.supports)||!p.supports.length)throw packetError('The reply is missing the supports. Ask the AI to include the IEP accommodations, then paste the new reply.');
  const goals=p.goals.filter(g=>g&&str(g.kid)).slice(0,5);
- if(!goals.length)throw packetError('The goals in this packet are missing their kid-friendly wording.');
+ if(!goals.length)throw packetError('The goals in this reply are missing their student wording. Ask the AI to fix the survey code.');
  const strengths=[];(p.strengths||[]).concat(DEF_STR[band]).forEach(x=>{const t=str(x);if(t&&!strengths.some(y=>y.toLowerCase()===t.toLowerCase()))strengths.push(t);});
  const k2=band==='K-2',sec=[];
  sec.push({title:'About Me',intro:"Let's start with you. Your team wants to know what you're good at.",items:[
@@ -569,7 +605,7 @@ function expand(p){
    options:['It helps',"It doesn't help","I don't need it","I don't have this"],
    optNarr:['{S} reported that {list} helped {him}.','{He} reported that {list} did not help.','{He} reported not needing {list}.','{He} reported not having {list}.'],
    skipNarr:'{He} did not rate {list}.',
-   followUp:{when:["It doesn't help","I don't need it","I don't have this"],prompt:'Tell us more about the ones you marked.',textNarr:'When asked to explain, {he} said, {a}'}},
+   followUp:{when:["It doesn't help","I don't need it","I don't have this"],prompt:'Want to tell us more about this one? You can skip it.'}},
   {type:'text',id:'sup_new',q:'Is there something else that would help you at school?',hint:'You can skip this one.',narr:'When asked if anything else would help at school, {he} said, {a}'}]});
  const pairs=(Array.isArray(p.pairs)?p.pairs:[]).filter(x=>x&&str(x.a_kid)&&str(x.b_kid)).slice(0,4);
  const usePairs=(pairs.length>=2?pairs:pairs.concat(DEF_PAIRS).slice(0,Math.max(2,pairs.length))).map(x=>({a:str(x.a_kid),an:str(x.a_adult)||lowerFirst(str(x.a_kid)),b:str(x.b_kid),bn:str(x.b_adult)||lowerFirst(str(x.b_kid))}));
@@ -588,16 +624,25 @@ function checkPacket(input){
  const raw=JSON.parse(JSON.stringify(input));
  let o=input;
  if(o&&!Array.isArray(o.sections)&&(o.goals||o.supports||o.echo))o=expand(o);
- if(!o||!Array.isArray(o.sections)||!o.sections.length||o.sections.length>7)throw packetError('This does not look like an ECHO packet.');
+ if(!o||!Array.isArray(o.sections)||!o.sections.length||o.sections.length>7)throw packetError('This does not look like an ECHO reply. Paste the AI\'s whole reply.');
  o.sections.forEach(sec=>{if(!sec.title)throw new Error('title');checkItems(sec.items);});
  const p=o.pronouns||{};if(!p.he||!p.him||!p.his)throw new Error('pronouns');
  o.title=BRAND.name;o.sourceTitle=o.sourceTitle||'ECHO Student Input Survey';o.minutes=o.minutes||10;
  if(o.allowVoice===undefined)o.allowVoice=true;o.grade=o.grade||'';o.band=o.band||'3-5';
  o._raw=raw;return o;}
+function findJson(t){
+ let k=t.search(/"echo"\s*:/);if(k<0)k=t.search(/"sections"\s*:/);
+ let a=k<0?t.indexOf('{'):t.lastIndexOf('{',k);if(a<0)return '';
+ let depth=0,inStr=false,esc2=false;
+ for(let i=a;i<t.length;i+=1){const c=t[i];
+  if(inStr){if(esc2)esc2=false;else if(c==='\\')esc2=true;else if(c==='"')inStr=false;continue;}
+  if(c==='"')inStr=true;else if(c==='{')depth+=1;else if(c==='}'){depth-=1;if(depth===0)return t.slice(a,i+1);}}
+ return t.slice(a,t.lastIndexOf('}')+1);
+}
 function parsePasted(text){
- const t=String(text).replace(/[\u201C\u201D\u201E\u201F\u2033]/g,'"').replace(/[\u2018\u2019\u201A\u201B\u2032]/g,"'");
- const a=t.indexOf('{'),b=t.lastIndexOf('}');if(a<0||b<=a)throw packetError('No packet found. Copy the whole thing, from the first { to the last }.');
- let j;try{j=JSON.parse(t.slice(a,b+1).replace(/,\s*([}\]])/g,'$1'));}catch(e){throw packetError('The packet has a formatting problem. Copy it again, or ask the AI to fix the packet so it is valid JSON.');}
+ const t=String(text).replace(/[“”„‟″]/g,'"').replace(/[‘’‚‛′]/g,"'");
+ const j0=findJson(t);if(!j0)throw packetError('Could not find the survey code. Copy the AI\'s whole reply and paste it here.');
+ let j;try{j=JSON.parse(j0.replace(/,\s*([}\]])/g,'$1'));}catch(e){throw packetError('The survey code has a small formatting problem. Ask the AI: "Please fix the survey code so it is valid JSON." Then paste the new reply.');}
  return checkPacket(j);}
 function cleanName(v){const n=String(v).replace(/[^A-Za-z\u00C0-\u024F' -]/g,'').replace(/\s+/g,' ').trim().slice(0,30);return n?n.charAt(0).toUpperCase()+n.slice(1):'';}
 
@@ -606,38 +651,57 @@ function startSurvey(o,name){
  S=JSON.parse(JSON.stringify(o));S.student=name;PR=S.pronouns;voiceOK=S.allowVoice!==false&&!!SR;
  document.body.classList.remove('setup');build();show(0);
 }
+const AI_PROMPT="You are the ECHO Builder. ECHO is a student input survey used before a special education reevaluation, so the student's own view of their goals, supports, and learning setting is heard even if they do not attend the IEP meeting. Your job is to read the uploaded documents and write the survey code: a short block of JSON that the ECHO web page turns into a survey for this student. The web page handles all of the design, question wording, and summary writing. You only supply the student-specific content.\n\nBEFORE YOU START\n1. You need the redacted IEP, the grade, and the pronoun (he, she, or they). If any of these are missing, ask for them in one short message and stop.\n2. Privacy: never write the student's name or any identifying detail (birthdate, ID number, address, school name, family names). If you notice any of these in the documents, do not repeat them. Instead, add one line at the top of your reply: \"Heads up: this document does not appear to be fully redacted.\"\n3. Use only what is in the documents. Never invent goals, supports, or services.\n\nSTEP 1: FIND\nGoals: every annual goal. Combine goals that target the same skill. Use at most 5.\nSupports: accommodations, supplementary aids and services, and testing accommodations. Combine duplicates (for example, \"short breaks\" and \"frequent breaks\" become one support). Keep only supports the student would notice or use. Use at most 10 (at most 6 for grades K to 2).\nServices and settings: where and how the student gets help (resource room, general education classroom, pull-out or push-in, speech, social work, OT, an aide).\nStrengths: up to 4 strengths named in the present levels.\n\nSTEP 2: TRANSLATE INTO STUDENT LANGUAGE\nChoose the grade band: \"K-2\", \"3-5\", \"6-8\", or \"9-12\".\nLength: K-2 phrases are 6 words or fewer and very simple. 3-5 phrases are 9 words or fewer. 6-8 and 9-12 phrases are 10 words or fewer and should sound respectful, never babyish.\nStudent wording (\"kid\" fields): plain everyday words from the student's point of view (I, my) or a plain phrase. No clinical terms (for example, never \"perspective taking,\" \"multisyllabic,\" \"dysregulated,\" \"executive functioning,\" \"behavior intervention\").\nAdult wording (\"adult\" fields): a short professional phrase, all lowercase, with no pronouns (no he, she, his, her, they, their). It must read correctly in the sentence \"The student reported that ___ helped.\"\nTone: positive or neutral. Never describe the student as having a deficit, and never include sensitive details from the IEP (diagnoses, discipline, family information, or anything the student reported feeling).\n\nSTEP 3: BUILD THE \"HOW I LEARN BEST\" PAIRS\nWrite 2 to 4 pairs. Each pair contrasts an arrangement from the IEP (where services happen, how adult support works, how breaks or tests are given) with a realistic alternative. Keep both sides neutral and similar in length, with no hint about which is better. Put the IEP's current arrangement first in some pairs and second in others.\n\nSTEP 4: REPLY IN EXACTLY TWO PARTS\n\nPART 1: QUICK CHECK\nA short plain-language list for the adult: the grade band, each goal in student wording, each support as \"student wording = adult wording,\" and each pair. End with \"Things to double check,\" naming any translation you were unsure about and anything you left out and why. Keep it brief.\n\nPART 2: SURVEY CODE\nOne code block that contains only the JSON, using exactly these fields:\n\n\"echo\": always the number 1\n\"grade\": for example \"7th grade\"\n\"band\": exactly one of \"K-2\", \"3-5\", \"6-8\", \"9-12\"\n\"pronoun\": exactly \"he\", \"she\", or \"they\"\n\"strengths\": a list of up to 4 short student phrases (can be an empty list)\n\"goals\": a list of 1 to 5 goals. Each goal has:\n  \"area\": 1 to 3 words, capitalized, used as a label (for example \"Math\" or \"Speaking up\")\n  \"topic\": a lowercase phrase that completes \"How is ___ going for you right now?\" (for example \"math\" or \"starting conversations\"). Do not use \"my.\"\n  \"kid\": the goal in student wording\n  \"hard\": a list of 4 to 6 common things that can make this skill hard, each with \"kid\" and \"adult\" wording. Keep them neutral and never blaming.\n\"supports\": a list of supports, each with \"kid\" and \"adult\" wording\n\"pairs\": a list of 2 to 4 pairs, each with \"a_kid\", \"a_adult\", \"b_kid\", and \"b_adult\"\n\nJSON rules (the ECHO page cannot read the survey code if these are broken):\nUse straight double quotes around every key and every text value.\nNever put a double quote inside a text value. Use an apostrophe or rephrase.\nNo comments, no trailing commas, no extra fields, and nothing else inside the code block.\n\nEXAMPLE SURVEY CODE (a fictional 4th grader, for format only; do not copy its content)\n{\n \"echo\": 1,\n \"grade\": \"4th grade\",\n \"band\": \"3-5\",\n \"pronoun\": \"he\",\n \"strengths\": [\n  \"Building things\",\n  \"Drawing or art\"\n ],\n \"goals\": [\n  {\n   \"area\": \"Reading\",\n   \"topic\": \"reading\",\n   \"kid\": \"Reading smoothly without getting stuck on words\",\n   \"hard\": [\n    {\n     \"kid\": \"Sounding out long words\",\n     \"adult\": \"sounding out long words\"\n    },\n    {\n     \"kid\": \"Reading out loud in front of others\",\n     \"adult\": \"reading aloud in front of others\"\n    },\n    {\n     \"kid\": \"Reading fast enough\",\n     \"adult\": \"reading quickly enough\"\n    },\n    {\n     \"kid\": \"Remembering what I read\",\n     \"adult\": \"remembering what was read\"\n    },\n    {\n     \"kid\": \"Pages with lots of words\",\n     \"adult\": \"pages with a lot of text\"\n    }\n   ]\n  },\n  {\n   \"area\": \"Writing\",\n   \"topic\": \"writing\",\n   \"kid\": \"Writing a paragraph with a main idea and details\",\n   \"hard\": [\n    {\n     \"kid\": \"Thinking of what to write\",\n     \"adult\": \"thinking of what to write\"\n    },\n    {\n     \"kid\": \"Spelling words\",\n     \"adult\": \"spelling\"\n    },\n    {\n     \"kid\": \"Handwriting\",\n     \"adult\": \"handwriting\"\n    },\n    {\n     \"kid\": \"Putting my ideas in order\",\n     \"adult\": \"organizing ideas\"\n    },\n    {\n     \"kid\": \"It takes a long time\",\n     \"adult\": \"how long writing takes\"\n    }\n   ]\n  }\n ],\n \"supports\": [\n  {\n   \"kid\": \"Extra time on tests\",\n   \"adult\": \"extra time on tests\"\n  },\n  {\n   \"kid\": \"Having tests read out loud\",\n   \"adult\": \"tests read aloud\"\n  },\n  {\n   \"kid\": \"Taking tests in a quiet room\",\n   \"adult\": \"testing in a separate, quiet setting\"\n  },\n  {\n   \"kid\": \"A planning sheet before you write\",\n   \"adult\": \"a graphic organizer before writing\"\n  },\n  {\n   \"kid\": \"Talk-to-type when you write\",\n   \"adult\": \"speech-to-text for writing\"\n  },\n  {\n   \"kid\": \"Sitting close to where your teacher teaches\",\n   \"adult\": \"preferential seating near instruction\"\n  }\n ],\n \"pairs\": [\n  {\n   \"a_kid\": \"Getting reading help in the resource room\",\n   \"a_adult\": \"receiving reading support in the resource room\",\n   \"b_kid\": \"Getting reading help in my classroom\",\n   \"b_adult\": \"receiving reading support in the general education classroom\"\n  },\n  {\n   \"a_kid\": \"A teacher helping me with writing in my classroom\",\n   \"a_adult\": \"receiving writing support in the classroom\",\n   \"b_kid\": \"Going to another room for writing help\",\n   \"b_adult\": \"receiving writing support in a separate room\"\n  },\n  {\n   \"a_kid\": \"Taking tests with my class\",\n   \"a_adult\": \"testing with the class\",\n   \"b_kid\": \"Taking tests in a quiet room\",\n   \"b_adult\": \"testing in a quiet room\"\n  },\n  {\n   \"a_kid\": \"Using talk-to-type to write\",\n   \"a_adult\": \"using speech-to-text\",\n   \"b_kid\": \"Writing with a pencil\",\n   \"b_adult\": \"writing by hand\"\n  }\n ]\n}\n\nAfter the code block, end your reply with this exact line:\nNext: copy this whole reply and paste it into Step 2 on the ECHO page.\n\nNow read the uploaded documents and build the survey code.\n";
+const CHECK='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+function stp(n,id,title,text,body){return '<div class="stp" id="'+id+'"><div class="num" data-n="'+n+'">'+n+'</div><div class="bd"><h3>'+title+'</h3>'+(text?'<p>'+text+'</p>':'')+body+'</div></div>';}
+function markStep(id,on){const e=document.getElementById(id);if(!e)return;e.classList.toggle('done',on);const n=e.querySelector('.num');n.innerHTML=on?CHECK:n.dataset.n;}
 function renderSetup(mode,info){
  const w=document.getElementById('setupWrap');
- const nameBlock='<label class="field" for="fname">Student\'s first name</label><input class="inp" id="fname" autocomplete="off" maxlength="30" placeholder="First name only"><p class="fine">The name stays on this device and disappears when this page closes. It is never sent anywhere.</p>';
+ const name='<input class="inp" id="fname" autocomplete="off" maxlength="30" placeholder="First name only"><p class="fine">The name stays on this device and disappears when the page closes.</p>';
+ const go='<button type="button" class="btn primary" id="goBtn">Start survey</button><div class="msg" id="setupMsg" aria-live="polite"></div>';
  let h=lockup(70);
  if(mode==='link'){
-  h+='<div class="card"><div class="kicker">Survey ready</div><h2>Set up the survey</h2><p class="lead">This ECHO survey was made for a '+esc(loaded.grade||'student')+(loaded.grade?' student':'')+'. Type the student\'s first name, then hand over the device.</p><div class="ready">'+logo(22,false)+'Survey loaded from your link</div>'+nameBlock+'<div class="msg" id="setupMsg" aria-live="polite"></div><button type="button" class="btn primary setupgo" id="goBtn">Start survey</button></div>';
+  h+='<p class="intro">A short survey made from '+(loaded.grade?'a '+esc(loaded.grade)+' student\'s':'the student\'s')+' IEP, so their voice is part of the meeting.</p>'
+   +'<div class="ready" style="margin:0 0 12px">'+CHECK+'Survey loaded from your link</div>'
+   +stp(1,'st3','Add the student\'s first name','',name)
+   +stp(2,'st4','Start the survey','Then hand the device to the student.',go);
  } else {
-  h+='<div class="card"><div class="kicker">Load a survey</div><h2>Set up the survey</h2><p class="lead">'+(info?esc(info):'Paste the ECHO packet from the ECHO Builder.')+'</p><label class="field" for="packet">ECHO packet</label><textarea class="inp" id="packet" placeholder="Paste the whole packet here, from the first { to the last }"></textarea><div class="msg" id="packetMsg" aria-live="polite"></div>'+nameBlock+'<div class="msg" id="setupMsg" aria-live="polite"></div><button type="button" class="btn primary setupgo" id="goBtn">Start survey</button></div>'
-   +'<div class="card adultzone"><div class="tag">'+LOCK+'For the person who built it</div><h3 style="margin:0 0 6px;font-size:19px">Send it as a link</h3><p class="fine" style="margin:0 0 14px">Turns the packet into a link you can email to the teacher. The link holds the survey questions, never the student\'s name. Send it through district email.</p><button type="button" class="btn ghost" id="linkBtn">Copy teacher link</button><div class="msg" id="linkMsg" aria-live="polite"></div><textarea class="inp" id="linkOut" readonly></textarea></div>'
-   +'<div class="center"><button type="button" class="textlink" id="sampleBtn">Try a sample survey</button></div>';
+  h+='<p class="intro">Build a short survey from a student\'s IEP, so their voice is part of the meeting.</p>'
+   +(info?'<div class="msg bad" style="margin:0 0 12px">'+esc(info)+'</div>':'')
+   +stp(1,'st1','Get the prompt','Copy it, then open Gemini or another AI tool your district approves. Paste the prompt, attach the redacted IEP, and type the grade and he, she, or they.',
+     '<button type="button" class="btn ghost" id="promptBtn">Copy the prompt</button><div class="msg" id="promptMsg" aria-live="polite"></div><textarea class="inp" id="promptOut" readonly></textarea>')
+   +stp(2,'st2','Paste the AI\'s reply','Copy the AI\'s whole reply and paste it here.',
+     '<textarea class="inp" id="packet" placeholder="Paste the whole reply here"></textarea><div class="msg" id="packetMsg" aria-live="polite"></div><div class="alt" id="linkAlt" hidden>Someone else giving the survey? <button type="button" class="textlink" id="linkBtn">Copy a survey link</button> to email them instead.<div class="msg" id="linkMsg" aria-live="polite"></div><textarea class="inp" id="linkOut" readonly></textarea></div>')
+   +stp(3,'st3','Add the student\'s first name','',name)
+   +stp(4,'st4','Start the survey','Then hand the device to the student.',go)
+   +'<div class="center"><button type="button" class="textlink" id="sampleBtn">Just exploring? Try a sample survey</button></div>';
  }
  w.innerHTML=h;
 }
 function msg(id,cls,t){const e=document.getElementById(id);if(e){e.className='msg '+cls;e.textContent=t;}}
 function readPacketBox(){
  const box=document.getElementById('packet');if(!box)return loaded;
- if(!box.value.trim()){msg('packetMsg','bad','Paste the ECHO packet first.');return null;}
- try{loaded=parsePasted(box.value);msg('packetMsg','ok','Packet loaded: '+loaded.sections.length+' parts'+(loaded.grade?', '+loaded.grade:'')+'.');return loaded;}
- catch(e){loaded=null;msg('packetMsg','bad',e.friendly?e.message:'That packet did not load. Copy the whole thing again, from the first { to the last }.');return null;}
+ const alt=document.getElementById('linkAlt');
+ if(!box.value.trim()){msg('packetMsg','bad','Paste the AI\'s reply first.');markStep('st2',false);if(alt)alt.hidden=true;return null;}
+ try{loaded=parsePasted(box.value);msg('packetMsg','ok','Survey ready: '+loaded.sections.length+' parts'+(loaded.grade?', '+loaded.grade:'')+'.');markStep('st2',true);if(alt)alt.hidden=false;return loaded;}
+ catch(e){loaded=null;markStep('st2',false);if(alt)alt.hidden=true;msg('packetMsg','bad',e.friendly?e.message:'That reply did not load. Copy the AI\'s whole reply again.');return null;}
 }
-document.getElementById('setupWrap').addEventListener('input',e=>{if(e.target.id==='packet'){const v=e.target.value.trim();if(v.length>20&&v.lastIndexOf('}')>0)readPacketBox();else msg('packetMsg','','');}});
+document.getElementById('setupWrap').addEventListener('input',e=>{if(e.target.id==='packet'){const v=e.target.value.trim();if(v.length>20&&v.lastIndexOf('}')>0)readPacketBox();else{msg('packetMsg','','');markStep('st2',false);}}
+ if(e.target.id==='fname')markStep('st3',!!cleanName(e.target.value));});
 document.getElementById('setupWrap').addEventListener('keydown',e=>{if(e.target.id==='fname'&&e.key==='Enter'){e.preventDefault();document.getElementById('goBtn').click();}});
 document.getElementById('setupWrap').addEventListener('click',async e=>{
  const id=(e.target.closest('button')||{}).id;
  if(id==='goBtn'){const o=readPacketBox();if(!o)return;const n=cleanName(document.getElementById('fname').value);
   if(!n){msg('setupMsg','bad','Type the student\'s first name to begin.');document.getElementById('fname').focus();return;}
   startSurvey(o,n);}
+ if(id==='promptBtn'){const out=document.getElementById('promptOut');
+  (navigator.clipboard?navigator.clipboard.writeText(AI_PROMPT):Promise.reject()).then(()=>{msg('promptMsg','ok','Prompt copied. Paste it into your AI tool.');markStep('st1',true);out.classList.remove('show');})
+   .catch(()=>{out.value=AI_PROMPT;out.classList.add('show');out.focus();out.select();msg('promptMsg','bad','Copying was blocked. Select the text below and copy it.');markStep('st1',true);});}
  if(id==='sampleBtn'){const n=cleanName((document.getElementById('fname')||{}).value||'')||'Wally';startSurvey(checkPacket(JSON.parse(JSON.stringify(SAMPLE))),n);}
  if(id==='linkBtn'){const o=readPacketBox();if(!o)return;
   const link=location.origin+location.pathname+'#s='+(await encodePacket(o._raw||o));
   const out=document.getElementById('linkOut');
-  (navigator.clipboard?navigator.clipboard.writeText(link):Promise.reject()).then(()=>{msg('linkMsg','ok','Link copied. Paste it into an email to the teacher.');out.classList.remove('show');})
+  (navigator.clipboard?navigator.clipboard.writeText(link):Promise.reject()).then(()=>{msg('linkMsg','ok','Link copied. Paste it into a district email. The link never includes the student\'s name.');out.classList.remove('show');})
    .catch(()=>{out.value=link;out.classList.add('show');out.focus();out.select();msg('linkMsg','bad','Copying was blocked. Select the link below and copy it.');});}
 });
 (async function init(){
@@ -645,7 +709,7 @@ document.getElementById('setupWrap').addEventListener('click',async e=>{
  document.getElementById('brandTitle').textContent=BRAND.name;
  const m=location.hash.match(/[#&]s=([A-Za-z0-9_-]+)/);
  if(m){try{loaded=await decodePacket(m[1]);renderSetup('link');return;}
-  catch(e){renderSetup('paste','This link did not open correctly. Ask for a new link, or paste the packet here.');return;}}
+  catch(e){renderSetup('paste','This survey link did not open correctly. Ask for a new link, or build the survey below.');return;}}
  renderSetup('paste');
 })();
 </script>
