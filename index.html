@@ -21,7 +21,8 @@ header.top{position:sticky;top:0;z-index:5;background:rgba(246,243,236,0.94);bac
 @keyframes rp{0%{opacity:.5}35%{opacity:1}100%{opacity:.5}}
 .lockup .r1{animation:rp 2.6s ease-in-out infinite}
 .lockup .r2{animation:rp 2.6s ease-in-out .35s infinite}
-@media (prefers-reduced-motion:reduce){.lockup .r1,.lockup .r2{animation:none}}
+.lockup .r3{animation:rp 2.6s ease-in-out .7s infinite}
+@media (prefers-reduced-motion:reduce){.lockup .r1,.lockup .r2,.lockup .r3{animation:none}}
 body.setup .steps,body.setup .steplabel,body.setup nav.bottom,body.setup main{display:none}
 #setupWrap{max-width:760px;margin:0 auto;padding:24px 16px 60px}
 body:not(.setup) #setupWrap{display:none}
@@ -228,111 +229,46 @@ details.adult li{margin-bottom:6px}
 </nav>
 <script>
 const SAMPLE = {
- title: "ECHO",
- sourceTitle: "ECHO Student Input Survey",
- student: "Wally",
- grade: "4th grade",
- band: "3-5",
- pronouns: { he: "he", him: "him", his: "his" },
- minutes: 10,
- allowVoice: true,
- summaryIntro: "The survey was tailored to {his} current IEP and asked about {his} strengths, IEP goals, supports, learning preferences, and self-advocacy.",
- sections: [
-  {
-   title: "About Me",
-   intro: "Let's start with you. Your team wants to know what you're good at.",
-   items: [
-    { type: "checklist", id: "strengths", q: "What are you good at? Pick as many as you want.",
-      options: ["Drawing or art","Building things","Sports or outside games","Video games","Helping other people","Math","Making up stories","Music","Taking care of animals","Science","Being a good friend","Reading"],
-      other: true, otherPrompt: "What else are you good at?",
-      narr: "{S} identified things {he} was good at, including {list}." },
-    { type: "text", id: "proud", q: "What is something you're proud of this year?", hint: "A few words is fine. You can skip this one.",
-      narr: "When asked what {he} was proud of this year, {he} said, {a}" }
-   ]
-  },
-  {
-   title: "My Goals",
-   intro: "Your IEP has goals. Goals are skills your team is helping you grow this year.",
-   items: [
-    { type: "goal", label: "Reading goal", title: "Reading smoothly without getting stuck on words", basis: "IEP goal: reading fluency", items: [
-     { type: "scale", id: "read_feel", q: "How does reading feel for you right now?",
-       narr: "{S} rated how reading felt for {him} as {a}",
-       followUp: { when: ["Really hard","Hard"], prompt: "What makes reading hard? Pick any that fit.",
-        options: [["Sounding out long words","sounding out long words"],["Reading out loud in front of others","reading aloud in front of others"],["Reading fast enough","reading quickly enough"],["Remembering what I read","remembering what {he} read"],["Pages with lots of words","pages with a lot of text"],["Getting tired when I read","getting tired while reading"]],
-        textPrompt: "Anything else about reading?",
-        narr: "{He} said the hard parts of reading included {list}.", textNarr: "{He} added, {a}" } },
-     { type: "choice", id: "read_grow", q: "Do you think you're getting better at reading?", options: ["Yes, a lot","A little","Not really"],
-       narr: "When asked if {he} was getting better at reading, {he} answered {a}",
-       followUp: { when: ["Not really"], prompt: "What would help you get better? Pick any that fit.",
-        options: [["More time to practice","more practice time"],["More help from a teacher","more help from a teacher"],["A quieter place to read","a quieter place to read"],["Books about things I like","books about topics {he} enjoyed"]],
-        textPrompt: "Anything else that would help?",
-        narr: "{He} said things that might help {him} improve included {list}.", textNarr: "{He} added, {a}" } }
-    ]},
-    { type: "goal", label: "Writing goal", title: "Writing a paragraph with a main idea and details", basis: "IEP goal: written expression", items: [
-     { type: "scale", id: "write_feel", q: "How does writing feel for you right now?",
-       narr: "{S} rated how writing felt for {him} as {a}",
-       followUp: { when: ["Really hard","Hard"], prompt: "What makes writing hard? Pick any that fit.",
-        options: [["Thinking of what to write","thinking of what to write"],["Spelling words","spelling"],["Handwriting","handwriting"],["Putting my ideas in order","putting {his} ideas in order"],["Writing enough","writing enough"],["It takes a long time","how long writing took"]],
-        textPrompt: "Anything else about writing?",
-        narr: "{He} said the hard parts of writing included {list}.", textNarr: "{He} added, {a}" } },
-     { type: "choice", id: "write_grow", q: "Do you think you're getting better at writing?", options: ["Yes, a lot","A little","Not really"],
-       narr: "When asked if {he} was getting better at writing, {he} answered {a}",
-       followUp: { when: ["Not really"], prompt: "What would help you get better? Pick any that fit.",
-        options: [["More time to practice","more practice time"],["More help from a teacher","more help from a teacher"],["Using talk-to-type more","using speech-to-text more often"],["Writing about things I like","writing about topics {he} enjoyed"]],
-        textPrompt: "Anything else that would help?",
-        narr: "{He} said things that might help {him} improve included {list}.", textNarr: "{He} added, {a}" } }
-    ]}
-   ]
-  },
-  {
-   title: "My Supports",
-   intro: "Your IEP lists things that are supposed to help you. Tell us if they really do.",
-   items: [
-    { type: "supports", id: "sup", q: "How does each one work for you?", hint: "Every answer is helpful, even \"I don't have this.\"",
-      rows: [
-       { k: "Extra time on tests", n: "extra time on tests" },
-       { k: "Having tests read out loud (not reading tests)", n: "having tests read aloud" },
-       { k: "Taking tests in a quiet room", n: "testing in a separate, quiet setting" },
-       { k: "A planning sheet before you write", n: "a graphic organizer before writing" },
-       { k: "Talk-to-type (speech-to-text) when you write", n: "speech-to-text for writing" },
-       { k: "Sitting close to where your teacher teaches", n: "preferential seating near instruction" }
-      ],
-      options: ["It helps","It doesn't help","I don't need it","I don't have this"],
-      optNarr: ["{S} reported that {list} helped {him}.","{He} reported that {list} did not help.","{He} reported that {he} did not need {list}.","{He} reported that {he} did not have {list}."],
-      skipNarr: "{He} did not rate {list}.",
-      followUp: { when: ["It doesn't help","I don't need it","I don't have this"], prompt: "Tell us more about the ones you marked.", textNarr: "When asked to explain, {he} said, {a}" } },
-    { type: "text", id: "sup_new", q: "Is there something else that would help you at school?", hint: "You can skip this one.",
-      narr: "When asked if anything else would help {him} at school, {he} said, {a}" }
-   ]
-  },
-  {
-   title: "How I Learn Best",
-   intro: "These are about how and where you get help. Tap the one that sounds more like you. If both are fine, tap \"Both are okay.\"",
-   items: [
-    { type: "pairs", id: "pref", q: "Which works better for you?",
-      narrLead: "When given choices about how and where {he} received help, {s} shared several preferences.",
-      pairs: [
-       { a: "Getting reading help in the resource room", b: "Getting reading help in my classroom", an: "receiving reading support in the resource room", bn: "receiving reading support in {his} general education classroom", basis: "Service: reading, resource room" },
-       { a: "A teacher helping me with writing in my classroom", b: "Going to another room for writing help", an: "receiving writing support in {his} classroom", bn: "receiving writing support in a separate room", basis: "Service: writing, in classroom" },
-       { a: "Taking tests in a quiet room", b: "Taking tests with my class", an: "testing in a quiet room", bn: "testing with {his} class", basis: "Accommodation: separate setting" },
-       { a: "Using talk-to-type to write", b: "Writing with a pencil", an: "using speech-to-text", bn: "writing by hand", basis: "Accommodation: speech-to-text" }
-      ] }
-   ]
-  },
-  {
-   title: "Speaking Up",
-   intro: "Last part! These are about speaking up for yourself.",
-   items: [
-    { type: "ync", id: "adv", q: "How true is each one for you?", statements: [
-     { s: "When work is too hard, I ask for help.", n: "whether {he} asked for help when work was too hard" },
-     { s: "I know what an IEP is and why I have one.", n: "whether {he} knew what an IEP was and why {he} had one" },
-     { s: "I feel okay telling a teacher what helps me.", n: "whether {he} felt okay telling a teacher what helped {him}" },
-     { s: "I would like to come to my IEP meeting.", options: ["Yes","Maybe","No"], n: "whether {he} would like to attend {his} IEP meeting" }
-    ]},
-    { type: "text", id: "anything", q: "Is there anything else you want your IEP team to know?", hint: "This is your chance to say anything. Your team will read every word.", featured: true,
-      narr: "When asked if there was anything else {he} wanted {his} IEP team to know, {he} said, {a}" }
-   ]
-  }
+ "echo": 1,
+ "grade": "4th grade",
+ "band": "3-5",
+ "pronoun": "he",
+ "strengths": ["Building things", "Drawing or art"],
+ "goals": [
+  { "area": "Reading", "topic": "reading", "kid": "Reading smoothly without getting stuck on words",
+    "hard": [
+     { "kid": "Sounding out long words", "adult": "sounding out long words" },
+     { "kid": "Reading out loud in front of others", "adult": "reading aloud in front of others" },
+     { "kid": "Reading fast enough", "adult": "reading quickly enough" },
+     { "kid": "Remembering what I read", "adult": "remembering what was read" },
+     { "kid": "Pages with lots of words", "adult": "pages with a lot of text" }
+    ] },
+  { "area": "Writing", "topic": "writing", "kid": "Writing a paragraph with a main idea and details",
+    "hard": [
+     { "kid": "Thinking of what to write", "adult": "thinking of what to write" },
+     { "kid": "Spelling words", "adult": "spelling" },
+     { "kid": "Handwriting", "adult": "handwriting" },
+     { "kid": "Putting my ideas in order", "adult": "organizing ideas" },
+     { "kid": "It takes a long time", "adult": "how long writing takes" }
+    ] }
+ ],
+ "supports": [
+  { "kid": "Extra time on tests", "adult": "extra time on tests" },
+  { "kid": "Having tests read out loud", "adult": "tests read aloud" },
+  { "kid": "Taking tests in a quiet room", "adult": "testing in a separate, quiet setting" },
+  { "kid": "A planning sheet before you write", "adult": "a graphic organizer before writing" },
+  { "kid": "Talk-to-type when you write", "adult": "speech-to-text for writing" },
+  { "kid": "Sitting close to where your teacher teaches", "adult": "preferential seating near instruction" }
+ ],
+ "pairs": [
+  { "a_kid": "Getting reading help in the resource room", "a_adult": "receiving reading support in the resource room",
+    "b_kid": "Getting reading help in my classroom", "b_adult": "receiving reading support in the general education classroom" },
+  { "a_kid": "A teacher helping me with writing in my classroom", "a_adult": "receiving writing support in the classroom",
+    "b_kid": "Going to another room for writing help", "b_adult": "receiving writing support in a separate room" },
+  { "a_kid": "Taking tests with my class", "a_adult": "testing with the class",
+    "b_kid": "Taking tests in a quiet room", "b_adult": "testing in a quiet room" },
+  { "a_kid": "Using talk-to-type to write", "a_adult": "using speech-to-text",
+    "b_kid": "Writing with a pencil", "b_adult": "writing by hand" }
  ]
 };
 
@@ -348,7 +284,7 @@ const SPK = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke=
 const MIC = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg>';
 const LOCK = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
 
-function logo(sz,anim){const a=anim?[' class="r1"',' class="r2"']:['',''];return '<svg viewBox="0 0 64 64" width="'+sz+'" height="'+sz+'" aria-hidden="true"><path d="M44.14 13.15 A22 22 0 1 0 44.14 46.85" fill="none" stroke="#0F4D48" stroke-width="8" stroke-linecap="round"/><path d="M10 40 L23 51 L5 60 Z" fill="#0F4D48"/><path'+a[0]+' d="M31.14 23.87 A8 8 0 0 1 31.14 36.13" fill="none" stroke="#CF6B3B" stroke-width="6" stroke-linecap="round"/><path'+a[1]+' d="M36.28 17.74 A16 16 0 0 1 36.28 42.26" fill="none" stroke="#CF6B3B" stroke-width="6" stroke-linecap="round"/></svg>';}
+function logo(sz,anim){const a=anim?[' class="r1"',' class="r2"',' class="r3"']:['','',''];const o=' fill="none" stroke="#CF6B3B" stroke-width="7" stroke-linecap="round"';return '<svg viewBox="0 0 64 64" width="'+sz+'" height="'+sz+'" aria-hidden="true"><path d="M31.43 4.86 A24.89 24.89 0 1 0 33.15 54.34" fill="none" stroke="#0F4D48" stroke-width="8"/><path d="M12.44 47.29 L24.53 53.33 L7.11 62.76 Z" fill="#0F4D48" stroke="#0F4D48" stroke-width="1.5" stroke-linejoin="round"/><path'+a[0]+' d="M29.87 23.64 A11.12 11.12 0 0 1 29.51 41.42"'+o+'/><path'+a[1]+' d="M37.69 15.64 A21.34 21.34 0 0 1 38.76 48.36"'+o+'/><path'+a[2]+' d="M43.56 7.11 A26.90 26.90 0 0 1 45.87 54.22"'+o+'/></svg>';}
 function lockup(sz){return '<div class="lockup">'+logo(sz,true)+'<div><div class="wm">'+BRAND.name+'</div><div class="tl">'+BRAND.tagline+'</div></div></div>';}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
@@ -482,7 +418,7 @@ function narrItem(it,out){
   const v=checked(it.id);if(!v.length)return;
   const map={};it.options.forEach(o=>{map[optKid(o)]=optNarr(o);});
   const items=v.map(x=>{if(x==='__other'){const o=otherv(it.id);return o?fill('something {he} described as ')+'"'+o+'"':'something else';}return map[x]||lowerFirst(x);});
-  out.push(fill(it.narr,{list:listJoin(items)}));return;
+  out.push(fill(it.narr,{list:listJoin(items),things:items.length>1?'things':'something'}));return;
  }
  if(t==='text'){const v=textv(it.id);if(v)out.push(fill(it.narr,{a:qa(v,false)}));return;}
  if(t==='scale'||t==='choice'){const v=checked(it.id)[0];if(!v)return;out.push(fill(it.narr,{a:qa(v,true)}));narrFollow(it,v,out);return;}
@@ -590,17 +526,79 @@ async function decodePacket(str){const u=unb64u(str.slice(1));let bytes=u;
  if(str[0]==='z'){const st=new Blob([u]).stream().pipeThrough(new DecompressionStream('deflate-raw'));bytes=new Uint8Array(await new Response(st).arrayBuffer());}
  return checkPacket(JSON.parse(new TextDecoder().decode(bytes)));}
 function checkItems(items){if(!Array.isArray(items)||!items.length)throw new Error('empty');items.forEach(it=>{if(!it||TYPES.indexOf(it.type)<0)throw new Error('type');if(it.type==='goal')checkItems(it.items);});}
-function checkPacket(o){
- if(!o||!Array.isArray(o.sections)||!o.sections.length||o.sections.length>7)throw new Error('sections');
+const BANDS=['K-2','3-5','6-8','9-12'];
+const PRON={he:{he:'he',him:'him',his:'his'},she:{he:'she',him:'her',his:'her'},they:{he:'they',him:'them',his:'their'}};
+const DEF_STR={
+ 'K-2':['Drawing','Building things','Playing outside','Helping others','Taking care of animals','Music or singing','Counting','Listening to stories','Being a good friend','Puzzles'],
+ '3-5':['Drawing or art','Building things','Sports or outside games','Video games','Helping other people','Math','Making up stories','Music','Taking care of animals','Science','Being a good friend','Reading'],
+ '6-8':['Art or design','Building or fixing things','Sports','Gaming','Helping other people','Math','Writing or storytelling','Music','Science','Technology','Being a good friend','Reading'],
+ '9-12':['Art or design','Building or fixing things','Sports or fitness','Gaming','Helping other people','Math','Writing','Music','Science','Technology','Working with my hands','Leading or organizing']};
+const DEF_HELP=[{kid:'More time to practice',adult:'more practice time'},{kid:'More help from a teacher',adult:'more help from a teacher'},{kid:'A quieter place to work',adult:'a quieter place to work'},{kid:'Learning about things I like',adult:'activities tied to personal interests'}];
+const DEF_PAIRS=[{a_kid:'Working in a small group',a_adult:'working in a small group',b_kid:'Working with the whole class',b_adult:'working with the whole class'},{a_kid:'A quiet spot to work',a_adult:'working in a quiet spot',b_kid:'Working near my classmates',b_adult:'working near classmates'}];
+const ADV={
+ 'K-2':[['When work is too hard, I ask for help.','whether {he} asked for help when work was too hard'],['I know some things that help me learn.','whether {he} knew things that helped {him} learn'],['I like telling my teacher what helps me.','whether {he} liked telling a teacher what helped {him}']],
+ '3-5':[['When work is too hard, I ask for help.','whether {he} asked for help when work was too hard'],['I know what an IEP is and why I have one.','whether {he} knew what an IEP was and why {he} had one'],['I feel okay telling a teacher what helps me.','whether {he} felt okay telling a teacher what helped {him}']],
+ '6-8':[['When work is too hard, I ask for help.','whether {he} asked for help when work was too hard'],['I know what my IEP is for.','whether {he} knew what {his} IEP was for'],['I can tell a teacher what helps me learn.','whether {he} could tell a teacher what helped {him} learn']],
+ '9-12':[['I ask for help or my accommodations when I need them.','whether {he} asked for help or accommodations when needed'],['I can explain how I learn best and what helps me.','whether {he} could explain how {he} learned best'],['I know what my IEP goals are.','whether {he} knew {his} IEP goals'],['I have thought about what I want to do after high school.','whether {he} had thought about life after high school']]};
+function str(v){return typeof v==='string'&&v.trim()?v.trim():'';}
+function kv(o){const k=str(o&&o.kid);return k?[k,str(o.adult)||lowerFirst(k)]:null;}
+function packetError(t){const e=new Error(t);e.friendly=true;return e;}
+function expand(p){
+ const band=BANDS.indexOf(p.band)>=0?p.band:'3-5';
+ const pr=PRON[String(p.pronoun||'').toLowerCase()]||PRON.they;
+ if(!Array.isArray(p.goals)||!p.goals.length)throw packetError('The packet has no goals. Ask the AI to include the IEP goals.');
+ if(!Array.isArray(p.supports)||!p.supports.length)throw packetError('The packet has no supports. Ask the AI to include the IEP accommodations.');
+ const goals=p.goals.filter(g=>g&&str(g.kid)).slice(0,5);
+ if(!goals.length)throw packetError('The goals in this packet are missing their kid-friendly wording.');
+ const strengths=[];(p.strengths||[]).concat(DEF_STR[band]).forEach(x=>{const t=str(x);if(t&&!strengths.some(y=>y.toLowerCase()===t.toLowerCase()))strengths.push(t);});
+ const k2=band==='K-2',sec=[];
+ sec.push({title:'About Me',intro:"Let's start with you. Your team wants to know what you're good at.",items:[
+  {type:'checklist',id:'strengths',q:'What are you good at? Pick as many as you want.',options:strengths.slice(0,k2?10:14),other:true,otherPrompt:'What else are you good at?',narr:'{S} identified {list} as {things} {he} did well.'},
+  {type:'text',id:'proud',q:"What is something you're proud of this year?",hint:'A few words is fine. You can skip this one.',narr:'When asked what {he} felt proud of this year, {he} said, {a}'}]});
+ sec.push({title:'My Goals',intro:'Your IEP has goals. Goals are skills your team is helping you grow this year.',items:goals.map((g,i)=>{
+  const topic=str(g.topic)||lowerFirst(str(g.area)||'this goal');
+  const hard=(g.hard||[]).map(kv).filter(Boolean).slice(0,7),help=((g.help&&g.help.length)?g.help:DEF_HELP).map(kv).filter(Boolean).slice(0,6);
+  return {type:'goal',label:(str(g.area)||'My')+' goal',title:str(g.kid),items:[
+   {type:'scale',id:'g'+i+'_feel',q:'How is '+topic+' going for you right now?',narr:'When asked how '+topic+' was going, {S} answered {a}',
+    followUp:{when:['Really hard','Hard'],prompt:'What makes '+topic+' hard?'+(hard.length?' Pick any that fit.':''),options:hard.length?hard:undefined,textPrompt:'Anything else about '+topic+'?',narr:'{He} said the hard parts of '+topic+' included {list}.',textNarr:'{He} added, {a}'}},
+   {type:'choice',id:'g'+i+'_grow',q:"Do you think you're getting better at "+topic+'?',options:['Yes, a lot','A little','Not really'],narr:'When asked about getting better at '+topic+', {he} answered {a}',
+    followUp:{when:['Not really'],prompt:'What would help you get better? Pick any that fit.',options:help,textPrompt:'Anything else that would help?',narr:'{He} said things that might help included {list}.',textNarr:'{He} added, {a}'}}]};})});
+ const rows=p.supports.map(kv).filter(Boolean).slice(0,k2?6:10).map(x=>({k:x[0],n:x[1]}));
+ sec.push({title:'My Supports',intro:'Your IEP lists things that are supposed to help you. Tell us if they really do.',items:[
+  {type:'supports',id:'sup',q:'How does each one work for you?',hint:'Every answer is helpful, even "I don\'t have this."',rows,
+   options:['It helps',"It doesn't help","I don't need it","I don't have this"],
+   optNarr:['{S} reported that {list} helped {him}.','{He} reported that {list} did not help.','{He} reported not needing {list}.','{He} reported not having {list}.'],
+   skipNarr:'{He} did not rate {list}.',
+   followUp:{when:["It doesn't help","I don't need it","I don't have this"],prompt:'Tell us more about the ones you marked.',textNarr:'When asked to explain, {he} said, {a}'}},
+  {type:'text',id:'sup_new',q:'Is there something else that would help you at school?',hint:'You can skip this one.',narr:'When asked if anything else would help at school, {he} said, {a}'}]});
+ const pairs=(Array.isArray(p.pairs)?p.pairs:[]).filter(x=>x&&str(x.a_kid)&&str(x.b_kid)).slice(0,4);
+ const usePairs=(pairs.length>=2?pairs:pairs.concat(DEF_PAIRS).slice(0,Math.max(2,pairs.length))).map(x=>({a:str(x.a_kid),an:str(x.a_adult)||lowerFirst(str(x.a_kid)),b:str(x.b_kid),bn:str(x.b_adult)||lowerFirst(str(x.b_kid))}));
+ sec.push({title:'How I Learn Best',intro:'These are about how and where you get help. Tap the one that sounds more like you. If both are fine, tap "Both are okay."',items:[
+  {type:'pairs',id:'pref',q:'Which works better for you?',narrLead:'When given choices about how and where {he} received help, {S} shared several preferences.',pairs:usePairs}]});
+ const st=ADV[band].map(x=>({s:x[0],n:x[1]}));
+ st.push(band==='9-12'?{s:'I would like to help lead my IEP meeting.',options:['Yes','Maybe','No'],n:'whether {he} would like to help lead {his} IEP meeting'}:{s:'I would like to come to my IEP meeting.',options:['Yes','Maybe','No'],n:'whether {he} would like to attend {his} IEP meeting'});
+ const last=[{type:'ync',id:'adv',q:'How true is each one for you?',statements:st}];
+ if(band==='9-12')last.push({type:'text',id:'future',q:'What do you want to do after high school?',hint:'Jobs, school, training, or anything else. You can skip this one.',narr:'When asked what {he} wanted to do after high school, {he} said, {a}'});
+ last.push({type:'text',id:'anything',q:'Is there anything else you want your IEP team to know?',hint:'This is your chance to say anything. Your team will read every word.',featured:true,narr:'When asked if there was anything else {his} IEP team should know, {he} said, {a}'});
+ sec.push({title:band==='9-12'?'Speaking Up and My Future':'Speaking Up',intro:'Last part! These are about speaking up for yourself.',items:last});
+ return {grade:str(p.grade),band,pronouns:pr,minutes:Math.max(8,Math.round(6+goals.length*1.5+rows.length*0.3)),
+  summaryIntro:'The survey was tailored to {his} current IEP and asked about {his} strengths, IEP goals, supports, learning preferences, and self-advocacy.',sections:sec};
+}
+function checkPacket(input){
+ const raw=JSON.parse(JSON.stringify(input));
+ let o=input;
+ if(o&&!Array.isArray(o.sections)&&(o.goals||o.supports||o.echo))o=expand(o);
+ if(!o||!Array.isArray(o.sections)||!o.sections.length||o.sections.length>7)throw packetError('This does not look like an ECHO packet.');
  o.sections.forEach(sec=>{if(!sec.title)throw new Error('title');checkItems(sec.items);});
  const p=o.pronouns||{};if(!p.he||!p.him||!p.his)throw new Error('pronouns');
  o.title=BRAND.name;o.sourceTitle=o.sourceTitle||'ECHO Student Input Survey';o.minutes=o.minutes||10;
  if(o.allowVoice===undefined)o.allowVoice=true;o.grade=o.grade||'';o.band=o.band||'3-5';
- return o;}
+ o._raw=raw;return o;}
 function parsePasted(text){
  const t=String(text).replace(/[\u201C\u201D\u201E\u201F\u2033]/g,'"').replace(/[\u2018\u2019\u201A\u201B\u2032]/g,"'");
- const a=t.indexOf('{'),b=t.lastIndexOf('}');if(a<0||b<=a)throw new Error('braces');
- return checkPacket(JSON.parse(t.slice(a,b+1)));}
+ const a=t.indexOf('{'),b=t.lastIndexOf('}');if(a<0||b<=a)throw packetError('No packet found. Copy the whole thing, from the first { to the last }.');
+ let j;try{j=JSON.parse(t.slice(a,b+1).replace(/,\s*([}\]])/g,'$1'));}catch(e){throw packetError('The packet has a formatting problem. Copy it again, or ask the AI to fix the packet so it is valid JSON.');}
+ return checkPacket(j);}
 function cleanName(v){const n=String(v).replace(/[^A-Za-z\u00C0-\u024F' -]/g,'').replace(/\s+/g,' ').trim().slice(0,30);return n?n.charAt(0).toUpperCase()+n.slice(1):'';}
 
 let loaded=null;
@@ -626,7 +624,7 @@ function readPacketBox(){
  const box=document.getElementById('packet');if(!box)return loaded;
  if(!box.value.trim()){msg('packetMsg','bad','Paste the ECHO packet first.');return null;}
  try{loaded=parsePasted(box.value);msg('packetMsg','ok','Packet loaded: '+loaded.sections.length+' parts'+(loaded.grade?', '+loaded.grade:'')+'.');return loaded;}
- catch(e){loaded=null;msg('packetMsg','bad','That packet did not load. Copy the whole thing again, from the first { to the last }.');return null;}
+ catch(e){loaded=null;msg('packetMsg','bad',e.friendly?e.message:'That packet did not load. Copy the whole thing again, from the first { to the last }.');return null;}
 }
 document.getElementById('setupWrap').addEventListener('input',e=>{if(e.target.id==='packet'){const v=e.target.value.trim();if(v.length>20&&v.lastIndexOf('}')>0)readPacketBox();else msg('packetMsg','','');}});
 document.getElementById('setupWrap').addEventListener('keydown',e=>{if(e.target.id==='fname'&&e.key==='Enter'){e.preventDefault();document.getElementById('goBtn').click();}});
@@ -637,7 +635,7 @@ document.getElementById('setupWrap').addEventListener('click',async e=>{
   startSurvey(o,n);}
  if(id==='sampleBtn'){const n=cleanName((document.getElementById('fname')||{}).value||'')||'Wally';startSurvey(checkPacket(JSON.parse(JSON.stringify(SAMPLE))),n);}
  if(id==='linkBtn'){const o=readPacketBox();if(!o)return;
-  const link=location.origin+location.pathname+'#s='+(await encodePacket(o));
+  const link=location.origin+location.pathname+'#s='+(await encodePacket(o._raw||o));
   const out=document.getElementById('linkOut');
   (navigator.clipboard?navigator.clipboard.writeText(link):Promise.reject()).then(()=>{msg('linkMsg','ok','Link copied. Paste it into an email to the teacher.');out.classList.remove('show');})
    .catch(()=>{out.value=link;out.classList.add('show');out.focus();out.select();msg('linkMsg','bad','Copying was blocked. Select the link below and copy it.');});}
