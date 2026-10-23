@@ -468,7 +468,7 @@ function narrItem(it,out){
 }
 function narrative(){
  const d=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
- const paras=[fill('{S} completed the '+S.sourceTitle+' on '+d+'.')+' '+fill(S.summaryIntro)];
+ const paras=[fill('{S} completed a Student Input Survey on '+d+'.')+' '+fill(S.summaryIntro)];
  S.sections.forEach(sec=>{const out=[];sec.items.forEach(it=>narrItem(it,out));if(out.length)paras.push(out.join(' '));});
  return paras;
 }
