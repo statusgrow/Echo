@@ -8,9 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#F6F3EC;color:#1F2A37;font-family:'Atkinson Hyperlegible',system-ui,sans-serif;font-size:18px;line-height:1.5}
+body{margin:0;background:#F0EBE1;color:#1F2A37;font-family:'Atkinson Hyperlegible',system-ui,sans-serif;font-size:18px;line-height:1.5}
 h1,h2,h3{font-family:'Lexend',system-ui,sans-serif;color:#1F2A37}
-header.top{position:sticky;top:0;z-index:5;background:rgba(246,243,236,0.94);backdrop-filter:blur(8px);border-bottom:1px solid #E6E0D3}
+header.top{position:sticky;top:0;z-index:5;background:rgba(240,235,225,0.94);backdrop-filter:blur(8px);border-bottom:1px solid #E6E0D3}
 .topin{max-width:760px;margin:0 auto;padding:12px 16px}
 .brand{display:flex;justify-content:space-between;align-items:center;font-family:'Lexend',sans-serif;font-weight:600;font-size:15px;color:#2F6F6B}
 .brandmark{display:inline-flex;align-items:center;gap:7px;letter-spacing:.03em;font-weight:800;color:#0F4D48;font-size:17px}
@@ -134,13 +134,15 @@ textarea:focus,.othertxt:focus{outline:none;border-color:#2F6F6B;box-shadow:0 0 
 .sup .follow{margin-top:12px;padding:12px 14px}
 .card.stack{background:transparent;box-shadow:none;padding:0}
 .card.stack>.qhead{padding:0 2px}
-.card.stack>.hint{padding:0 2px;margin-bottom:16px}
-.card.stack .sup{background:#fff;border:0;border-radius:18px;padding:16px 18px 18px;margin-bottom:14px;box-shadow:0 1px 2px rgba(31,42,55,.06),0 6px 20px rgba(31,42,55,.05);border-left:6px solid #E3DDCF;transition:border-color .2s}
-.card.stack .sup.answered{border-left-color:#2F6F6B}
-.sup .cnt{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8A94A0;margin-bottom:2px}
+.card.stack>.hint{padding:0 2px;margin-bottom:18px}
+.card.stack .sup,.card.stack .stmt,.card.stack .pairwrap{background:#fff;border:1px solid #E4DED2;border-left:6px solid #E3DDCF;border-radius:18px;padding:20px 22px 22px;margin:0 0 20px;box-shadow:0 1px 2px rgba(31,42,55,.07),0 8px 24px rgba(31,42,55,.07);transition:border-color .2s}
+.card.stack .pairwrap + .pairwrap{margin-top:0;padding-top:20px;border-top:1px solid #E4DED2}
+.card.stack .answered{border-left-color:#2F6F6B!important}
+.cnt{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8A94A0;margin-bottom:2px}
+.pairwrap .cnt{margin-bottom:10px}
 .sup .sn>span:first-child{min-width:0}
 .sup .follow .fl{font-size:15px;margin-bottom:8px}
-nav.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(246,243,236,.96);backdrop-filter:blur(8px);border-top:1px solid #E6E0D3;z-index:5}
+nav.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(240,235,225,.96);backdrop-filter:blur(8px);border-top:1px solid #E6E0D3;z-index:5}
 .navin{max-width:760px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;gap:12px}
 .btn{font-family:'Lexend',sans-serif;font-size:17px;font-weight:600;border-radius:999px;padding:13px 26px;border:2px solid #2F6F6B;cursor:pointer}
 .btn.primary{background:#2F6F6B;color:#fff}
@@ -205,7 +207,7 @@ details.adult li{margin-bottom:6px}
  .printhead{display:flex!important;justify-content:space-between;font-family:'Lexend',sans-serif;border-bottom:2px solid #2F6F6B;padding-bottom:6px;margin-bottom:14px;font-size:11pt}
  .card{box-shadow:none;border:1px solid #CFC8B8;break-inside:avoid;padding:14px 16px;margin-bottom:12px}
  .card.stack{border:0;padding:0}
- .card.stack .sup{box-shadow:none;border:1px solid #CFC8B8;border-left-width:6px;break-inside:avoid}
+ .card.stack .sup,.card.stack .stmt,.card.stack .pairwrap{box-shadow:none;border:1px solid #CFC8B8;border-left-width:6px;break-inside:avoid;margin-bottom:10px}
  .sec-title{font-size:20pt;margin-top:16px}
  .hero h1{font-size:24pt}
  .minis{display:none}
@@ -374,11 +376,11 @@ function renderItem(it,sec){
  } else if(it.type==='pairs'){
   h+=qhead(it.q,it.hint);
   it.pairs.forEach((p,i)=>{const n=it.id+'_'+i;registry.push({sec,label:p.a+' or '+p.b,key:n,kind:'radio',main:true});
-   h+='<div class="pairwrap"'+grp('radiogroup',p.a+' or '+p.b)+'><div class="pair">'+opt(n,p.a,p.a,'radio','side')+'<div class="or">or</div>'+opt(n,p.b,p.b,'radio','side')+'</div><div class="both">'+opt(n,'Both are okay','Both are okay','radio','chip small')+opt(n,'Neither works for me','Neither works for me','radio','chip small')+'</div></div>';});
+   h+='<div class="pairwrap"'+grp('radiogroup',p.a+' or '+p.b)+'><span class="cnt">'+(i+1)+' of '+it.pairs.length+'</span><div class="pair">'+opt(n,p.a,p.a,'radio','side')+'<div class="or">or</div>'+opt(n,p.b,p.b,'radio','side')+'</div><div class="both">'+opt(n,'Both are okay','Both are okay','radio','chip small')+opt(n,'Neither works for me','Neither works for me','radio','chip small')+'</div></div>';});
  } else if(it.type==='ync'){
   h+=qhead(it.q,it.hint);
   it.statements.forEach((st,i)=>{const n=it.id+'_'+i;registry.push({sec,label:st.s,key:n,kind:'radio',main:true});
-   h+='<div class="stmt'+(i===0?' first':'')+'"><div class="sn"><span>'+esc(st.s)+'</span>'+speakBtn(st.s)+'</div><div class="chips"'+grp('radiogroup',st.s)+'>'+(st.options||['Yes','Sometimes','No']).map(o=>opt(n,o,o,'radio')).join('')+'</div></div>';});
+   h+='<div class="stmt'+(i===0?' first':'')+'"><div class="sn"><span><span class="cnt">'+(i+1)+' of '+it.statements.length+'</span>'+esc(st.s)+'</span>'+speakBtn(st.s)+'</div><div class="chips"'+grp('radiogroup',st.s)+'>'+(st.options||['Yes','Sometimes','No']).map(o=>opt(n,o,o,'radio')).join('')+'</div></div>';});
  } else if(it.type==='goal'){
   h+='<div class="goal"><div><div class="gl">'+esc(it.label)+'</div><div class="gt">'+esc(it.title)+'</div></div>'+speakBtn(it.label+'. '+it.title)+'</div>';
   h+=it.items.map(s=>'<div class="sub">'+renderItem(s,sec)+'</div>').join('');
@@ -397,7 +399,7 @@ function build(){
   +'<details class="adult"><summary>For the adult helping</summary><ul><li>Read any question aloud, or use the speaker buttons.</li><li>Pointing to a choice or a face is a fine way to answer.</li><li>Please don\'t suggest answers. If '+esc(S.student)+' is unsure, skipping is okay.</li><li>If you write answers, use '+esc(PR.his)+' exact words.</li><li>At the end, use the adult section to create a summary of the answers.</li></ul></details></section>';
  S.sections.forEach((sec,i)=>{
   h+='<section class="screen" data-kind="section"><div class="kicker">Part '+(i+1)+' of '+S.sections.length+'</div><h2 class="sec-title">'+esc(sec.title)+'</h2><div class="sec-intro"><span>'+esc(sec.intro)+'</span>'+speakBtn(sec.intro)+'</div>';
-  sec.items.forEach(it=>{h+='<div class="card'+(it.featured?' featured':'')+(it.type==='supports'?' stack':'')+'">'+renderItem(it,sec.title)+'</div>';});
+  sec.items.forEach(it=>{h+='<div class="card'+(it.featured?' featured':'')+(['supports','pairs','ync'].indexOf(it.type)>=0?' stack':'')+'">'+renderItem(it,sec.title)+'</div>';});
   h+='</section>';
  });
  const P=PR.his;
@@ -549,7 +551,7 @@ function toggleMic(btn){
 app.addEventListener('change',e=>{const t=e.target;
  if(t.matches('input[type=radio],input[type=checkbox]')){
   document.querySelectorAll('input[name="'+t.name+'"]').forEach(i=>i.closest('.opt').classList.toggle('on',i.checked));
-  const sp=t.closest('.sup');if(sp)sp.classList.add('answered');
+  const sp=t.closest('.sup,.stmt,.pairwrap');if(sp)sp.classList.add('answered');
   if(t.value==='__other'){const w=document.querySelector('.otherwrap[data-ow="'+t.name+'"]');w.classList.toggle('show',t.checked);if(t.checked)w.querySelector('input').focus();}
   updateFollows(t.name);started=true;
  }
