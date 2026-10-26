@@ -131,7 +131,14 @@ textarea:focus,.othertxt:focus{outline:none;border-color:#2F6F6B;box-shadow:0 0 
 .follow .fl{font-weight:700;display:block;margin-bottom:10px;font-size:16px}
 .follow .sub-l{font-weight:700;display:block;margin:14px 0 8px;font-size:15px;color:#4A5563}
 .follow textarea{min-height:72px;background:#fff}
-.sup .follow{margin-top:10px;padding:12px 14px}
+.sup .follow{margin-top:12px;padding:12px 14px}
+.card.stack{background:transparent;box-shadow:none;padding:0}
+.card.stack>.qhead{padding:0 2px}
+.card.stack>.hint{padding:0 2px;margin-bottom:16px}
+.card.stack .sup{background:#fff;border:0;border-radius:18px;padding:16px 18px 18px;margin-bottom:14px;box-shadow:0 1px 2px rgba(31,42,55,.06),0 6px 20px rgba(31,42,55,.05);border-left:6px solid #E3DDCF;transition:border-color .2s}
+.card.stack .sup.answered{border-left-color:#2F6F6B}
+.sup .cnt{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8A94A0;margin-bottom:2px}
+.sup .sn>span:first-child{min-width:0}
 .sup .follow .fl{font-size:15px;margin-bottom:8px}
 nav.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(246,243,236,.96);backdrop-filter:blur(8px);border-top:1px solid #E6E0D3;z-index:5}
 .navin{max-width:760px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;gap:12px}
@@ -197,6 +204,8 @@ details.adult li{margin-bottom:6px}
  .screen{display:block!important;animation:none}
  .printhead{display:flex!important;justify-content:space-between;font-family:'Lexend',sans-serif;border-bottom:2px solid #2F6F6B;padding-bottom:6px;margin-bottom:14px;font-size:11pt}
  .card{box-shadow:none;border:1px solid #CFC8B8;break-inside:avoid;padding:14px 16px;margin-bottom:12px}
+ .card.stack{border:0;padding:0}
+ .card.stack .sup{box-shadow:none;border:1px solid #CFC8B8;border-left-width:6px;break-inside:avoid}
  .sec-title{font-size:20pt;margin-top:16px}
  .hero h1{font-size:24pt}
  .minis{display:none}
@@ -360,7 +369,7 @@ function renderItem(it,sec){
   h+=qhead(it.q,it.hint);
   const names=[];
   it.rows.forEach((r,i)=>{const n=it.id+'_'+i;names.push(n);registry.push({sec,label:r.k,key:n,kind:'radio',main:true});
-   h+='<div class="sup'+(i===0?' first':'')+'"><div class="sn"><span>'+esc(r.k)+'</span>'+speakBtn(r.k)+'</div><div class="chips"'+grp('radiogroup',r.k)+'>'+it.options.map((o,j)=>opt(n,o,o,'radio','chip small'+(j===it.options.length-1?' unsure':''))).join('')+'</div>'
+   h+='<div class="sup'+(i===0?' first':'')+'"><div class="sn"><span><span class="cnt">'+(i+1)+' of '+it.rows.length+'</span>'+esc(r.k)+'</span>'+speakBtn(r.k)+'</div><div class="chips"'+grp('radiogroup',r.k)+'>'+it.options.map((o,j)=>opt(n,o,o,'radio','chip small'+(j===it.options.length-1?' unsure':''))).join('')+'</div>'
     +(it.followUp?follow([n],{when:it.followUp.when,prompt:it.followUp.prompt},sec,'More about this one'):'')+'</div>';});
  } else if(it.type==='pairs'){
   h+=qhead(it.q,it.hint);
@@ -388,7 +397,7 @@ function build(){
   +'<details class="adult"><summary>For the adult helping</summary><ul><li>Read any question aloud, or use the speaker buttons.</li><li>Pointing to a choice or a face is a fine way to answer.</li><li>Please don\'t suggest answers. If '+esc(S.student)+' is unsure, skipping is okay.</li><li>If you write answers, use '+esc(PR.his)+' exact words.</li><li>At the end, use the adult section to create a summary of the answers.</li></ul></details></section>';
  S.sections.forEach((sec,i)=>{
   h+='<section class="screen" data-kind="section"><div class="kicker">Part '+(i+1)+' of '+S.sections.length+'</div><h2 class="sec-title">'+esc(sec.title)+'</h2><div class="sec-intro"><span>'+esc(sec.intro)+'</span>'+speakBtn(sec.intro)+'</div>';
-  sec.items.forEach(it=>{h+='<div class="card'+(it.featured?' featured':'')+'">'+renderItem(it,sec.title)+'</div>';});
+  sec.items.forEach(it=>{h+='<div class="card'+(it.featured?' featured':'')+(it.type==='supports'?' stack':'')+'">'+renderItem(it,sec.title)+'</div>';});
   h+='</section>';
  });
  const P=PR.his;
@@ -540,6 +549,7 @@ function toggleMic(btn){
 app.addEventListener('change',e=>{const t=e.target;
  if(t.matches('input[type=radio],input[type=checkbox]')){
   document.querySelectorAll('input[name="'+t.name+'"]').forEach(i=>i.closest('.opt').classList.toggle('on',i.checked));
+  const sp=t.closest('.sup');if(sp)sp.classList.add('answered');
   if(t.value==='__other'){const w=document.querySelector('.otherwrap[data-ow="'+t.name+'"]');w.classList.toggle('show',t.checked);if(t.checked)w.querySelector('input').focus();}
   updateFollows(t.name);started=true;
  }
