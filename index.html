@@ -39,8 +39,8 @@ body:not(.setup) #setupWrap{display:none}
 .setupgo{margin-top:20px}
 .textlink{background:none;border:0;color:#2F6F6B;font:inherit;font-weight:700;text-decoration:underline;cursor:pointer;padding:4px}
 .center{text-align:center;margin-top:6px}
-#linkOut,#promptOut,#parentOut{display:none;margin-top:10px;min-height:80px;font-size:13px}
-#linkOut.show,#promptOut.show,#parentOut.show{display:block}
+#linkOut,#promptOut,#parentOut,#teacherOut{display:none;margin-top:10px;min-height:80px;font-size:13px}
+#linkOut.show,#promptOut.show,#parentOut.show,#teacherOut.show{display:block}
 .pbox{margin-top:16px;padding:14px 16px;border-radius:14px;background:#F3F8F7;color:#3D4855;font-size:15px}
 .prow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0 12px}
 @media (max-width:560px){.prow{grid-template-columns:1fr}}
@@ -54,7 +54,48 @@ body:not(.setup) #setupWrap{display:none}
 .stp .inp{margin-top:2px}
 .alt{margin-top:12px;font-size:15px;color:#4A5563}
 .alt[hidden]{display:none}
+.ctx{background:#F6F3EC;border-radius:14px;padding:14px 16px}
+.who .sendrow{align-items:center}
+.who{border:1px solid #E4DED2;border-radius:14px;padding:14px 16px;margin-top:12px;background:#FDFCF9}
+.whoh{font-family:'Lexend',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.wdot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.wdot.stu{background:#2F6F6B}.wdot.fam{background:#3E6B4F;box-shadow:0 0 0 2px #CFE0D3}.wdot.tch{background:#2E4A6E}
+.wsep{font-weight:400;color:#5B6675;font-size:15px}
+.dims{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.dim{display:flex;flex-direction:column;gap:7px}
+.dim .chip{width:100%;border-radius:12px}
+.dim-h{font-family:'Lexend',sans-serif;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#5B6675;padding:0 2px}
+@media (max-width:600px){.dims{grid-template-columns:1fr}}
+.addc{margin-top:10px;font-size:15px}
+.cbox{margin-top:8px}
+.note{background:#F4F7FB;border:1px solid #DCE4EE;border-radius:12px;padding:12px 16px}
+.note-h{font-weight:700;margin-bottom:4px}
+.note ul{margin:0;padding-left:20px}
 #printDoc{display:none}
+body.class{background:#EDF1F6}
+body.class header.top,body.class nav.bottom{background:rgba(237,241,246,.95);border-color:#D6DEE8}
+body.class .brand,body.class .mini b,body.class .stat,body.class .status,body.class .msg.ok,body.class .goal .gl,body.class .textlink,body.class .tag{color:#2E4A6E}
+body.class .btn{border-color:#2E4A6E}
+body.class .btn.primary{background:#2E4A6E;color:#fff}
+body.class .btn.primary:hover{background:#243B58}
+body.class .btn.ghost{color:#2E4A6E;background:transparent}
+body.class .chip.on,body.class .side.on{background:#2E4A6E;border-color:#2E4A6E}
+body.class .on .mk{box-shadow:inset 0 0 0 3px #2E4A6E}
+body.class .chip:hover,body.class .side:hover{border-color:#A9BCD3}
+body.class .step.now::before{background:#2E4A6E}
+body.class .step.done::before{background:#A9BCD3}
+body.class .goal{border-left-color:#2E4A6E;background:#EEF2F8}
+body.class .card.stack .answered{border-left-color:#2E4A6E!important}
+body.class .speak,body.class .mic{color:#2E4A6E;background:#EEF2F8;border-color:#D3DDEA}
+body.class .stp .num{background:#E2E9F2;color:#2E4A6E}
+body.class .stp.done .num,body.class .check{background:#2E4A6E;color:#fff}
+body.class textarea:focus,body.class .inp:focus,body.class .othertxt:focus{border-color:#2E4A6E;box-shadow:0 0 0 4px rgba(46,74,110,.15)}
+body.class .summary{border-left-color:#A9BCD3}
+body.class .ready{background:#E2E9F2;color:#243B58}
+body.class .hcol.good .hcol-h{color:#2E4A6E}
+body.class .hcol.good{background:#EEF2F8}
+body.class .adultzone[style]{border-color:#A9BCD3!important;background:#F2F5FA!important}
+body.class .diy{border-color:#D6DEE8}
 body.home{background:#EEF2EC}
 body.home header.top,body.home nav.bottom{background:rgba(238,242,236,.95);border-color:#D9E2D7}
 body.home .brand,body.home .mini b,body.home .stat,body.home .status,body.home .msg.ok,body.home .goal .gl,body.home .textlink,body.home .tag{color:#3E6B4F}
@@ -77,7 +118,8 @@ body.home .summary{border-left-color:#A9C2B0}
 body.home .ready{background:#E3ECE5;color:#2E5240}
 .sendrow{display:flex;flex-wrap:wrap;gap:10px}
 .hcols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
-.hcol{display:flex;flex-direction:column;gap:8px;background:rgba(255,255,255,.55);border-radius:12px;padding:10px}
+.follow:has(.hcols){background:#FAF8F3;border:1px solid #ECE6DA}
+.hcol{display:flex;flex-direction:column;gap:8px;background:#FBEDE6;border-radius:12px;padding:10px}
 .hcol .chip{width:100%;border-radius:12px;align-items:flex-start;text-align:left}
 .hcol-h{font-family:'Lexend',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:2px 4px 4px}
 .hcol.hard .hcol-h{color:#B4583A}
@@ -190,6 +232,11 @@ nav.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(240,235,225,.9
 .hero{padding:10px 0 4px}
 .hero h1{font-size:42px;margin:6px 0 10px;font-weight:700}
 .hero p{font-size:19px;color:#3D4855;margin:0 0 18px}
+.facts{list-style:none;margin:20px 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.facts li{display:flex;gap:12px;align-items:flex-start;font-size:17px;color:#3D4855}
+.fi{flex:none;width:34px;height:34px;border-radius:50%;background:rgba(47,111,107,.1);color:#2F6F6B;display:grid;place-items:center}
+body.home .fi{background:rgba(62,107,79,.12);color:#3E6B4F}
+body.class .fi{background:rgba(46,74,110,.12);color:#2E4A6E}
 .minis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
 .mini{background:#fff;border-radius:16px;padding:16px 12px;text-align:center;font-size:15px;color:#4A5563;box-shadow:0 1px 2px rgba(31,42,55,.06)}
 .mini b{display:block;font-family:'Lexend',sans-serif;font-size:17px;color:#2F6F6B;margin-bottom:2px}
@@ -248,7 +295,7 @@ details.adult li{margin-bottom:6px}
  .card.stack .sup,.card.stack .stmt,.card.stack .pairwrap{box-shadow:none;border:1px solid #CFC8B8;border-left-width:6px;break-inside:avoid;margin-bottom:10px}
  .sec-title{font-size:20pt;margin-top:16px}
  .hero h1{font-size:24pt}
- .minis{display:none}
+ .minis,.facts{display:none}
  .follow,.otherwrap{display:block!important;background:#fff;border:1px dashed #999}
  textarea{display:none!important}
  .printbox{display:block;min-height:60px;border:1.5px solid #9AA;border-radius:10px;padding:8px 10px;white-space:pre-wrap}
@@ -487,7 +534,7 @@ const SAMPLE = {
 };
 
 const BRAND = { name: "ECHO", tagline: "Student voices matter" };
-let S = null, PR = null, MODE = 'student', CM = null, sentTapped = false;
+let S = null, PR = null, MODE = 'student', CM = null, TCH = null, LAST = '', sentTapped = false;
 const app = document.getElementById('app');
 const registry = [];
 const speakOK = 'speechSynthesis' in window;
@@ -496,10 +543,12 @@ let voiceOK = false;
 let uid = 0, cur = 0, started = false, done = false, rec = null;
 const SPK = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>';
 const MIC = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg>';
+const ICO=d=>'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+d+'</svg>';
+const CLOCK=ICO('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),SKIPI=ICO('<path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>'),SENDI=ICO('<path d="M4 12l16-8-6 16-3-7-7-1z"/>'),STARI=ICO('<path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/>');
 const LOCK = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
 
 function logo(sz,anim){const a=anim?[' class="r1"',' class="r2"',' class="r3"']:['','',''];const o=' fill="none" stroke="#CF6B3B" stroke-width="7" stroke-linecap="round"';return '<svg viewBox="0 0 64 64" width="'+sz+'" height="'+sz+'" aria-hidden="true"><path d="M31.43 4.86 A24.89 24.89 0 1 0 33.15 54.34" fill="none" stroke="#0F4D48" stroke-width="8"/><path d="M12.44 47.29 L24.53 53.33 L7.11 62.76 Z" fill="#0F4D48" stroke="#0F4D48" stroke-width="1.5" stroke-linejoin="round"/><path'+a[0]+' d="M29.87 23.64 A11.12 11.12 0 0 1 29.51 41.42"'+o+'/><path'+a[1]+' d="M37.69 15.64 A21.34 21.34 0 0 1 38.76 48.36"'+o+'/><path'+a[2]+' d="M43.56 7.11 A26.90 26.90 0 0 1 45.87 54.22"'+o+'/></svg>';}
-function lockup(sz){return '<div class="lockup">'+logo(sz,true)+'<div><div class="wm">'+BRAND.name+'</div><div class="tl">'+(MODE==='parent'?'Home voices matter':BRAND.tagline)+'</div></div></div>';}
+function lockup(sz,tag){return '<div class="lockup">'+logo(sz,true)+'<div><div class="wm">'+BRAND.name+'</div><div class="tl">'+(tag||(ADULT()?(MT[MODE]).tag:BRAND.tagline))+'</div></div></div>';}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
 function lowerFirst(s){return /^I\b/.test(s)?s:s.charAt(0).toLowerCase()+s.slice(1);}
@@ -562,6 +611,16 @@ function renderItem(it,sec){
   h+=qhead(it.q,it.hint);
   it.statements.forEach((st,i)=>{const n=it.id+'_'+i;registry.push({sec,label:st.s,key:n,kind:'radio',main:true});
    h+='<div class="stmt'+(i===0?' first':'')+'"><div class="sn"><span><span class="cnt">'+(i+1)+' of '+it.statements.length+'</span>'+esc(fill(st.s))+'</span>'+speakBtn(fill(st.s))+'</div><div class="chips"'+grp('radiogroup',fill(st.s))+'>'+(st.options||['Yes','Sometimes','No']).map(o=>opt(n,o,o,'radio')).join('')+'</div></div>';});
+ } else if(it.type==='note'){
+  h+='<div class="note"><div class="note-h">'+esc(fill(it.title))+'</div><ul>'+it.lines.map(l=>'<li>'+esc(l)+'</li>').join('')+'</ul></div>';
+ } else if(it.type==='supports3'){
+  h+=qhead(it.q,it.hint);
+  it.rows.forEach((r,i)=>{const n=it.id+'_'+i;
+   it.dims.forEach((d,j)=>registry.push({sec,label:r.k+': '+d.h.toLowerCase(),key:n+'_'+d.k,kind:'radio',main:j===0}));
+   registry.push({sec,label:r.k+': comment',key:n+'_c',kind:'text',main:false});
+   h+='<div class="sup'+(i===0?' first':'')+'"><div class="sn"><span><span class="cnt">'+(i+1)+' of '+it.rows.length+'</span>'+esc(r.k)+'</span>'+speakBtn(r.k)+'</div><div class="dims">'
+    +it.dims.map(d=>'<div class="dim"'+grp('radiogroup',r.k+': '+d.h)+'><div class="dim-h">'+esc(d.h)+'</div>'+d.o.map(o=>opt(n+'_'+d.k,o,o,'radio','chip small')).join('')+'</div>').join('')
+    +'</div><button type="button" class="textlink addc" data-c="'+n+'_c">+ Add a comment</button><div class="cbox" hidden>'+ta(n+'_c','Optional comment',r.k+' comment')+'</div></div>';});
  } else if(it.type==='goal'){
   h+='<div class="goal"><div><div class="gl">'+esc(it.label)+'</div><div class="gt">'+esc(it.title)+'</div></div>'+speakBtn(it.label+'. '+it.title)+'</div>';
   h+=it.items.map(s=>'<div class="sub">'+renderItem(s,sec)+'</div>').join('');
@@ -569,17 +628,25 @@ function renderItem(it,sec){
  return h;
 }
 
-function cmName(){return (CM&&CM.n)?CM.n:'your child\'s case manager';}
+function ADULT(){return MODE==='parent'||MODE==='teacher';}
+const MT={
+ parent:{tag:'Home voices matter',title:'ECHO Home Survey',sum:'Parent Input Summary',src:'Parent Input Survey',who:'{S}\'s parent or guardian',pdT:'What {S}\'s Family Shared',subj:'Parent input for {S}\'s IEP meeting',foot:'(Sent from the ECHO home survey.)',cm:'your child\'s case manager',
+  h1:'Your view matters',lead:'Thank you for sharing how school is going for <b>{S}</b>.',say:'Thank you for taking a few minutes to share your view of how school is going for {S}.',m2:['Skip anything','"Not sure" is always fine']},
+ teacher:{tag:'Classroom voices matter',title:'ECHO Classroom Survey',sum:'Teacher Input Summary',src:'Teacher Input Survey',who:'{S}\'s general education teacher',pdT:'What {S}\'s Teacher Shared',subj:'Teacher input for {S}\'s IEP meeting',foot:'(Sent from the ECHO classroom survey.)',cm:'the case manager',
+  h1:'Your classroom view matters',lead:'Thank you for sharing how things are going for <b>{S}</b> in your class.',say:'Thank you for taking a few minutes to share how things are going for {S} in your class.',m2:['Skip anything','"Not observed" is always fine']}};
+function fullS(){return S.student+(LAST?' '+LAST:'');}
+function mt(k){return fill((MT[MODE]||MT.parent)[k]);}
+function cmName(){return (CM&&CM.n)?CM.n:(MT[MODE]||MT.parent).cm;}
 function parentWelcome(ph){
- const say='Thank you for taking a few minutes to share your view of how school is going for '+S.student+'. Your answers go to '+cmName()+' before the IEP meeting. There are no right or wrong answers, and you can skip anything.';
- return '<section class="screen" data-kind="welcome">'+ph+'<div class="hero">'+lockup(78)+'<h1>Your view matters</h1><p>Thank you for sharing how school is going for <b>'+esc(S.student)+'</b>. Your answers go to '+esc(cmName())+' so the team can hear your perspective <b>before</b> the IEP meeting.</p>'+(speakOK?'<button type="button" class="speak wide" data-say="'+esc(say)+'">'+SPK+'Read this to me</button>':'')+'</div>'
-  +'<div class="minis"><div class="mini"><b>About '+S.minutes+' minutes</b>Mostly tapping</div><div class="mini"><b>Skip anything</b>"Not sure" is always fine</div><div class="mini"><b>Private</b>Nothing is saved here. You send it.</div></div></section>';
+ const say=mt('say')+' Your answers go to '+cmName()+' before the IEP meeting. There are no right or wrong answers, and you can skip anything.';
+ return '<section class="screen" data-kind="welcome">'+ph+'<div class="hero">'+lockup(78)+'<h1>'+mt('h1')+'</h1><p>'+mt('lead').replace(S.student,esc(S.student))+' Your answers go to '+esc(cmName())+' so the team can hear your perspective <b>before</b> the IEP meeting.</p>'+(speakOK?'<button type="button" class="speak wide" data-say="'+esc(say)+'">'+SPK+'Read this to me</button>':'')+'</div>'
+  +'<ul class="facts"><li><span class="fi">'+CLOCK+'</span><span><b>About '+S.minutes+' minutes.</b> Most questions only need a tap.</span></li><li><span class="fi">'+SKIPI+'</span><span><b>Answer what you can.</b> '+esc(MT[MODE].m2[1])+', and you can skip anything.</span></li><li><span class="fi">'+SENDI+'</span><span><b>You control sending.</b> Answers are not saved or sent automatically.</span></li></ul></section>';
 }
 function parentFinish(){
  return '<section class="screen" data-kind="finish"><div class="noprint"><div class="donehero"><div class="check"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h2>Thank you!</h2><p>One last step: send your answers to '+esc(cmName())+'.</p><p id="recap"></p></div></div>'
   +'<div class="card adultzone" style="border-style:solid;border-color:#9CC3BD;background:#F3F8F7"><div class="qhead"><h3>Send your answers</h3></div><p class="sumnote" style="margin-bottom:14px">Pick how you use email. Your answers will already be written in. Just tap Send.</p><div class="sendrow">'+(IS_MOBILE?'<button type="button" class="btn primary" data-send="app">Send with my email app</button><button type="button" class="btn ghost" data-send="gmail">Use Gmail</button><button type="button" class="btn ghost" data-send="outlook">Use Outlook.com</button>':'<button type="button" class="btn primary" data-send="gmail">Open in Gmail</button><button type="button" class="btn primary" data-send="outlook">Open in Outlook.com</button><button type="button" class="btn ghost" data-send="app">Other email app</button>')+'</div><div class="status" id="sendStatus" aria-live="polite" style="text-align:left"></div>'
   +'<div class="diy" id="sendHelp"><h4>Email didn\'t open? Do it in 3 steps</h4><ol><li><button type="button" class="btn ghost small" id="copyAgain">Copy my answers</button></li><li>Start a new email to:<br><span class="em">'+esc((CM&&CM.e)||'')+'</span></li><li>Click in the message and paste: '+pasteHow()+'. Then tap Send.</li></ol><div class="status" id="diyStatus" aria-live="polite" style="text-align:left;margin-top:8px"></div></div></div>'
-  +'<div class="card show" id="sumCard"><div class="kicker">Parent Input Summary<span class="edited-tag">Edited</span></div><h3>What you shared</h3><p class="sumnote noprint">This is what will be sent. You can tap the text to fix anything before you send it.</p><div class="summary" id="summary" contenteditable="true" spellcheck="true"></div><div class="noprint"><div class="actions"><button type="button" class="btn ghost" id="copyBtn">Copy my answers</button><button type="button" class="btn ghost" id="printBtn">Save a copy (PDF)</button><button type="button" class="btn ghost small" id="rebuildBtn">Undo my edits</button></div><div class="status" id="status" aria-live="polite"></div><textarea class="fallback" id="fallback" readonly></textarea></div></div></section>';
+  +'<div class="card show" id="sumCard"><div class="kicker">'+mt('sum')+'<span class="edited-tag">Edited</span></div><h3>What you shared</h3><p class="sumnote noprint">This is what will be sent. You can tap the text to fix anything before you send it.</p><div class="summary" id="summary" contenteditable="true" spellcheck="true"></div><div class="noprint"><div class="actions"><button type="button" class="btn ghost" id="copyBtn">Copy my answers</button><button type="button" class="btn ghost" id="printBtn">Save a copy (PDF)</button><button type="button" class="btn ghost small" id="rebuildBtn">Undo my edits</button></div><div class="status" id="status" aria-live="polite"></div><textarea class="fallback" id="fallback" readonly></textarea></div></div></section>';
 }
 const DEF_HOME=[['Puts it off or avoids it','putting it off or avoiding it'],['Gets frustrated quickly','getting frustrated quickly'],['Gives up when it gets hard','giving up when it gets hard'],['Needs help to get started','needing help to get started'],['Keeps trying even when it is hard','persisting through challenges'],['Seems more confident lately','increased confidence']];
 function homeFor(g,topic){
@@ -635,6 +702,11 @@ function thirdPerson(t){const pr=PR||PRON.they,they=pr.he==='they';
  x=x.replace(/\bI\b/g,pr.he).replace(/\bmy\b/gi,pr.his).replace(/\bme\b/gi,pr.him).replace(/\bmine\b/gi,they?'theirs':pr.his==='her'?'hers':'his');
  return x.charAt(0).toUpperCase()+x.slice(1);}
 const GOODRX=/more confident|more willing|more independent|more relaxed|more understanding|keeps trying|asks for help|tells you|can explain|talks about|talks through|joins in|notices|follows routines|uses ways|on their own|for fun|enjoys|likes|proud|better|easier|improv/i;
+function posFor(topic){const T=topic;return [['Keeps trying with '+T+' even when it is hard','persistence with '+T],['Asks for help with '+T,'asking for help with '+T],['Seems more confident with '+T+' lately','increased confidence with '+T],['Talks positively about '+T,'talking positively about '+T]];}
+function balance(hard,good,extra){hard=hard.slice(0,4);const n=Math.max(3,hard.length);const seen=new Set(good.map(x=>x[0].toLowerCase()));
+ const stem=t=>(t.toLowerCase().match(/confiden|keeps trying|asks for help|talks|independen|understanding|willing/)||[t.toLowerCase()])[0];const st=new Set(good.map(x=>stem(x[0])));
+ extra.forEach(x=>{if(good.length>=n)return;if(seen.has(x[0].toLowerCase())||st.has(stem(x[0])))return;st.add(stem(x[0]));const r=[x[0],x[1]];r.good=true;good.push(r);seen.add(x[0].toLowerCase());});
+ return {hard,good:good.slice(0,n)};}
 function kvp(o){if(!o)return null;const pa=str(o.parent),ad=str(o.adult);if(!pa&&!ad)return null;const r=[pa||(ad.charAt(0).toUpperCase()+ad.slice(1)),ad||lowerFirst(pa)];r.good=o.good===true||(o.good!==false&&GOODRX.test(r[0]));return r;}
 function expandParent(p){
  const band=BANDS.indexOf(p.band)>=0?p.band:'3-5';
@@ -651,7 +723,7 @@ function expandParent(p){
   const topic=str(g.topic)||lowerFirst(str(g.area)||'this skill');
   let home=(g.home||[]).map(kvp).filter(Boolean).slice(0,8);
   if(home.length<3)home=homeFor(g,topic).map(x=>{const r=[x[0],x[1]];r.good=GOODRX.test(x[0]);return r;});
-  const hardL=home.filter(x=>!x.good),goodL=home.filter(x=>x.good);
+  const bal=balance(home.filter(x=>!x.good),home.filter(x=>x.good),posFor(topic).concat(homeFor(g,topic).filter(x=>GOODRX.test(x[0]))));const hardL=bal.hard,goodL=bal.good;home=hardL.concat(goodL);
   return {type:'goal',label:(str(g.area)||'IEP')+' goal',title:str(g.kid),items:[
    {type:'choice',id:'pg'+i,q:'What have you noticed at home with '+topic+' this year?',options:['Getting better','About the same','Getting harder','Not sure'],narr:'When asked about '+topic+' at home, the parent answered {a}',
     followUp:{when:['Getting better','About the same','Getting harder'],prompt:'What do you notice at home? Pick any that fit.',options:home,cols:(hardL.length&&goodL.length)?{hard:hardL,good:goodL}:null,textPrompt:'Anything else you have noticed?',narr:'At home, the parent noticed {list}.',goodNarr:'The parent also noticed positive signs: {list}.',textNarr:'The parent added, {a}'}}]};})});
@@ -662,7 +734,7 @@ function expandParent(p){
    optNarr:['The parent reported that {list} seemed to help {S}.','The parent reported that {list} did not seem to help.','The parent was not sure how {list} was working.','The parent had not heard about {list}.'],
    skipNarr:'The parent did not rate {list}.',
    followUp:{when:["Doesn't seem to help"],prompt:'Want to tell us more about this one?',rowNarr:'About {x}, the parent said, {a}'}},
-  {type:'text',id:'p_newsup',q:'Are there new supports or ideas you think would help {S} that aren\'t listed above?',hint:'New ideas are welcome. You can skip this one.',narr:'When asked about new supports or ideas that might help, the parent suggested, {a}'}]});
+  {type:'text',id:'p_newsup',q:'Are there any other supports, changes, or ideas you think would help {S} succeed at school?',hint:'Your ideas help the IEP team understand what might work better. Share anything, even if it has not been tried before.',featured:true,narr:'When asked about new supports or ideas that might help, the parent suggested, {a}'}]});
  const svc=(Array.isArray(p.services)?p.services:[]).filter(x=>x&&(str(x.parent)||str(x.adult))).slice(0,8).map(x=>{const pa=str(x.parent)||cap(str(x.adult)),ad=str(x.adult)||lowerFirst(pa),am=str(x.amount);return {k:pa+(am?' ('+am+')':''),n:ad+(am?' ('+am+')':'')};});
  if(svc.length)sec.push({title:'Time and Services',intro:'This is the time {S} spends with special education staff. Does it feel like the right amount?',items:[
   {type:'supports',id:'psvc',q:'How does the amount of each one feel to you?',hint:'"Not sure" is a helpful answer too.',rows:svc,
@@ -681,14 +753,61 @@ function expandParent(p){
   summaryIntro:'The survey was tailored to {S}\'s current IEP and asked about strengths at home, progress this year, supports'+(svc.length?', time and services,':',')+' and hopes for next year.',sections:sec,
   title:BRAND.name,sourceTitle:'Parent Input Survey',allowVoice:true};
 }
+function expandTeacher(p){
+ const band=BANDS.indexOf(p.band)>=0?p.band:'3-5';
+ const pr=PRON[String(p.pronoun||'').toLowerCase()]||PRON.they;PR=pr;
+ const goals=(p.goals||[]).filter(g=>g&&str(g.kid)).slice(0,5);
+ if(!goals.length)throw packetError('The reply is missing the goals.');
+ const cap=t=>t.charAt(0).toUpperCase()+t.slice(1);
+ const TSTR=['Participates in class discussions','Follows classroom routines','Works well with peers','Completes assignments','Asks for help when needed','Stays on task','Shows effort and persistence','Gets along well with adults','Thinks creatively','Shows kindness to others','Takes on leadership roles','Keeps materials organized'];
+ const strengths=[];(p.strengths||[]).map(x=>thirdPerson(str(x))).concat(TSTR).forEach(t=>{if(t&&!strengths.some(y=>y.toLowerCase()===t.toLowerCase()))strengths.push(t);});
+ const TGOOD=[['Shows more confidence lately','increased confidence'],['Keeps trying when work gets hard','persistence when work becomes difficult'],['Uses strategies or supports on their own','independent use of strategies or supports'],['Asks for help when needed','appropriate help-seeking']];
+ const sec=[];
+ sec.push({title:'Strengths in Class',intro:'Start with what is going well for {S} in your class.',items:[
+  {type:'checklist',id:'t_str',q:'What does {S} do well in your class? Pick any that fit.',options:strengths.slice(0,14),other:true,otherPrompt:'What else?',otherNarr:'something the teacher described as ',narr:'The teacher identified {list} as {things} {S} did well in class.'},
+  {type:'text',id:'t_win',q:'What is something {S} has done well in your class this year?',hint:'You can skip this one.',narr:'When asked about something {S} did well this year, the teacher said, {a}'}]});
+ sec.push({title:'Progress on Goals',intro:'These are {S}\'s IEP goals. Tell us what you see in your class.',items:goals.map((g,i)=>{
+  const topic=str(g.topic)||lowerFirst(str(g.area)||'this goal');
+  let hard=(g.hard||[]).map(kvp).filter(Boolean).map(x=>{const r=[cap(x[1]),x[1]];r.good=false;return r;}).slice(0,5);
+  if(hard.length<2)hard=homeFor(g,topic).filter(x=>!GOODRX.test(x[0])).map(x=>{const r=[x[0],x[1]];r.good=false;return r;});
+  let good=(g.home||[]).map(kvp).filter(x=>x&&x.good).slice(0,4);
+  if(good.length<2)good=TGOOD.map(x=>{const r=[x[0],x[1]];r.good=true;return r;});
+  {const bb=balance(hard,good,TGOOD.concat(posFor(topic)));hard=bb.hard;good=bb.good;}
+  return {type:'goal',label:(str(g.area)||'IEP')+' goal',title:str(g.kid),items:[
+   {type:'choice',id:'tg'+i,q:'How is {S} progressing with '+topic+' in your class?',options:['Good progress','Some progress','Little progress','Not observed in my class'],narr:'When asked about progress with '+topic+' in class, the teacher answered {a}',
+    followUp:{when:['Good progress','Some progress','Little progress'],prompt:'What do you see in class? Pick any that fit.',options:hard.concat(good),cols:{hard:hard,good:good},textPrompt:'Anything else you have noticed?',narr:'In class, the teacher noted challenges with {list}.',goodNarr:'The teacher also noticed positive signs: {list}.',textNarr:'The teacher added, {a}'}}]};})});
+ const rows=(p.supports||[]).map(kvp).filter(Boolean).slice(0,10).map(x=>({k:cap(x[1]),n:x[1]}));
+ sec.push({title:'Supports in Class',intro:'You see which supports actually happen. That is information nobody else on the team has.',items:[
+  {type:'supports3',id:'tsup',q:'For each support, tap one answer in each column.',hint:'Skip a column if you are not sure.',rows,
+   dims:[{k:'f',h:'When provided',o:['Rarely','Sometimes','Often','Almost always']},{k:'n',h:'Current need',o:['Minimal need','Sometimes helpful','Highly reliant']},{k:'a',h:'Student attitude',o:['Resistant','Reluctant','Open / accepting','Positive']}]},
+  {type:'text',id:'t_newsup',q:'What new accommodations or strategies would help {S} in your class?',hint:'This is one of the most valuable things you can tell the team. Even one idea helps.',featured:true,narr:'When asked what new accommodations or strategies would help in class, the teacher suggested, {a}'}]});
+ const svc=(Array.isArray(p.services)?p.services:[]).filter(x=>x&&(str(x.parent)||str(x.adult))).slice(0,8).map(x=>{const ad=str(x.adult)||lowerFirst(str(x.parent)),am=str(x.amount);return {k:cap(ad)+(am?' ('+am+')':''),n:ad+(am?' ('+am+')':'')};});
+ const acc=[];
+ if(svc.length)acc.push({type:'note',id:'t_svc',title:'Current special education services',lines:svc.map(x=>x.k)});
+ acc.push({type:'checklist',id:'t_barr',q:'When {S} has trouble keeping up in your class, what gets in the way? Pick any that fit.',options:['Reading grade-level material','Written work','Math skills','Following multi-step directions','Attention and focus','Working independently','Keeping up with the pace of instruction','Organization and materials','Interacting with peers','Managing frustration'],other:true,otherPrompt:'What else?',otherNarr:'something the teacher described as ',narr:'The teacher identified {list} as barriers to keeping up in class.'});
+ acc.push({type:'text',id:'t_impact',q:'How do these affect {S}\'s ability to access and make progress in your class?',hint:'For example: "Understands the math concepts but needs twice as long to finish written work, so often misses independent practice."',featured:true,narr:'When asked how these needs affect access and progress in the general education classroom, the teacher said, {a}'});
+ acc.push({type:'choice',id:'t_amt',q:'Compared to classmates, how much support does {S} need to take part and make progress in your class?',hint:'Think about participation, engagement, and getting work done.',options:['About the same','A little more','Much more','Substantially more'],narr:'When asked how much support {S} needs compared to classmates to take part and make progress in class, the teacher answered {a}'});
+ acc.push({type:'text',id:'t_reduce',q:'What do you think would happen if {S}\'s current supports were reduced?',narr:'When asked what might happen if current supports were reduced, the teacher said, {a}'});
+ acc.push({type:'text',id:'t_lre',q:'Could any of {S}\'s special education support happen in your classroom? How?',hint:'Optional.',narr:'When asked whether any special education support could happen in the general education classroom, the teacher said, {a}'});
+ sec.push({title:'Access and Progress',intro:'These questions help the team understand how {S}\'s needs affect learning in general education.',items:acc});
+ const topics=['Progress on IEP goals','Supports and accommodations','Work completion','Behavior or attention','Peer relationships','Amount of support in class','Communication with home'].concat(band==='9-12'||band==='6-8'?['Plans after high school']:[]);
+ sec.push({title:'Looking Ahead',intro:'Last part! Priorities and ideas for next year.',items:[
+  {type:'text',id:'t_skills',q:'What skills does {S} need most to succeed next year?',narr:'When asked what skills {S} needs most to succeed next year, the teacher said, {a}'},
+  {type:'text',id:'t_concern',q:'Do you have any concerns about {S} right now?',hint:'You can skip this one.',narr:'When asked about current concerns, the teacher said, {a}'},
+  {type:'checklist',id:'t_topics',q:'What would you like the team to talk about at the meeting?',options:topics,other:true,otherPrompt:'What else?',otherNarr:'something the teacher described as ',narr:'The teacher would like the team to talk about {list}.'},
+  {type:'text',id:'t_ideas',q:'Any suggestions or ideas for the team?',hint:'Anything at all. Your ideas will be read before the meeting.',featured:true,narr:'When asked for suggestions or ideas, the teacher said, {a}'}]});
+ return {grade:str(p.grade),band,pronouns:pr,minutes:Math.max(8,Math.round(7+goals.length*0.8+rows.length*0.3+svc.length*0.3)),
+  summaryIntro:'The survey was tailored to {S}\'s current IEP and asked about strengths in class, progress on goals, supports, access and progress in general education, and priorities for next year.',sections:sec,
+  title:BRAND.name,sourceTitle:'Teacher Input Survey',allowVoice:true};
+}
 const IS_MOBILE=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform||''));
 function pasteHow(){if(IS_MOBILE)return 'press and hold, then tap <b>Paste</b>';if(/Mac/.test(navigator.platform||''))return 'press <kbd>Cmd</kbd> + <kbd>V</kbd>';return 'press <kbd>Ctrl</kbd> + <kbd>V</kbd>';}
-function copyParent(){const body=summaryText()+'\n\n(Sent from the ECHO home survey.)';const st=document.getElementById('diyStatus');
+function copyParent(){const body=summaryText()+'\n\n'+mt('foot');const st=document.getElementById('diyStatus');
  (navigator.clipboard?navigator.clipboard.writeText(body):Promise.reject()).then(()=>{if(st)st.textContent='Copied! Now start the email and paste.';})
  .catch(()=>{const fb=document.getElementById('fallback');if(fb){fb.value=body;fb.classList.add('show');fb.focus();fb.select();}if(st)st.textContent='Copying was blocked. Select the text in the box below and copy it.';});}
 function sendParent(kind){
- const body=summaryText()+'\n\n(Sent from the ECHO home survey.)';
- const to=(CM&&CM.e)||'',subj='Parent input for '+S.student+'\'s IEP meeting',E=encodeURIComponent;
+ const body=summaryText()+'\n\n'+mt('foot');
+ const to=(CM&&CM.e)||'',subj=mt('subj').replace(S.student+'\'s',fullS()+'\'s')+(MODE==='teacher'&&TCH?' ('+TCH.n+')':''),E=encodeURIComponent;
  try{navigator.clipboard&&navigator.clipboard.writeText(body).catch(()=>{});}catch(e){}
  sentTapped=true;
  const st=document.getElementById('sendStatus');
@@ -703,15 +822,15 @@ function build(){
  document.getElementById('brandName').textContent=S.student;
  const ph='<div class="printhead"><span>'+logo(22,false)+esc(S.title)+'</span><span>'+esc(S.student)+', '+esc(S.grade)+'</span><span>Date: ______________</span></div>';
  const welcomeSay='Hi, '+S.student+'! Your IEP team is getting together to talk about how school is going. They want to hear from the most important person on the team: you. There are no right or wrong answers. Most questions just need a tap.';
- let h=MODE==='parent'?parentWelcome(ph):'<section class="screen" data-kind="welcome">'+ph+'<div class="hero">'+lockup(78)+'<h1>Hi, '+esc(S.student)+'!</h1><p>Your IEP team is getting together to talk about how school is going. They want to hear from the most important person on the team: <b>you</b>.</p>'+(speakOK?'<button type="button" class="speak wide" data-say="'+esc(welcomeSay)+'">'+SPK+'Read this to me</button>':'')+'</div>'
-  +'<div class="minis"><div class="mini"><b>Not a test</b>No right or wrong answers</div><div class="mini"><b>Mostly tapping</b>Type or talk when you want</div><div class="mini"><b>About '+S.minutes+' minutes</b>Skip anything you want</div></div>'
+ let h=ADULT()?parentWelcome(ph):'<section class="screen" data-kind="welcome">'+ph+'<div class="hero">'+lockup(78)+'<h1>Hi, '+esc(S.student)+'!</h1><p>Your IEP team is getting together to talk about how school is going. They want to hear from the most important person on the team: <b>you</b>.</p>'+(speakOK?'<button type="button" class="speak wide" data-say="'+esc(welcomeSay)+'">'+SPK+'Read this to me</button>':'')+'</div>'
+  +'<ul class="facts"><li><span class="fi">'+STARI+'</span><span><b>Not a test.</b> There are no right or wrong answers.</span></li><li><span class="fi">'+CLOCK+'</span><span><b>About '+S.minutes+' minutes.</b> Mostly tapping. Type or talk when you want.</span></li><li><span class="fi">'+SKIPI+'</span><span><b>Skip anything</b> you do not want to answer.</span></li></ul>'
   +'<details class="adult"><summary>For the adult helping</summary><ul><li>Read any question aloud, or use the speaker buttons.</li><li>Pointing to a choice or a face is a fine way to answer.</li><li>Please don\'t suggest answers. If '+esc(S.student)+' is unsure, skipping is okay.</li><li>If you write answers, use '+esc(PR.his)+' exact words.</li><li>At the end, use the adult section to create a summary of the answers.</li></ul></details></section>';
  S.sections.forEach((sec,i)=>{
   h+='<section class="screen" data-kind="section"><div class="kicker">Part '+(i+1)+' of '+S.sections.length+'</div><h2 class="sec-title">'+esc(sec.title)+'</h2><div class="sec-intro"><span>'+esc(fill(sec.intro))+'</span>'+speakBtn(fill(sec.intro))+'</div>';
-  sec.items.forEach(it=>{h+='<div class="card'+(it.featured?' featured':'')+(['supports','pairs','ync'].indexOf(it.type)>=0?' stack':'')+'">'+renderItem(it,sec.title)+'</div>';});
+  sec.items.forEach(it=>{h+='<div class="card'+(it.featured?' featured':'')+(['supports','supports3','pairs','ync'].indexOf(it.type)>=0?' stack':'')+'">'+renderItem(it,sec.title)+'</div>';});
   h+='</section>';
  });
- if(MODE==='parent'){h+=parentFinish();app.innerHTML=h;document.getElementById('steps').innerHTML=S.sections.map((s2,i)=>'<button type="button" class="step" aria-label="Go to '+esc(s2.title)+'" data-go="'+(i+1)+'"></button>').join('');return;}
+ if(ADULT()){h+=parentFinish();app.innerHTML=h;document.getElementById('steps').innerHTML=S.sections.map((s2,i)=>'<button type="button" class="step" aria-label="Go to '+esc(s2.title)+'" data-go="'+(i+1)+'"></button>').join('');return;}
  const P=PR.his;
  h+='<section class="screen" data-kind="finish"><div class="noprint"><div class="donehero"><div class="check"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h2>You did it, '+esc(S.student)+'!</h2><p>Thank you for sharing. Your team will read every answer before your IEP meeting.</p><p id="recap"></p><p class="handoff">Please let your teacher know you are finished.</p></div></div>'
   +'<div class="card adultzone"><div class="tag">'+LOCK+'For the adult</div><div class="qhead"><h3>Create a summary of '+esc(S.student)+'\'s answers</h3></div><p class="sumnote">The summary turns '+P+' answers into short paragraphs you can paste into a REED, IEP, or evaluation report.</p><button type="button" class="btn primary" id="sumBtn">Create summary</button></div>'
@@ -732,7 +851,7 @@ function show(i){
  next.textContent=cur===0?"Let's start":cur===n?'Finish':'Next';
  if(cur>0) started=true;
  if(cur===last){done=true;recap();if(document.getElementById('sumCard').classList.contains('show')&&!edited)renderSummary();}
- if(cur===last&&MODE==='parent'){const rc=document.getElementById('recap');if(rc)rc.textContent='';}
+ if(cur===last&&ADULT()){const rc=document.getElementById('recap');if(rc)rc.textContent='';}
  if(speakOK) speechSynthesis.cancel();
  if(rec) rec.stop();
  const calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -765,6 +884,20 @@ function narrFollow(it,v,out){
 }
 function narrItem(it,out){
  const t=it.type;
+ if(t==='note')return;
+ if(t==='supports3'){
+  const skip=[];
+  it.rows.forEach((r,i)=>{const n=it.id+'_'+i,x=fill(r.n);const v={};it.dims.forEach(d=>{v[d.k]=checked(n+'_'+d.k)[0];});const c=textv(n+'_c');
+   if(!v.f&&!v.n&&!v.a&&!c){skip.push(x);return;}
+   const NC={'Minimal need':'{S} had minimal need for it','Sometimes helpful':'it was sometimes helpful','Highly reliant':'{S} was highly reliant on it'};
+   const cl=[];if(v.n)cl.push(fill(NC[v.n]||('need was '+lowerFirst(v.n))));if(v.a)cl.push(fill('{his} attitude toward it was ')+lowerFirst(v.a).replace(' / ',' or '));
+   const tail=cl.length?(cl[0]+(cl[1]?', and '+cl[1]:'')):'';
+   if(v.f)out.push('The teacher reported that '+x+' was provided '+lowerFirst(v.f)+(tail?', and that '+tail:'')+'.');
+   else if(tail)out.push('For '+x+', the teacher reported that '+tail+'.');
+   if(c)out.push('About '+x+', the teacher said, '+qa(c,false));});
+  if(skip.length)out.push('The teacher did not rate '+listJoin(skip)+'.');
+  return;
+ }
  if(t==='goal'){it.items.forEach(s=>narrItem(s,out));return;}
  if(t==='checklist'){
   const v=checked(it.id);if(!v.length)return;
@@ -803,7 +936,7 @@ function narrative(){
  const d=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
  const mains=registry.filter(r=>r.main),answered=mains.filter(r=>val(r)).length;
  const verb=answered>=Math.ceil(mains.length/2)?'completed':'responded to part of';
- const paras=[(MODE==='parent'?fill('{S}\'s parent or guardian '+verb+' a Parent Input Survey on '+d+'.'):fill('{S} '+verb+' a Student Input Survey on '+d+'.'))+' '+fill(S.summaryIntro)];
+ const paras=[(ADULT()?(MODE==='teacher'&&TCH?TCH.n+(TCH.c?' ('+TCH.c+')':'')+', '+fill(fullS()+'\'s general education teacher, ')+verb+' a '+mt('src')+' on '+d+'.':(mt('who').replace(S.student+'\'s',fullS()+'\'s')+' '+verb+' a '+mt('src')+' on '+d+'.')):fill('{S} '+verb+' a Student Input Survey on '+d+'.'))+' '+fill(S.summaryIntro)];
  S.sections.forEach(sec=>{const out=[];sec.items.forEach(it=>narrItem(it,out));if(out.length)paras.push(out.join(' '));});
  return paras;
 }
@@ -830,8 +963,8 @@ function buildPrintDoc(){
  const sum=summaryText().split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean).map(x=>'<p>'+esc(x)+'</p>').join('');
  let pd=document.getElementById('printDoc');if(!pd){pd=document.createElement('div');pd.id='printDoc';document.body.appendChild(pd);}
  pd.innerHTML='<table class="pd-t"><thead><tr><td></td></tr></thead><tfoot><tr><td></td></tr></tfoot><tbody><tr><td>'
-  +'<div class="pd-head"><div class="l">'+logo(24,false)+(MODE==='parent'?'Parent Input Summary':'Student Input Summary')+'</div><div class="r"><b>'+esc(S.student)+'</b>Report generated: '+d+'</div></div>'
-  +'<div class="pd-title">'+(MODE==='parent'?'What '+esc(S.student)+'\'s Family Shared':'What '+esc(S.student)+' Shared')+'</div><div class="pd-sum">'+sum+'</div>'+buildRecord()
+  +'<div class="pd-head"><div class="l">'+logo(24,false)+(ADULT()?mt('sum'):'Student Input Summary')+'</div><div class="r"><b>'+esc(ADULT()?fullS():S.student)+'</b>Report generated: '+d+'</div></div>'
+  +'<div class="pd-title">'+(ADULT()?esc(mt('pdT')):'What '+esc(S.student)+' Shared')+'</div><div class="pd-sum">'+sum+'</div>'+buildRecord()
   +'</td></tr></tbody></table>';
 }
 function printSummary(){
@@ -878,6 +1011,7 @@ document.addEventListener('click',e=>{
  const id=(e.target.closest('button')||{}).id;
  const sb=e.target.closest('[data-send]');if(sb){sendParent(sb.dataset.send);return;}
  if(id==='copyAgain'){copyParent();return;}
+ const ac=e.target.closest('.addc');if(ac){const bx=ac.nextElementSibling;bx.hidden=!bx.hidden;ac.textContent=bx.hidden?'+ Add a comment':'Hide comment';if(!bx.hidden){const t=bx.querySelector('textarea');if(t)t.focus();}return;}
  if(id==='sumBtn'){renderSummary();const c=document.getElementById('sumCard');c.classList.add('show');if(c.scrollIntoView)c.scrollIntoView({behavior:'smooth',block:'start'});}
  if(id==='copyBtn'){const st=document.getElementById('status'),fb=document.getElementById('fallback');
   const txt=summaryText();
@@ -987,10 +1121,11 @@ function cleanName(v){const n=String(v).replace(/[^A-Za-z\u00C0-\u024F' -]/g,'')
 let loaded=null;
 function startSurvey(o,name){
  if(MODE==='parent')o=expandParent(o._raw||o);
+ if(MODE==='teacher')o=expandTeacher(o._raw||o);
  S=JSON.parse(JSON.stringify(o));S.student=name;PR=S.pronouns;voiceOK=S.allowVoice!==false&&!!SR;
  document.body.classList.remove('setup');build();show(0);
 }
-const AI_PROMPT="You are the ECHO Builder. ECHO is a student input survey used before an IEP meeting or special education reevaluation, so the student's own view of their goals, supports, and learning setting is heard even if they do not attend the IEP meeting. Your job is to read the uploaded documents and write the survey code: a short block of JSON that the ECHO web page turns into a survey for this student. The web page handles all of the design, question wording, and summary writing. You only supply the student-specific content.\n\nBEFORE YOU START\n1. You need the redacted IEP, the grade, and the pronoun (he, she, or they). If any of these are missing, ask for them in one short message and stop.\n2. Privacy: never write the student's name or any identifying detail (birthdate, ID number, address, school name, family names). If you notice any of these in the documents, do not repeat them. Instead, add one line at the top of your reply: \"Heads up: this document does not appear to be fully redacted.\"\n3. Use only what is in the documents. Never invent goals, supports, or services.\n\nSTEP 1: FIND\nGoals: every annual goal. Combine goals that target the same skill. Use at most 5.\nSupports: accommodations, supplementary aids and services, and testing accommodations. Combine duplicates (for example, \"short breaks\" and \"frequent breaks\" become one support). Keep only supports the student would notice or use. Use at most 10 (at most 6 for grades K to 2).\nServices and settings: where and how the student gets help (resource room, general education classroom, pull-out or push-in, speech, social work, OT, an aide), and how much time each special education program or service is scheduled for.\nStrengths: up to 4 strengths named in the present levels, written as neutral phrases with no I, my, me, or other pronouns (for example, \"Answering questions about stories read aloud\"), so they read naturally to both the student and a parent.\n\nSTEP 2: TRANSLATE INTO STUDENT LANGUAGE\nChoose the grade band: \"K-2\", \"3-5\", \"6-8\", or \"9-12\".\nLength: K-2 phrases are 6 words or fewer and very simple. 3-5 phrases are 9 words or fewer. 6-8 and 9-12 phrases are 10 words or fewer and should sound respectful, never babyish.\nStudent wording (\"kid\" fields): plain everyday words from the student's point of view (I, my) or a plain phrase. No clinical terms (for example, never \"perspective taking,\" \"multisyllabic,\" \"dysregulated,\" \"executive functioning,\" \"behavior intervention\").\nAdult wording (\"adult\" fields): a short professional phrase, all lowercase, with no pronouns (no he, she, his, her, they, their). It must read correctly in the sentence \"The student reported that ___ helped.\"\nParent wording (\"parent\" fields): plain words a parent or guardian with no education background would understand, written about the child (no I or my). No school jargon.\nHome lists: for each goal, write 4 to 6 things a parent or guardian could notice AT HOME about this skill: attitude, homework habits, frustration, avoidance, persistence, or confidence. Never ask a parent to judge a technical skill they cannot see (for example, never \"choosing the right math operation\"). Write 3 to 4 possible concerns and 2 to 3 positive signs (for example, \"Seems more confident lately\"), and mark each positive sign with \"good\": true.\nTone: positive or neutral. Never describe the student as having a deficit, and never include sensitive details from the IEP (diagnoses, discipline, family information, or anything the student reported feeling).\n\nSTEP 3: BUILD THE \"HOW I LEARN BEST\" PAIRS\nWrite 2 to 4 pairs. Each pair contrasts an arrangement from the IEP (where services happen, how adult support works, how breaks or tests are given) with a realistic alternative. Keep both sides neutral and similar in length, with no hint about which is better. Put the IEP's current arrangement first in some pairs and second in others.\n\nSTEP 4: REPLY IN EXACTLY TWO PARTS\n\nPART 1: QUICK CHECK\nA short plain-language list for the adult: the grade band, each goal in student wording, each support as \"student wording = adult wording,\" each service with its amount, and each pair. End with \"Things to double check,\" naming any translation you were unsure about and anything you left out and why. Keep it brief.\n\nPART 2: SURVEY CODE\nOne code block that contains only the JSON, using exactly these fields:\n\n\"echo\": always the number 1\n\"grade\": for example \"7th grade\"\n\"band\": exactly one of \"K-2\", \"3-5\", \"6-8\", \"9-12\"\n\"pronoun\": exactly \"he\", \"she\", or \"they\"\n\"strengths\": a list of up to 4 short neutral phrases with no pronouns (can be an empty list)\n\"goals\": a list of 1 to 5 goals. Each goal has:\n  \"area\": 1 to 3 words, capitalized, used as a label (for example \"Math\" or \"Speaking up\")\n  \"topic\": a lowercase phrase that completes \"How is ___ going for you right now?\" (for example \"math\" or \"starting conversations\"). Do not use \"my.\"\n  \"kid\": the goal in student wording\n  \"hard\": a list of 4 to 6 common things that can make this skill hard, each with \"kid\" and \"adult\" wording. Keep them neutral and never blaming.\n  \"home\": a list of 5 to 7 things a parent could notice at home (see Home lists), each with \"parent\" and \"adult\" wording, plus \"good\": true on each positive sign\n\"supports\": a list of supports, each with \"kid\", \"parent\", and \"adult\" wording\n\"services\": a list of the special education programs and services in the IEP, each with:\n  \"parent\": what it is in plain words (for example, \"Meets with the school social worker\")\n  \"amount\": the scheduled time in plain words (for example, \"30 minutes a week\")\n  \"adult\": a short lowercase professional phrase (for example, \"school social work services\")\n  Use an empty list if the IEP lists none.\n\"pairs\": a list of 2 to 4 pairs, each with \"a_kid\", \"a_adult\", \"b_kid\", and \"b_adult\"\n\nJSON rules (the ECHO page cannot read the survey code if these are broken):\nUse straight double quotes around every key and every text value.\nNever put a double quote inside a text value. Use an apostrophe or rephrase.\nNo comments, no trailing commas, no extra fields, and nothing else inside the code block.\n\nEXAMPLE SURVEY CODE (a fictional 4th grader, for format only; do not copy its content)\n{\n \"echo\": 1,\n \"grade\": \"4th grade\",\n \"band\": \"3-5\",\n \"pronoun\": \"he\",\n \"strengths\": [\n  \"Building things\",\n  \"Drawing or art\"\n ],\n \"goals\": [\n  {\n   \"area\": \"Reading\",\n   \"topic\": \"reading\",\n   \"kid\": \"Reading smoothly without getting stuck on words\",\n   \"hard\": [\n    {\n     \"kid\": \"Sounding out long words\",\n     \"adult\": \"sounding out long words\"\n    },\n    {\n     \"kid\": \"Reading out loud in front of others\",\n     \"adult\": \"reading aloud in front of others\"\n    },\n    {\n     \"kid\": \"Reading fast enough\",\n     \"adult\": \"reading quickly enough\"\n    },\n    {\n     \"kid\": \"Remembering what I read\",\n     \"adult\": \"remembering what was read\"\n    },\n    {\n     \"kid\": \"Pages with lots of words\",\n     \"adult\": \"pages with a lot of text\"\n    }\n   ],\n   \"home\": [\n    {\n     \"parent\": \"Avoids reading or puts it off\",\n     \"adult\": \"avoiding or putting off reading\"\n    },\n    {\n     \"parent\": \"Gets frustrated when reading\",\n     \"adult\": \"frustration while reading\"\n    },\n    {\n     \"parent\": \"Asks for help with reading homework\",\n     \"adult\": \"asking for help with reading homework\"\n    },\n    {\n     \"parent\": \"Reads on their own for fun\",\n     \"adult\": \"reading independently for enjoyment\",\n     \"good\": true\n    },\n    {\n     \"parent\": \"Seems more confident lately\",\n     \"adult\": \"increased confidence\",\n     \"good\": true\n    }\n   ]\n  },\n  {\n   \"area\": \"Writing\",\n   \"topic\": \"writing\",\n   \"kid\": \"Writing a paragraph with a main idea and details\",\n   \"hard\": [\n    {\n     \"kid\": \"Thinking of what to write\",\n     \"adult\": \"thinking of what to write\"\n    },\n    {\n     \"kid\": \"Spelling words\",\n     \"adult\": \"spelling\"\n    },\n    {\n     \"kid\": \"Handwriting\",\n     \"adult\": \"handwriting\"\n    },\n    {\n     \"kid\": \"Putting my ideas in order\",\n     \"adult\": \"organizing ideas\"\n    },\n    {\n     \"kid\": \"It takes a long time\",\n     \"adult\": \"how long writing takes\"\n    }\n   ],\n   \"home\": [\n    {\n     \"parent\": \"Avoids writing or puts it off\",\n     \"adult\": \"avoiding or putting off writing\"\n    },\n    {\n     \"parent\": \"Gets stuck getting started\",\n     \"adult\": \"difficulty getting started\"\n    },\n    {\n     \"parent\": \"Gets frustrated with writing homework\",\n     \"adult\": \"frustration with writing homework\"\n    },\n    {\n     \"parent\": \"Writes or tells stories at home\",\n     \"adult\": \"writing or telling stories at home\",\n     \"good\": true\n    },\n    {\n     \"parent\": \"Seems more confident lately\",\n     \"adult\": \"increased confidence\",\n     \"good\": true\n    }\n   ]\n  }\n ],\n \"supports\": [\n  {\n   \"kid\": \"Extra time on tests\",\n   \"parent\": \"Extra time on tests\",\n   \"adult\": \"extra time on tests\"\n  },\n  {\n   \"kid\": \"Having tests read out loud\",\n   \"parent\": \"Tests read out loud\",\n   \"adult\": \"tests read aloud\"\n  },\n  {\n   \"kid\": \"Taking tests in a quiet room\",\n   \"parent\": \"Tests in a quiet room\",\n   \"adult\": \"testing in a separate, quiet setting\"\n  },\n  {\n   \"kid\": \"A planning sheet before you write\",\n   \"parent\": \"A planning sheet before writing\",\n   \"adult\": \"a graphic organizer before writing\"\n  },\n  {\n   \"kid\": \"Talk-to-type when you write\",\n   \"parent\": \"Talk-to-type tools for writing\",\n   \"adult\": \"speech-to-text for writing\"\n  },\n  {\n   \"kid\": \"Sitting close to where your teacher teaches\",\n   \"parent\": \"Seat near the teacher\",\n   \"adult\": \"preferential seating near instruction\"\n  }\n ],\n \"services\": [\n  {\n   \"parent\": \"Reading help from a special education teacher\",\n   \"amount\": \"30 minutes a day\",\n   \"adult\": \"special education reading instruction\"\n  },\n  {\n   \"parent\": \"Writing help in the classroom\",\n   \"amount\": \"3 times a week\",\n   \"adult\": \"in-class writing support\"\n  }\n ],\n \"pairs\": [\n  {\n   \"a_kid\": \"Getting reading help in the resource room\",\n   \"a_adult\": \"receiving reading support in the resource room\",\n   \"b_kid\": \"Getting reading help in my classroom\",\n   \"b_adult\": \"receiving reading support in the general education classroom\"\n  },\n  {\n   \"a_kid\": \"A teacher helping me with writing in my classroom\",\n   \"a_adult\": \"receiving writing support in the classroom\",\n   \"b_kid\": \"Going to another room for writing help\",\n   \"b_adult\": \"receiving writing support in a separate room\"\n  },\n  {\n   \"a_kid\": \"Taking tests with my class\",\n   \"a_adult\": \"testing with the class\",\n   \"b_kid\": \"Taking tests in a quiet room\",\n   \"b_adult\": \"testing in a quiet room\"\n  },\n  {\n   \"a_kid\": \"Using talk-to-type to write\",\n   \"a_adult\": \"using speech-to-text\",\n   \"b_kid\": \"Writing with a pencil\",\n   \"b_adult\": \"writing by hand\"\n  }\n ]\n}\n\nAfter the code block, end your reply with this exact line:\nNext: copy this whole reply and paste it into Step 2 on the ECHO page.\n\nNow read the uploaded documents and build the survey code.\n";
+const AI_PROMPT="You are the ECHO Builder. ECHO is a student input survey used before an IEP meeting or special education reevaluation, so the student's own view of their goals, supports, and learning setting is heard even if they do not attend the IEP meeting. Your job is to read the uploaded documents and write the survey code: a short block of JSON that the ECHO web page turns into a survey for this student. The web page handles all of the design, question wording, and summary writing. You only supply the student-specific content.\n\nBEFORE YOU START\n1. You need the redacted IEP. Find the student's current grade and the pronoun the IEP uses for the student (he, she, or they). Never guess a pronoun. If the IEP does not make either one clear and the user did not say, ask for it in one short message and stop.\n2. Privacy: never write the student's name or any identifying detail (birthdate, ID number, address, school name, family names). If you notice any of these in the documents, do not repeat them. Instead, add one line at the top of your reply: \"Heads up: this document does not appear to be fully redacted.\"\n3. Use only what is in the documents. Never invent goals, supports, or services.\n\nSTEP 1: FIND\nGoals: every annual goal. Combine goals that target the same skill. Use at most 5.\nSupports: accommodations, supplementary aids and services, and testing accommodations. Combine duplicates (for example, \"short breaks\" and \"frequent breaks\" become one support). Keep only supports the student would notice or use. Use at most 10 (at most 6 for grades K to 2).\nServices and settings: where and how the student gets help (resource room, general education classroom, pull-out or push-in, speech, social work, OT, an aide), and how much time each special education program or service is scheduled for.\nStrengths: up to 4 strengths named in the present levels, written as neutral phrases with no I, my, me, or other pronouns (for example, \"Answering questions about stories read aloud\"), so they read naturally to both the student and a parent.\n\nSTEP 2: TRANSLATE INTO STUDENT LANGUAGE\nChoose the grade band: \"K-2\", \"3-5\", \"6-8\", or \"9-12\".\nLength: K-2 phrases are 6 words or fewer and very simple. 3-5 phrases are 9 words or fewer. 6-8 and 9-12 phrases are 10 words or fewer and should sound respectful, never babyish.\nStudent wording (\"kid\" fields): plain everyday words from the student's point of view (I, my) or a plain phrase. No clinical terms (for example, never \"perspective taking,\" \"multisyllabic,\" \"dysregulated,\" \"executive functioning,\" \"behavior intervention\").\nAdult wording (\"adult\" fields): a short professional phrase, all lowercase, with no pronouns (no he, she, his, her, they, their). It must read correctly in the sentence \"The student reported that ___ helped.\"\nParent wording (\"parent\" fields): plain words a parent or guardian with no education background would understand, written about the child (no I or my). No school jargon.\nHome lists: for each goal, write 4 to 6 things a parent or guardian could notice AT HOME about this skill: attitude, homework habits, frustration, avoidance, persistence, or confidence. Never ask a parent to judge a technical skill they cannot see (for example, never \"choosing the right math operation\"). Write an equal number of possible concerns and positive signs, 3 of each (for example, \"Seems more confident lately\"), and mark each positive sign with \"good\": true.\nTone: positive or neutral. Never describe the student as having a deficit, and never include sensitive details from the IEP (diagnoses, discipline, family information, or anything the student reported feeling).\n\nSTEP 3: BUILD THE \"HOW I LEARN BEST\" PAIRS\nWrite 2 to 4 pairs. Each pair contrasts an arrangement from the IEP (where services happen, how adult support works, how breaks or tests are given) with a realistic alternative. Keep both sides neutral and similar in length, with no hint about which is better. Put the IEP's current arrangement first in some pairs and second in others.\n\nSTEP 4: REPLY IN EXACTLY TWO PARTS\n\nPART 1: QUICK CHECK\nA short plain-language list for the adult: the grade band, each goal in student wording, each support as \"student wording = adult wording,\" each service with its amount, and each pair. End with \"Things to double check,\" naming any translation you were unsure about and anything you left out and why. Keep it brief.\n\nPART 2: SURVEY CODE\nOne code block that contains only the JSON, using exactly these fields:\n\n\"echo\": always the number 1\n\"grade\": for example \"7th grade\"\n\"band\": exactly one of \"K-2\", \"3-5\", \"6-8\", \"9-12\"\n\"pronoun\": exactly \"he\", \"she\", or \"they\"\n\"strengths\": a list of up to 4 short neutral phrases with no pronouns (can be an empty list)\n\"goals\": a list of 1 to 5 goals. Each goal has:\n  \"area\": 1 to 3 words, capitalized, used as a label (for example \"Math\" or \"Speaking up\")\n  \"topic\": a lowercase phrase that completes \"How is ___ going for you right now?\" (for example \"math\" or \"starting conversations\"). Do not use \"my.\"\n  \"kid\": the goal in student wording\n  \"hard\": a list of 4 to 6 common things that can make this skill hard, each with \"kid\" and \"adult\" wording. Keep them neutral and never blaming.\n  \"home\": a list of 6 things a parent could notice at home (see Home lists), each with \"parent\" and \"adult\" wording, plus \"good\": true on each positive sign\n\"supports\": a list of supports, each with \"kid\", \"parent\", and \"adult\" wording\n\"services\": a list of the special education programs and services in the IEP, each with:\n  \"parent\": what it is in plain words (for example, \"Meets with the school social worker\")\n  \"amount\": the scheduled time in plain words (for example, \"30 minutes a week\")\n  \"adult\": a short lowercase professional phrase (for example, \"school social work services\")\n  Use an empty list if the IEP lists none.\n\"pairs\": a list of 2 to 4 pairs, each with \"a_kid\", \"a_adult\", \"b_kid\", and \"b_adult\"\n\nJSON rules (the ECHO page cannot read the survey code if these are broken):\nUse straight double quotes around every key and every text value.\nNever put a double quote inside a text value. Use an apostrophe or rephrase.\nNo comments, no trailing commas, no extra fields, and nothing else inside the code block.\n\nEXAMPLE SURVEY CODE (a fictional 4th grader, for format only; do not copy its content)\n{\n \"echo\": 1,\n \"grade\": \"4th grade\",\n \"band\": \"3-5\",\n \"pronoun\": \"he\",\n \"strengths\": [\n  \"Building things\",\n  \"Drawing or art\"\n ],\n \"goals\": [\n  {\n   \"area\": \"Reading\",\n   \"topic\": \"reading\",\n   \"kid\": \"Reading smoothly without getting stuck on words\",\n   \"hard\": [\n    {\n     \"kid\": \"Sounding out long words\",\n     \"adult\": \"sounding out long words\"\n    },\n    {\n     \"kid\": \"Reading out loud in front of others\",\n     \"adult\": \"reading aloud in front of others\"\n    },\n    {\n     \"kid\": \"Reading fast enough\",\n     \"adult\": \"reading quickly enough\"\n    },\n    {\n     \"kid\": \"Remembering what I read\",\n     \"adult\": \"remembering what was read\"\n    },\n    {\n     \"kid\": \"Pages with lots of words\",\n     \"adult\": \"pages with a lot of text\"\n    }\n   ],\n   \"home\": [\n    {\n     \"parent\": \"Avoids reading or puts it off\",\n     \"adult\": \"avoiding or putting off reading\"\n    },\n    {\n     \"parent\": \"Gets frustrated when reading\",\n     \"adult\": \"frustration while reading\"\n    },\n    {\n     \"parent\": \"Asks for help with reading homework\",\n     \"adult\": \"asking for help with reading homework\"\n    },\n    {\n     \"parent\": \"Reads on their own for fun\",\n     \"adult\": \"reading independently for enjoyment\",\n     \"good\": true\n    },\n    {\n     \"parent\": \"Seems more confident lately\",\n     \"adult\": \"increased confidence\",\n     \"good\": true\n    }\n   ]\n  },\n  {\n   \"area\": \"Writing\",\n   \"topic\": \"writing\",\n   \"kid\": \"Writing a paragraph with a main idea and details\",\n   \"hard\": [\n    {\n     \"kid\": \"Thinking of what to write\",\n     \"adult\": \"thinking of what to write\"\n    },\n    {\n     \"kid\": \"Spelling words\",\n     \"adult\": \"spelling\"\n    },\n    {\n     \"kid\": \"Handwriting\",\n     \"adult\": \"handwriting\"\n    },\n    {\n     \"kid\": \"Putting my ideas in order\",\n     \"adult\": \"organizing ideas\"\n    },\n    {\n     \"kid\": \"It takes a long time\",\n     \"adult\": \"how long writing takes\"\n    }\n   ],\n   \"home\": [\n    {\n     \"parent\": \"Avoids writing or puts it off\",\n     \"adult\": \"avoiding or putting off writing\"\n    },\n    {\n     \"parent\": \"Gets stuck getting started\",\n     \"adult\": \"difficulty getting started\"\n    },\n    {\n     \"parent\": \"Gets frustrated with writing homework\",\n     \"adult\": \"frustration with writing homework\"\n    },\n    {\n     \"parent\": \"Writes or tells stories at home\",\n     \"adult\": \"writing or telling stories at home\",\n     \"good\": true\n    },\n    {\n     \"parent\": \"Seems more confident lately\",\n     \"adult\": \"increased confidence\",\n     \"good\": true\n    }\n   ]\n  }\n ],\n \"supports\": [\n  {\n   \"kid\": \"Extra time on tests\",\n   \"parent\": \"Extra time on tests\",\n   \"adult\": \"extra time on tests\"\n  },\n  {\n   \"kid\": \"Having tests read out loud\",\n   \"parent\": \"Tests read out loud\",\n   \"adult\": \"tests read aloud\"\n  },\n  {\n   \"kid\": \"Taking tests in a quiet room\",\n   \"parent\": \"Tests in a quiet room\",\n   \"adult\": \"testing in a separate, quiet setting\"\n  },\n  {\n   \"kid\": \"A planning sheet before you write\",\n   \"parent\": \"A planning sheet before writing\",\n   \"adult\": \"a graphic organizer before writing\"\n  },\n  {\n   \"kid\": \"Talk-to-type when you write\",\n   \"parent\": \"Talk-to-type tools for writing\",\n   \"adult\": \"speech-to-text for writing\"\n  },\n  {\n   \"kid\": \"Sitting close to where your teacher teaches\",\n   \"parent\": \"Seat near the teacher\",\n   \"adult\": \"preferential seating near instruction\"\n  }\n ],\n \"services\": [\n  {\n   \"parent\": \"Reading help from a special education teacher\",\n   \"amount\": \"30 minutes a day\",\n   \"adult\": \"special education reading instruction\"\n  },\n  {\n   \"parent\": \"Writing help in the classroom\",\n   \"amount\": \"3 times a week\",\n   \"adult\": \"in-class writing support\"\n  }\n ],\n \"pairs\": [\n  {\n   \"a_kid\": \"Getting reading help in the resource room\",\n   \"a_adult\": \"receiving reading support in the resource room\",\n   \"b_kid\": \"Getting reading help in my classroom\",\n   \"b_adult\": \"receiving reading support in the general education classroom\"\n  },\n  {\n   \"a_kid\": \"A teacher helping me with writing in my classroom\",\n   \"a_adult\": \"receiving writing support in the classroom\",\n   \"b_kid\": \"Going to another room for writing help\",\n   \"b_adult\": \"receiving writing support in a separate room\"\n  },\n  {\n   \"a_kid\": \"Taking tests with my class\",\n   \"a_adult\": \"testing with the class\",\n   \"b_kid\": \"Taking tests in a quiet room\",\n   \"b_adult\": \"testing in a quiet room\"\n  },\n  {\n   \"a_kid\": \"Using talk-to-type to write\",\n   \"a_adult\": \"using speech-to-text\",\n   \"b_kid\": \"Writing with a pencil\",\n   \"b_adult\": \"writing by hand\"\n  }\n ]\n}\n\nAfter the code block, end your reply with this exact line:\nNext: copy this whole reply and paste it into Step 2 on the ECHO page.\n\nNow read the uploaded documents and build the survey code.\n";
 const CHECK='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 function stp(n,id,title,text,body){return '<div class="stp" id="'+id+'"><div class="num" data-n="'+n+'">'+n+'</div><div class="bd"><h3>'+title+'</h3>'+(text?'<p>'+text+'</p>':'')+body+'</div></div>';}
 function markStep(id,on){const e=document.getElementById(id);if(!e)return;e.classList.toggle('done',on);const n=e.querySelector('.num');n.innerHTML=on?CHECK:n.dataset.n;}
@@ -1001,27 +1136,69 @@ function renderSetup(mode,info){
  let h=lockup(70);
  if(mode==='parent'){
   h+='<p class="intro">'+esc(cmName().charAt(0).toUpperCase()+cmName().slice(1))+' and your child\'s IEP team would like to hear from you before the next IEP meeting.</p>'
-   +stp(1,'st3','Type your child\'s first name','','<input class="inp" id="fname" autocomplete="off" maxlength="30" placeholder="First name only"><p class="fine">The name only fills in the questions. Nothing is saved on this page.</p>')
+   +stp(1,'st3','Your child\'s name','','<div class="prow" style="margin:0"><input class="inp" id="fname" autocomplete="off" maxlength="30" placeholder="First name" aria-label="Child\'s first name"><input class="inp" id="lname" autocomplete="off" maxlength="30" placeholder="Last name (optional)" aria-label="Child\'s last name, optional"></div><p class="fine">The first name fills in the questions. The last name only labels your answers for the school. Nothing is saved on this page.</p>')
    +stp(2,'st4','Start the survey','About 10 to 15 minutes, mostly tapping. At the end, you tap Send to email your answers.','<button type="button" class="btn primary" id="goBtn">Start</button><div class="msg" id="setupMsg" aria-live="polite"></div>');
+ } else if(mode==='teacher'){
+  h+='<p class="intro">'+esc(cmName().charAt(0).toUpperCase()+cmName().slice(1))+' would like your classroom view of a student before the next IEP meeting.</p>'
+   +stp(1,'st0','About you','So the team knows whose view this is.','<div class="prow" style="margin:0"><input class="inp" id="tName" maxlength="40" placeholder="Your name (e.g., Ms. Johnson)" aria-label="Your name"><input class="inp" id="tClass" maxlength="50" placeholder="Class or subject (e.g., 7th grade math)" aria-label="Class or subject"></div>')
+   +stp(2,'st3','The student\'s name','','<div class="prow" style="margin:0"><input class="inp" id="fname" autocomplete="off" maxlength="30" placeholder="First name" aria-label="Student first name"><input class="inp" id="lname" autocomplete="off" maxlength="30" placeholder="Last name (optional)" aria-label="Student last name, optional"></div><p class="fine">The first name fills in the questions. The last name only labels your answers. Nothing is saved on this page.</p>')
+   +stp(3,'st4','Start the survey','About 10 to 15 minutes, mostly tapping. At the end, you send your answers by email.','<button type="button" class="btn primary" id="goBtn">Start</button><div class="msg" id="setupMsg" aria-live="polite"></div>');
  } else if(mode==='link'){
   h+='<p class="intro">A short survey made from '+(loaded.grade?'a '+esc(loaded.grade)+' student\'s':'the student\'s')+' IEP, so their voice is part of the meeting.</p>'
    +'<div class="ready" style="margin:0 0 12px">'+CHECK+'Survey loaded from your link</div>'
    +stp(1,'st3','Add the student\'s first name','',name)
    +stp(2,'st4','Start the survey','Then hand the device to the student.',go);
  } else {
-  h+='<p class="intro">Build a short survey from a student\'s IEP, so their voice is part of the meeting.</p>'
+  h=lockup(70,'Every voice matters')+'<p class="intro">Build short surveys from a student\'s IEP so the student, family, and teachers are all heard before the meeting.</p>'
    +(info?'<div class="msg bad" style="margin:0 0 12px">'+esc(info)+'</div>':'')
-   +stp(1,'st1','Get the prompt','Copy it, then open Gemini or another AI tool your district approves. Paste the prompt, attach the redacted IEP, and type the grade and he, she, or they.',
+   +stp(1,'st1','Get the prompt','Copy the prompt, then open Gemini or another district-approved AI tool. Paste the prompt and attach the student\'s redacted IEP.',
      '<button type="button" class="btn ghost" id="promptBtn">Copy the prompt</button><div class="msg" id="promptMsg" aria-live="polite"></div><textarea class="inp" id="promptOut" readonly></textarea>')
    +stp(2,'st2','Paste the AI\'s reply','Copy the AI\'s whole reply and paste it here.',
-     '<textarea class="inp" id="packet" placeholder="Paste the whole reply here"></textarea><div class="msg" id="packetMsg" aria-live="polite"></div><div class="alt" id="linkAlt" hidden>Someone else giving the survey? <button type="button" class="textlink" id="linkBtn">Copy a survey link</button> to email them instead.<div class="msg" id="linkMsg" aria-live="polite"></div><textarea class="inp" id="linkOut" readonly></textarea>'
-     +'<div class="pbox"><b>Want the family\'s view too?</b> The same survey becomes a parent version. Answers are emailed to the case manager.<div class="prow"><input class="inp" id="cmName" maxlength="40" placeholder="Case manager name (e.g., Ms. Rivera)" aria-label="Case manager name"><input class="inp" id="cmEmail" type="email" maxlength="80" placeholder="Case manager email" aria-label="Case manager email"></div><button type="button" class="btn ghost" id="parentBtn">Copy parent link</button><div class="msg" id="parentMsg" aria-live="polite"></div><textarea class="inp" id="parentOut" readonly></textarea></div></div>')
-   +stp(3,'st3','Add the student\'s first name','',name)
-   +stp(4,'st4','Start the survey','Then hand the device to the student.',go)
+     '<textarea class="inp" id="packet" placeholder="Paste the whole reply here"></textarea><div class="msg" id="packetMsg" aria-live="polite"></div>')
+   +(location.protocol==='file:'?'<div class="msg bad" style="margin:0 0 12px">You are using a downloaded copy of ECHO. Survey links made here only work on this computer and may not paste as links. To send surveys, open ECHO from its web address.</div>':'')
+   +stp(3,'st3x','Share the surveys','Three people can weigh in: the student, a parent or guardian, and teachers. Send to any or all of them; each gets a version written for them.',
+     '<div class="ctx"><div class="field" style="margin:0 0 6px">Fill in once. These details are used for every survey you send.</div><div class="prow" style="margin:0"><input class="inp" id="cmName" maxlength="40" placeholder="Case manager name (e.g., Ms. Rivera)" aria-label="Case manager name"><input class="inp" id="cmEmail" type="email" maxlength="80" placeholder="Case manager email" aria-label="Case manager email"></div>'
+     +'<div class="prow" style="margin:10px 0 0"><input class="inp" id="fname" autocomplete="off" maxlength="30" placeholder="Student first name" aria-label="Student first name"><input class="inp" id="lname" autocomplete="off" maxlength="30" placeholder="Student last name (optional)" aria-label="Student last name, optional"></div>'
+     +'<p class="fine" style="margin:6px 0 0">The names only fill in the emails. They are never put in a survey link. Adult answers go to the case manager email.</p></div>'
+     +'<div class="who"><div class="whoh"><span class="wdot stu"></span>Student</div><p class="fine" style="margin:0 0 10px">Start here on this device, or email the adult who will give it.</p>'
+     +'<div class="sendrow"><button type="button" class="btn primary" id="goBtn">Start on this device</button><button type="button" class="btn ghost" id="linkBtn">Copy staff email</button><button type="button" class="textlink" id="linkRaw">Copy link only</button></div><div class="msg" id="setupMsg" aria-live="polite"></div><div class="msg" id="linkMsg" aria-live="polite"></div><textarea class="inp" id="linkOut" readonly></textarea></div>'
+     +'<div class="who"><div class="whoh"><span class="wdot fam"></span>Parent/guardian</div><p class="fine" style="margin:0 0 10px">A home version in plain language. Works on a phone.</p>'
+     +'<div class="sendrow"><button type="button" class="btn ghost" id="parentBtn">Copy parent/guardian email</button><button type="button" class="textlink" id="parentRaw">Copy link only (for texting)</button></div><div class="msg" id="parentMsg" aria-live="polite"></div><textarea class="inp" id="parentOut" readonly></textarea></div>'
+     +'<div class="who"><div class="whoh"><span class="wdot tch"></span>Teacher</div><p class="fine" style="margin:0 0 10px">A classroom version for general education teachers. Send one to each teacher; each adds their own name.</p>'
+     +'<div class="sendrow"><button type="button" class="btn ghost" id="teacherBtn">Copy teacher email</button><button type="button" class="textlink" id="teacherRaw">Copy link only</button></div><div class="msg" id="teacherMsg" aria-live="polite"></div><textarea class="inp" id="teacherOut" readonly></textarea></div>')
    +'<div class="center"><button type="button" class="textlink" id="sampleBtn">Just exploring? Try a sample survey</button></div>';
  }
  w.innerHTML=h;
 }
+function pasteKeys(){return /Mac/.test(navigator.platform||'')?'Cmd + V':'Ctrl + V';}
+function buildEmail(kind,link,cmN,o){
+ const nm=cleanName((document.getElementById('fname')||{}).value||''),ln=cleanName((document.getElementById('lname')||{}).value||''),full=(nm+(ln?' '+ln:'')).trim(),fullP=full?full+'\'s':'';
+ const kid=nm||'the student',kidP=nm?nm+'\'s':'the student\'s',child=nm||'your child',childP=nm?nm+'\'s':'your child\'s';
+ const sign=cmN||'';
+ let subj,paras,cta;
+ if(kind==='parent'){subj='Your thoughts before '+(fullP||childP)+' IEP meeting';
+  paras=['Hello,',childP.charAt(0).toUpperCase()+childP.slice(1)+' IEP team will be meeting soon, and we would love to hear your thoughts first. This short survey takes about 10 to 15 minutes, works on a phone or computer, and asks how this year has gone at home and at school.','[LINK]','When you finish, the survey helps you send your answers to me by email. Nothing is saved online.'];
+  cta='Click HERE to begin the survey.';}
+ else if(kind==='teacher'){subj='Classroom input for '+(fullP||kidP)+' IEP meeting';
+  paras=['Hi,','Before '+kidP+' upcoming IEP meeting, I would appreciate your view from the classroom. This short survey takes about 10 to 15 minutes and asks about progress on IEP goals, supports in your class, and how '+kidP+' needs affect access and progress in general education.','[LINK]','When you finish, your answers come back to me by email. Nothing is saved online.'];
+  cta='Click HERE to begin the survey.';}
+ else {subj='Student input survey for '+(fullP||kidP)+' IEP meeting';
+  paras=['Hi,','Here is the student input survey for '+kidP+' upcoming IEP meeting. It takes about 10 minutes, and most questions just need a tap.','[LINK]','Type '+(nm?nm+'\'s':'the student\'s')+' first name, then hand over the device. At the end, click Create summary, then save the PDF or copy the summary and send it to me.'];
+  cta='Click HERE to open the survey.';}
+ paras.push('Thank you,'+(sign?'\n'+sign:''));
+ const he=t=>t.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+ const html=paras.map(p=>p==='[LINK]'?'<p><b><a href="'+he(link)+'">'+he(cta.replace('HERE','here'))+'</a></b></p>':'<p>'+he(p).replace(/\n/g,'<br>')+'</p>').join('');
+ const text=paras.map(p=>p==='[LINK]'?cta.replace('Click HERE to','To')+' open this link:\n'+link:p).join('\n\n');
+ return {subj,html,text};
+}
+function copyPlain(t,outId,msgId,ok){const out=document.getElementById(outId);
+ (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{msg(msgId,'ok',ok);out.classList.remove('show');})
+ .catch(()=>{out.value=t;out.classList.add('show');out.focus();out.select();msg(msgId,'bad','Copying was blocked. Select the text below and copy it.');});}
+function copyRich(em,outId,msgId,ok){const out=document.getElementById(outId);
+ let p;try{p=(window.ClipboardItem&&navigator.clipboard&&navigator.clipboard.write)?navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([em.html],{type:'text/html'}),'text/plain':new Blob([em.text],{type:'text/plain'})})]):Promise.reject();}catch(e){p=Promise.reject();}
+ p.then(()=>{msg(msgId,'ok',ok);out.classList.remove('show');})
+ .catch(()=>{(navigator.clipboard?navigator.clipboard.writeText(em.text):Promise.reject()).then(()=>{msg(msgId,'ok',ok);out.classList.remove('show');})
+  .catch(()=>{out.value=em.text;out.classList.add('show');out.focus();out.select();msg(msgId,'bad','Copying was blocked. Select the email below and copy it.');});});}
 function msg(id,cls,t){const e=document.getElementById(id);if(e){e.className='msg '+cls;e.textContent=t;}}
 function readPacketBox(){
  const box=document.getElementById('packet');if(!box)return loaded;
@@ -1036,30 +1213,36 @@ document.getElementById('setupWrap').addEventListener('keydown',e=>{if(e.target.
 document.getElementById('setupWrap').addEventListener('click',async e=>{
  const id=(e.target.closest('button')||{}).id;
  if(id==='goBtn'){const o=readPacketBox();if(!o)return;const n=cleanName(document.getElementById('fname').value);
+  if(MODE==='teacher'){const tn=(document.getElementById('tName').value||'').replace(/\s+/g,' ').trim().slice(0,40),tc=(document.getElementById('tClass').value||'').replace(/\s+/g,' ').trim().slice(0,50);
+   if(!tn){msg('setupMsg','bad','Add your name so the team knows whose view this is.');document.getElementById('tName').focus();return;}TCH={n:tn,c:tc};}
   if(!n){msg('setupMsg','bad',MODE==='parent'?'Type your child\'s first name to begin.':'Type the student\'s first name to begin.');document.getElementById('fname').focus();return;}
+  LAST=ADULT()?cleanName((document.getElementById('lname')||{}).value||''):'';
   startSurvey(o,n);}
  if(id==='promptBtn'){const out=document.getElementById('promptOut');
   (navigator.clipboard?navigator.clipboard.writeText(AI_PROMPT):Promise.reject()).then(()=>{msg('promptMsg','ok','Prompt copied. Paste it into your AI tool.');markStep('st1',true);out.classList.remove('show');})
    .catch(()=>{out.value=AI_PROMPT;out.classList.add('show');out.focus();out.select();msg('promptMsg','bad','Copying was blocked. Select the text below and copy it.');markStep('st1',true);});}
  if(id==='sampleBtn'){const n=cleanName((document.getElementById('fname')||{}).value||'')||'Wally';startSurvey(checkPacket(JSON.parse(JSON.stringify(SAMPLE))),n);}
- if(id==='parentBtn'){const o=readPacketBox();if(!o)return;
+ if(['parentBtn','teacherBtn','parentRaw','teacherRaw'].indexOf(id)>=0){const o=readPacketBox();if(!o)return;const tch=id.indexOf('teacher')===0,mid=tch?'teacherMsg':'parentMsg',oid=tch?'teacherOut':'parentOut';
   const nm=(document.getElementById('cmName').value||'').trim().slice(0,40),em=(document.getElementById('cmEmail').value||'').trim();
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){msg('parentMsg','bad','Add the case manager\'s email so the family\'s answers have somewhere to go.');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){msg(mid,'bad','Add the case manager\'s email at the top of Step 3 so the answers have somewhere to go.');document.getElementById('cmEmail').focus();return;}
   const cm=b64u(new TextEncoder().encode(JSON.stringify({n:nm,e:em})));
-  const link=location.origin+location.pathname+'#s='+(await encodePacket(o._raw||o))+'&m=p&cm='+cm;
-  const out=document.getElementById('parentOut');
-  (navigator.clipboard?navigator.clipboard.writeText(link):Promise.reject()).then(()=>{msg('parentMsg','ok','Parent link copied. Send it to the family by email or text.');out.classList.remove('show');})
-   .catch(()=>{out.value=link;out.classList.add('show');out.focus();out.select();msg('parentMsg','bad','Copying was blocked. Select the link below and copy it.');});}
- if(id==='linkBtn'){const o=readPacketBox();if(!o)return;
-  const link=location.origin+location.pathname+'#s='+(await encodePacket(o._raw||o));
-  const out=document.getElementById('linkOut');
-  (navigator.clipboard?navigator.clipboard.writeText(link):Promise.reject()).then(()=>{msg('linkMsg','ok','Link copied. Paste it into a district email. The link never includes the student\'s name.');out.classList.remove('show');})
-   .catch(()=>{out.value=link;out.classList.add('show');out.focus();out.select();msg('linkMsg','bad','Copying was blocked. Select the link below and copy it.');});}
+  const link=location.href.split('#')[0]+'#s='+(await encodePacket(o._raw||o))+'&m='+(tch?'t':'p')+'&cm='+cm;
+  if(id.slice(-3)==='Raw'){copyPlain(link,oid,mid,(tch?'Teacher':'Parent/guardian')+' survey link copied.');return;}
+  const em2=buildEmail(tch?'teacher':'parent',link,nm,o);
+  copyRich(em2,oid,mid,(tch?'Teacher':'Parent/guardian')+' email copied. Open a new email, click in the message, paste ('+pasteKeys()+'), add the subject "'+em2.subj+'", review it, and send.');}
+ if(id==='linkBtn'||id==='linkRaw'){const o=readPacketBox();if(!o)return;
+  const link=location.href.split('#')[0]+'#s='+(await encodePacket(o._raw||o));
+  if(id==='linkRaw'){copyPlain(link,'linkOut','linkMsg','Student survey link copied.');return;}
+  const nm=(document.getElementById('cmName').value||'').trim().slice(0,40);
+  const em2=buildEmail('student',link,nm,o);
+  copyRich(em2,'linkOut','linkMsg','Staff email copied. Open a new email to the adult giving the survey, paste ('+pasteKeys()+'), add the subject "'+em2.subj+'", review it, and send.');}
 });
 (async function init(){
  document.getElementById('brandLogo').innerHTML=logo(28,false);
  document.getElementById('brandTitle').textContent=BRAND.name;
  const m=location.hash.match(/[#&]s=([A-Za-z0-9_-]+)/);
+ const tm=/[#&]m=t(&|$)/.test(location.hash);
+ if(m&&tm){const cmt=location.hash.match(/[#&]cm=([A-Za-z0-9_-]+)/);try{loaded=await decodePacket(m[1]);MODE='teacher';try{CM=JSON.parse(new TextDecoder().decode(unb64u(cmt[1])));}catch(e){CM=null;}document.title='ECHO Classroom Survey';document.body.classList.add('class');renderSetup('teacher');return;}catch(e){renderSetup('paste','This survey link did not open correctly. Please ask the case manager for a new link.');return;}}
  const pm=/[#&]m=p(&|$)/.test(location.hash),cmm=location.hash.match(/[#&]cm=([A-Za-z0-9_-]+)/);
  if(m&&pm){try{loaded=await decodePacket(m[1]);MODE='parent';try{CM=JSON.parse(new TextDecoder().decode(unb64u(cmm[1])));}catch(e){CM=null;}document.title='ECHO Home Survey';document.body.classList.add('home');renderSetup('parent');return;}catch(e){renderSetup('paste','This survey link did not open correctly. Please ask the school for a new link.');return;}}
  if(m){try{loaded=await decodePacket(m[1]);renderSetup('link');return;}
