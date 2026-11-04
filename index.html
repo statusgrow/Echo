@@ -39,8 +39,8 @@ body:not(.setup) #setupWrap{display:none}
 .setupgo{margin-top:20px}
 .textlink{background:none;border:0;color:#2F6F6B;font:inherit;font-weight:700;text-decoration:underline;cursor:pointer;padding:4px}
 .center{text-align:center;margin-top:6px}
-#linkOut,#promptOut,#parentOut,#teacherOut{display:none;margin-top:10px;min-height:80px;font-size:13px}
-#linkOut.show,#promptOut.show,#parentOut.show,#teacherOut.show{display:block}
+#linkOut,#promptOut,#parentOut,#teacherOut,#paperPromptOut{display:none;margin-top:10px;min-height:80px;font-size:13px}
+#linkOut.show,#promptOut.show,#parentOut.show,#teacherOut.show,#paperPromptOut.show{display:block}
 .pbox{margin-top:16px;padding:14px 16px;border-radius:14px;background:#F3F8F7;color:#3D4855;font-size:15px}
 .prow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0 12px}
 @media (max-width:560px){.prow{grid-template-columns:1fr}}
@@ -54,6 +54,11 @@ body:not(.setup) #setupWrap{display:none}
 .stp .inp{margin-top:2px}
 .alt{margin-top:12px;font-size:15px;color:#4A5563}
 .alt[hidden]{display:none}
+.paper{margin-top:16px;border:1px dashed #CFC8B8;border-radius:14px;padding:12px 16px;background:#FDFCF9}
+.paper summary{cursor:pointer;font-size:15px;color:#3D4855}
+.paper select.inp{margin-top:6px;font-size:16px}
+.paper label .inp{margin-top:6px}
+.ppstep{margin-top:16px;padding-top:14px;border-top:1px solid #EEE9DE;font-size:15px;color:#3D4855}
 .ctx{background:#F6F3EC;border-radius:14px;padding:14px 16px}
 .who .sendrow{align-items:center}
 .who{border:1px solid #E4DED2;border-radius:14px;padding:14px 16px;margin-top:12px;background:#FDFCF9}
@@ -328,6 +333,50 @@ details.adult li{margin-bottom:6px}
  .rec td:first-child{width:58%;color:#3D4855}
  .rec tr.more td:first-child{padding-left:18px;font-style:italic}
  .rec tr{break-inside:avoid}
+ .pp-head{display:flex;justify-content:space-between;align-items:center;font-family:'Lexend',sans-serif;font-size:9.5pt;color:#3D4855;padding:.3in .65in 0}
+ .pp-head .l{display:flex;align-items:center;gap:6px;font-weight:600;color:#1F2A37}
+ .pp-foot{font-size:8.5pt;color:#5B6675;padding:0 .65in .25in;text-align:right}
+ .pp{font-size:11pt;color:#1F2A37;line-height:1.4}
+ .pp-cover{break-after:page}
+ .pp-cover h1{font-family:'Lexend',sans-serif;font-size:20pt;margin:6px 0 10px}
+ .pp-cover p{margin:0 0 10px;font-size:12pt;line-height:1.5}
+ .pp-keep{border:2px solid #1F2A37;border-radius:10px;padding:10px 14px;margin:18px 0}
+ .pp-keep b{display:block;font-family:'Lexend',sans-serif;margin-bottom:6px}
+ .pp-ret{background:#F6F3EC;border-radius:10px;padding:12px 14px;margin:14px 0}
+ .pp-sec{font-family:'Lexend',sans-serif;font-size:14pt;font-weight:700;margin:16px 0 4px;border-bottom:2px solid #2F6F6B;padding-bottom:3px;break-after:avoid}
+ .pp-intro{font-size:10pt;color:#3D4855;margin:0 0 8px}
+ .pq{margin:10px 0 12px;break-inside:avoid}
+ .pkeep{break-inside:avoid}
+ .pkeep .pq{break-inside:auto}
+ .pqt{font-weight:700}
+ .pn{color:#5B6675;font-weight:700;margin-right:2px}
+ .ph{font-size:9.5pt;color:#4A5563;margin-top:1px}
+ .pb{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:6px}
+ .pb.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px 14px}
+ .po{display:inline-flex;align-items:flex-start;gap:6px}
+ .bx{flex:none;width:12px;height:12px;border:1.5px solid #1F2A37;border-radius:2px;margin-top:2px;display:inline-block}
+ .ln{border-bottom:1px solid #8A94A0;height:24px}
+ .pf{margin:8px 0 0 18px;padding-left:10px;border-left:2px solid #CFC8B8}
+ .pfh{font-size:10pt;font-style:italic;color:#3D4855}
+ .pcols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:6px}
+ .pcol h5{margin:0 0 4px;font-size:9pt;letter-spacing:.06em;text-transform:uppercase}
+ .pcol .pb{flex-direction:column;gap:4px}
+ .pgoal{margin:14px 0 2px;padding:6px 10px;border-left:4px solid #2F6F6B;background:#F3F8F7;break-after:avoid}
+ .pgoal .gl{font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#2F6F6B}
+ .pt{width:100%;border-collapse:collapse;margin-top:6px;font-size:9.5pt}
+ .pt th{font-weight:700;text-align:center;padding:4px;border-bottom:1.5px solid #1F2A37;font-size:8.5pt;vertical-align:bottom}
+ .pt th:first-child{text-align:left}
+ .pt td{padding:5px 4px;border-bottom:1px solid #CFC8B8;text-align:center;vertical-align:middle}
+ .pt td:first-child{text-align:left;width:42%}
+ .pt tr{break-inside:avoid}
+ .p3{border:1px solid #CFC8B8;border-radius:8px;padding:6px 10px;margin:6px 0;break-inside:avoid}
+ .p3 .r{display:flex;gap:10px;margin-top:3px;font-size:9.5pt}
+ .p3 .r b{width:110px;flex:none}
+ .pfaces{display:flex;gap:14px;margin-top:6px}
+ .pface{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9pt}
+ .pface svg{width:34px;height:34px}
+ .ppair{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:6px 0;padding:5px 0;border-bottom:1px solid #EEE9DE;break-inside:avoid}
+ .ppair .or{font-size:9pt;color:#5B6675;width:auto;height:auto;background:none}
 }
 </style>
 </head>
@@ -975,6 +1024,75 @@ function printSummary(){
  window.addEventListener('afterprint',done);window.print();setTimeout(()=>{if(!window.matchMedia('print').matches)done();},1500);
 }
 
+const PAPER_PROMPT="You are helping a school team summarize a completed ECHO paper survey. ECHO surveys gather the views of a student, a parent or guardian, or a general education teacher before an IEP meeting or special education reevaluation. The uploaded pages are photos or scans of a survey that was filled out by hand.\n\nBEFORE YOU START\n1. The header of each page names the survey: Student Survey, Parent/Guardian Survey, or Teacher Survey. The top right of each page gives the grade and the pronoun to use for the student.\n2. Privacy: refer to the student only as [Student] so staff can replace it with the first name. Never write a student's full name, birthdate, or other identifying details. If a student's name appears on the pages, do not repeat it, and add this line at the very top of your reply: \"Heads up: a student name appears on the scanned pages.\"\n3. Report only what was marked or written. Do not interpret, diagnose, recommend, or add anything that is not on the page.\n\nHOW TO READ THE PAGES\nA box that is checked, filled, circled, or marked with an X counts as selected. A circled face counts as selected.\nIf a mark is unclear (crossed out, between two boxes, or two boxes marked where one was expected), do not guess. Leave it out of the summary and list it under \"Things to double check.\"\nCopy handwritten answers word for word inside quotation marks. Do not fix spelling or grammar. If a word is hard to read, write your best guess in brackets with a question mark, like [tomorrow?]. If an answer cannot be read at all, write [unreadable].\nIgnore printed instructions, blank items, and the cover page if it was included.\n\nWRITE THE SUMMARY\nStart with one title line: \"Student Input Summary\", \"Parent Input Summary\", or \"Teacher Input Summary\".\nFirst sentence, matching the survey:\nStudent: \"[Student] completed a Student Input Survey on [date].\"\nParent/guardian: \"[Student]'s parent or guardian completed a Parent Input Survey on [date].\"\nTeacher: \"[teacher name as written] ([class or subject as written]), [Student]'s general education teacher, completed a Teacher Input Survey on [date].\"\nUse the date written on the survey. If there is no date, write [date]. If fewer than half of the items were answered, write \"responded to part of\" instead of \"completed.\"\nThen write one short paragraph for each part of the survey that has answers, in the same order as the survey. Skip parts with no answers.\n\nStyle rules:\nPast tense. Plain language a parent could read at home (6th to 8th grade level).\nNo bullet points or headings inside the summary. Never use em dashes or double hyphens.\nReport answers as given, without judging them. Quote every handwritten answer exactly.\nUse [Student] at the start of each paragraph. Elsewhere, use the pronoun printed at the top right of each page.\nName skipped items briefly in one sentence when it helps (for example, \"The parent did not rate tests read aloud.\").\n\nExample sentences in the ECHO style:\nStudent: When asked how math was going, [Student] answered \"hard.\" He said the hard parts included multi-step problems. He reported that extra time on tests helped him and that he did not have speech-to-text. He preferred getting reading help in his classroom over getting it in another room.\nParent/guardian: When asked about math at home, the parent answered \"getting harder.\" At home, the parent noticed avoiding math homework. The parent also noticed positive signs: asking for help with math. The parent felt the time for school social work (30 minutes a week) was not enough. When asked about their biggest hope for next year, the parent said, \"That he makes one good friend.\"\nTeacher: The teacher reported that extended time was provided often, that [Student] was highly reliant on it, and that his attitude toward it was positive. The teacher identified written work as a barrier to keeping up in class. When asked how these needs affect access and progress in the general education classroom, the teacher said, \"Understands the concepts but rarely finishes independent practice.\"\n\nAFTER THE SUMMARY\nAdd a separate line that says \"Things to double check:\" and list any unclear marks, handwriting you were unsure about, or items that seemed important but were left blank. If there is nothing to check, write \"Things to double check: none.\"\n\nNow read the uploaded pages and write the summary.\n";
+const PKIND={student:{name:'Student Survey',sum:'student'},parent:{name:'Parent/Guardian Survey',sum:'parent'},teacher:{name:'Teacher Survey',sum:'teacher'}};
+let PN=0;
+function plines(n){let h='';for(let i=0;i<n;i+=1)h+='<div class="ln"></div>';return h;}
+function pbox(opts,grid){return '<div class="pb'+(grid?' grid':'')+'">'+opts.map(o=>'<span class="po"><span class="bx"></span><span>'+esc(fill(optKid(o)))+'</span></span>').join('')+'</div>';}
+function pq(t,h){PN+=1;return '<div class="pqt"><span class="pn">'+PN+'.</span> '+esc(fill(t))+'</div>'+(h?'<div class="ph">'+esc(fill(h))+'</div>':'');}
+function pfollow(fu){if(!fu)return '';let h='<div class="pf"><div class="pfh">If you marked '+fu.when.map(w=>'"'+w+'"').join(' or ')+':</div><div class="pqt" style="font-weight:600">'+esc(fill(fu.prompt))+'</div>';
+ if(fu.cols)h+='<div class="pcols"><div class="pcol"><h5 style="color:#A9532F">What\'s been hard</h5>'+pbox(fu.cols.hard)+'</div><div class="pcol"><h5 style="color:#2F6F6B">What\'s going well</h5>'+pbox(fu.cols.good)+'</div></div>';
+ else if(fu.options)h+=pbox(fu.options,fu.options.length>4);
+ if(fu.options)h+='<div class="ph" style="margin-top:6px">'+esc(fill(fu.textPrompt||'Anything else?'))+'</div>';
+ return h+plines(2)+'</div>';}
+function pitem(it){
+ const t=it.type;let h='';
+ if(t==='goal'){const its=it.items.map(pitem);return '<div class="pkeep"><div class="pgoal"><div class="gl">'+esc(it.label)+'</div><div>'+esc(fill(it.title))+'</div></div>'+(its[0]||'')+'</div>'+its.slice(1).join('');}
+ if(t==='note')return '<div class="pq"><div class="pqt">'+esc(fill(it.title))+'</div><ul style="margin:4px 0 0;padding-left:18px">'+it.lines.map(l=>'<li>'+esc(l)+'</li>').join('')+'</ul></div>';
+ if(t==='checklist')h=pq(it.q,it.hint)+pbox(it.options,true)+(it.other?'<div class="pb"><span class="po"><span class="bx"></span><span>Something else:</span></span></div>'+plines(1):'');
+ else if(t==='text')h=pq(it.q,it.hint)+plines(it.featured?5:3);
+ else if(t==='scale'){const k2=S.band==='K-2';const lv=k2?[[1,'Hard'],[3,'Okay'],[5,'Good']]:[[1,'Really hard'],[2,'Hard'],[3,'Okay'],[4,'Good'],[5,'Really good']];
+  h=pq(it.q,it.hint)+'<div class="ph">Circle one face.</div><div class="pfaces">'+lv.map(([n,l])=>'<div class="pface">'+face(n)+'<span>'+esc(l)+'</span></div>').join('')+'</div>'+pfollow(it.followUp);}
+ else if(t==='choice')h=pq(it.q,it.hint)+pbox(it.options)+pfollow(it.followUp);
+ else if(t==='supports'){h=pq(it.q,it.hint)+'<table class="pt"><tr><th></th>'+it.options.map(o=>'<th>'+esc(o)+'</th>').join('')+'</tr>'+it.rows.map(r=>'<tr><td>'+esc(fill(r.k))+'</td>'+it.options.map(()=>'<td><span class="bx"></span></td>').join('')+'</tr>').join('')+'</table>';
+  if(it.followUp)h+='<div class="ph" style="margin-top:8px">'+esc(fill(it.followUp.prompt.replace('this one','any of these')))+'</div>'+plines(3);}
+ else if(t==='supports3'){h=pq(it.q.replace('tap one answer in each column','mark one answer in each row'),it.hint)+it.rows.map(r=>'<div class="p3"><div style="font-weight:700">'+esc(fill(r.k))+'</div>'+it.dims.map(d=>'<div class="r"><b>'+esc(d.h)+':</b>'+pbox(d.o).replace('class="pb"','class="pb" style="margin:0"')+'</div>').join('')+'<div class="r"><b>Comment:</b><div class="ln" style="flex:1;height:18px"></div></div></div>').join('');}
+ else if(t==='pairs')h=pq(it.q,'Mark one in each row.')+it.pairs.map(pr=>'<div class="ppair"><span class="po"><span class="bx"></span>'+esc(pr.a)+'</span><span class="or">or</span><span class="po"><span class="bx"></span>'+esc(pr.b)+'</span><span class="po"><span class="bx"></span>Both are okay</span><span class="po"><span class="bx"></span>Neither works for me</span></div>').join('');
+ else if(t==='ync')h=pq(it.q,it.hint)+'<table class="pt">'+it.statements.map(st=>{const o=st.options||['Yes','Sometimes','No'];return '<tr><td>'+esc(fill(st.s))+'</td>'+o.map(x=>'<td style="text-align:left;white-space:nowrap"><span class="bx" style="vertical-align:-2px"></span> '+esc(x)+'</td>').join('')+'</tr>';}).join('')+'</table>';
+ return '<div class="pq">'+h+'</div>';
+}
+function paperCover(kind){
+ const cmN=(document.getElementById('cmName').value||'').trim(),cmE=(document.getElementById('cmEmail').value||'').trim();
+ const nm=cleanName(document.getElementById('fname').value||''),ln=cleanName(document.getElementById('lname').value||'');
+ const ret=document.getElementById('pRet').value,due=(document.getElementById('pDue').value||'').trim();
+ const to=cmN||'the case manager';
+ const R={student:'Please send the completed survey back to school with your child in their folder or backpack.',sase:'Please mail the completed survey back in the stamped envelope we included.',office:'Please drop off the completed survey at the school office.',blank:'Please return the completed survey: ________________________________________'};
+ const contact='Questions? Contact '+esc(to)+(cmE?' at '+esc(cmE):'')+'.';
+ const dueL=due?' Please return it by <b>'+esc(due)+'</b>.':'';
+ const keep='<div class="pp-keep"><b>For school use: keep this page. Do not scan it.</b>Student name: '+(nm?'<u>&nbsp;'+esc((nm+' '+ln).trim())+'&nbsp;</u>':'_______________________________')+'&nbsp;&nbsp; Sent on: ____________&nbsp;&nbsp; Returned on: ____________</div>';
+ let body;
+ if(kind==='parent')body='<h1>Your view matters</h1><p>Dear parent or guardian,</p><p>Your child\'s IEP team will meet soon, and we would like to hear your thoughts first. This short survey asks how this year has gone at home and at school. Most questions only need a check mark, and you can skip anything. It takes about 10 to 15 minutes.</p><div class="pp-ret">'+R[ret]+dueL+'</div><p>'+contact+'</p><p>Thank you,<br>'+esc(cmN||'')+'</p>';
+ else if(kind==='teacher')body='<h1>Your classroom view matters</h1><p>Before this student\'s upcoming IEP meeting, the team would value your view from the classroom. This survey asks about progress on IEP goals, supports in your class, and how the student\'s needs affect access and progress in general education. It takes about 10 to 15 minutes.</p><div class="pp-ret">When finished, please return it to '+esc(to)+'.'+dueL+'</div><p>'+contact+'</p>';
+ else body='<h1>Student input survey</h1><p><b>For the adult giving the survey:</b> read questions aloud whenever it helps. Pointing to an answer is fine; mark it for the student. If you write answers, use the student\'s exact words. Please do not suggest answers. Skipping is okay.</p><div class="pp-ret">When finished, please return it to '+esc(to)+'.'+dueL+'</div><p>'+contact+'</p>';
+ return '<div class="pp-cover">'+body+keep+'</div>';
+}
+function buildPaper(kind){
+ const o=readPacketBox();if(!o)return false;
+ const keep={S,PR,MODE};
+ try{
+  MODE=kind==='student'?'student':kind;
+  const ex=kind==='parent'?expandParent(o._raw||o):kind==='teacher'?expandTeacher(o._raw||o):JSON.parse(JSON.stringify(o));
+  S=ex;S.student=kind==='parent'?'your child':kind==='teacher'?'the student':'you';PR=ex.pronouns;PN=0;
+  let body='';
+  if(kind==='teacher')body+='<div class="pq"><div class="pqt">Your name: _______________________________&nbsp;&nbsp; Class or subject: ______________________</div></div>';
+  body+='<div class="pq"><div class="pqt">Date completed: ____________________</div></div>';
+  if(kind==='student')body+='<div class="pq"><div class="pqt">Completed: <span class="po"><span class="bx"></span> On their own</span>&nbsp; <span class="po"><span class="bx"></span> With read-aloud help</span>&nbsp; <span class="po"><span class="bx"></span> An adult wrote down their answers</span></div></div>';
+  ex.sections.forEach((sec,i)=>{const its=sec.items.map(pitem);const head='<div class="pp-sec">Part '+(i+1)+': '+esc(sec.title)+'</div><div class="pp-intro">'+esc(fill(sec.intro))+'</div>';
+   body+=(sec.items[0]&&sec.items[0].type==='goal'?head+its.join(''):'<div class="pkeep">'+head+(its[0]||'')+'</div>'+its.slice(1).join(''));});
+  body+='<p style="margin-top:18px;font-weight:700">Thank you! Please return this survey as described on the cover page.</p>';
+  const pr=ex.pronouns,prs=pr.he+'/'+pr.him;
+  let pd=document.getElementById('printDoc');if(!pd){pd=document.createElement('div');pd.id='printDoc';document.body.appendChild(pd);}
+  pd.innerHTML='<table class="pd-t"><thead><tr><td><div class="pp-head"><span class="l">'+logo(18,false)+'ECHO '+PKIND[kind].name+'</span><span>'+(ex.grade?esc(ex.grade)+' &middot; ':'')+'pronoun: '+esc(prs)+'</span></div></td></tr></thead><tfoot><tr><td></td></tr></tfoot><tbody><tr><td><div class="pp">'+paperCover(kind)+body+'</div></td></tr></tbody></table>';
+ } finally {S=keep.S;PR=keep.PR;MODE=keep.MODE;}
+ return true;
+}
+function printPaper(kind){
+ if(!buildPaper(kind)){msg('paperMsg','bad','Paste the AI\'s reply in Step 2 first.');return;}
+ let st=document.getElementById('pdPage');if(!st){st=document.createElement('style');st.id='pdPage';document.head.appendChild(st);}
+ st.textContent='@page{margin:0;size:letter}';document.body.classList.add('print-summary');msg('paperMsg','ok','Print window opened. Choose your printer, or Save as PDF to print later.');
+ const done=()=>{document.body.classList.remove('print-summary');st.textContent='';window.removeEventListener('afterprint',done);};
+ window.addEventListener('afterprint',done);window.print();setTimeout(()=>{if(!window.matchMedia('print').matches)done();},1500);
+}
 function speak(t){if(!speakOK)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=0.9;speechSynthesis.speak(u);}
 function updateFollows(name){
  document.querySelectorAll('.follow').forEach(f=>{const ns=f.dataset.names.split('|');if(!ns.includes(name))return;const w=JSON.parse(f.dataset.when);
@@ -1166,6 +1284,14 @@ function renderSetup(mode,info){
      +'<div class="sendrow"><button type="button" class="btn ghost" id="parentBtn">Copy parent/guardian email</button><button type="button" class="textlink" id="parentRaw">Copy link only (for texting)</button></div><div class="msg" id="parentMsg" aria-live="polite"></div><textarea class="inp" id="parentOut" readonly></textarea></div>'
      +'<div class="who"><div class="whoh"><span class="wdot tch"></span>Teacher</div><p class="fine" style="margin:0 0 10px">A classroom version for general education teachers. Send one to each teacher; each adds their own name.</p>'
      +'<div class="sendrow"><button type="button" class="btn ghost" id="teacherBtn">Copy teacher email</button><button type="button" class="textlink" id="teacherRaw">Copy link only</button></div><div class="msg" id="teacherMsg" aria-live="polite"></div><textarea class="inp" id="teacherOut" readonly></textarea></div>')
+   +'<details class="paper"><summary><b>Need paper copies?</b> Print any survey, then turn the completed pages into a summary.</summary><div class="paperb">'
+     +'<div class="prow" style="margin:6px 0 0"><label class="field" style="margin:0">How should it come back?<select class="inp" id="pRet"><option value="student">Send back with the student</option><option value="sase">Mail back in a stamped envelope</option><option value="office">Drop off at the school office</option><option value="blank">Leave a blank line to write in</option></select></label>'
+     +'<label class="field" style="margin:0">Return by (optional)<input class="inp" id="pDue" maxlength="30" placeholder="e.g., Friday, Nov. 14"></label></div>'
+     +'<p class="fine" style="margin:8px 0 10px">Uses the case manager details above. The student\'s name prints only on the cover page, which stays at school.</p>'
+     +'<div class="sendrow"><button type="button" class="btn ghost" data-paper="student">Print student survey</button><button type="button" class="btn ghost" data-paper="parent">Print parent/guardian survey</button><button type="button" class="btn ghost" data-paper="teacher">Print teacher survey</button></div><div class="msg" id="paperMsg" aria-live="polite"></div>'
+     +'<div class="ppstep"><b>When surveys come back:</b> photograph or scan the pages (not the cover page), open Gemini or another approved AI tool, paste this prompt, and attach the pages. The AI writes the summary.'
+     +'<div class="sendrow" style="margin-top:10px"><button type="button" class="btn ghost" id="paperPromptBtn">Copy the paper summary prompt</button></div><div class="msg" id="paperPromptMsg" aria-live="polite"></div><textarea class="inp" id="paperPromptOut" readonly></textarea></div>'
+     +'</div></details>'
    +'<div class="center"><button type="button" class="textlink" id="sampleBtn">Just exploring? Try a sample survey</button></div>';
  }
  w.innerHTML=h;
@@ -1222,6 +1348,8 @@ document.getElementById('setupWrap').addEventListener('click',async e=>{
   (navigator.clipboard?navigator.clipboard.writeText(AI_PROMPT):Promise.reject()).then(()=>{msg('promptMsg','ok','Prompt copied. Paste it into your AI tool.');markStep('st1',true);out.classList.remove('show');})
    .catch(()=>{out.value=AI_PROMPT;out.classList.add('show');out.focus();out.select();msg('promptMsg','bad','Copying was blocked. Select the text below and copy it.');markStep('st1',true);});}
  if(id==='sampleBtn'){const n=cleanName((document.getElementById('fname')||{}).value||'')||'Wally';startSurvey(checkPacket(JSON.parse(JSON.stringify(SAMPLE))),n);}
+ const pb=e.target.closest('[data-paper]');if(pb){printPaper(pb.dataset.paper);return;}
+ if(id==='paperPromptBtn'){copyPlain(PAPER_PROMPT,'paperPromptOut','paperPromptMsg','Paper summary prompt copied. Paste it into your AI tool with the scanned pages.');return;}
  if(['parentBtn','teacherBtn','parentRaw','teacherRaw'].indexOf(id)>=0){const o=readPacketBox();if(!o)return;const tch=id.indexOf('teacher')===0,mid=tch?'teacherMsg':'parentMsg',oid=tch?'teacherOut':'parentOut';
   const nm=(document.getElementById('cmName').value||'').trim().slice(0,40),em=(document.getElementById('cmEmail').value||'').trim();
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){msg(mid,'bad','Add the case manager\'s email at the top of Step 3 so the answers have somewhere to go.');document.getElementById('cmEmail').focus();return;}
